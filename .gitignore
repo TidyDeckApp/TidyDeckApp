@@ -1,0 +1,18 @@
+# Ce qui ne fait pas partie du logiciel livré.
+# Les dossiers de build vivent à la racine du dépôt (voir DISTRIBUTION.md §6) :
+# ils pèsent plus de 10 Mo et se régénèrent, ils n'ont rien à faire ici.
+__pycache__/
+*.pyc
+build_env/
+dist/
+work/
+*.zip
+*.egg-info/
+
+# Spec régénérée par PyInstaller à la racine quand on oublie --specpath :
+# la spec officielle est TidyDeck_v2/TidyDeck/packaging/TidyDeck.spec
+/TidyDeck.spec
+
+# journaux de verification locaux
+verif_pages_windows.txt
+_shots/

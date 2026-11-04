@@ -1,0 +1,18 @@
+{
+ "Fichier vérifié. Il est dans Téléchargements.\n\nOuvrir le dossier maintenant ?": "File verified. It is in Downloads.\n\nOpen the folder now?",
+ "Impossible de joindre la page des versions.": "Cannot reach the versions page.",
+ "Je n'ai pas pu ouvrir le dossier. Il est quand même dans Téléchargements.": "I could not open the folder. It is still in your Downloads folder.",
+ "Je ne peux pas vérifier ce fichier, donc je ne le télécharge pas.": "I can't verify this file, so I'm not downloading it.",
+ "Je ne trouve pas ton dossier Téléchargements.": "I can't find your Downloads folder.",
+ "Le fichier est abîmé, je ne le garde pas. Réessaie.": "The file is damaged, I'm not keeping it. Try again.",
+ "Mises à jour": "Updates",
+ "Pas de connexion. Rien n'a été téléchargé.": "No connection. Nothing was downloaded.",
+ "Tu as la dernière version ({v}).": "You have the latest version ({v}).",
+ "Téléchargement annulé : rien n'est resté sur le disque.": "Download cancelled: nothing was left on the disk.",
+ "Téléchargement… {p} %": "Downloading… {p} %",
+ "Version {t} disponible (tu as {v}).\n\nJe peux télécharger le zip vérifié dans ton dossier Téléchargements. Je n'installe rien : plus tard, tu fermes TidyDeck, tu décompresses le zip et tu remplaces le dossier.\n\nTélécharger maintenant ?": "Version {t} available (you have {v}).\n\nI can download the verified zip to your Downloads folder. I install nothing: later, you close TidyDeck, extract the zip and replace the folder.\n\nDownload now?",
+ "Vérification, juste après ton clic…": "Checking, right after your click…",
+ "Vérifie la version publiée sur la page des versions de TidyDeck, puis télécharge le zip vérifié dans ton dossier Téléchargements. Rien n'est installé, rien n'est écrasé.": "Checks the version published on TidyDeck's releases page, then downloads the verified zip to your Downloads folder. Nothing is installed, nothing is overwritten.",
+ "✕ Annuler le téléchargement": "✕ Cancel the download",
+ "🌐 Vérifier les mises à jour": "🌐 Check for updates"
+}

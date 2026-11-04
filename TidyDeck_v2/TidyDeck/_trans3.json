@@ -1,0 +1,22 @@
+{
+"Accueil": "Home",
+"Admin": "Admin",
+"Apparence et modes": "Appearance and modes",
+"Applis préinstallées": "Preinstalled apps",
+"Avancé": "Advanced",
+"Calmer Windows": "Calm Windows",
+"Configuration": "Settings",
+"Démarrage": "Startup",
+"Fichiers & Résidus": "Files & Leftovers",
+"Info PC": "PC Info",
+"Jeu et live": "Gaming and streaming",
+"Journaux": "Logs",
+"Désactivable sans risque": "Safe to disable",
+"Essentiel — à garder": "Essential - keep it on",
+"Inconnu — à vérifier": "Unknown - to check",
+"Les changements s'appliquent immédiatement, pas besoin de valider.": "Changes apply immediately, no confirmation needed.",
+"Santé PC": "PC Health",
+"Nettoyage": "Cleanup",
+"Profils et transfert": "Profiles and transfer",
+"Au démarrage, le minuteur RDV n'existe plus : on le rearme depuis la config.\n        Si l'heure est deja passee, on le dit une fois puis on efface.": "On startup, the appointment timer no longer exists: we re-arm it from the config.\n        If the time has already passed, we say so once then clear it."
+}

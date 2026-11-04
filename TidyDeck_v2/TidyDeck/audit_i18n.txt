@@ -1,0 +1,1352 @@
+=== A. Non enrobés dans T() (candidats ; vrais défauts = F-STRING) ===
+candidats: 1221 | vrais défauts (f-strings FR): 0
+  LITTERAL | UI\app.py | 42 | Rappels bien-être
+  LITTERAL | UI\app.py | 45 | À propos
+  LITTERAL | UI\app.py | 48 | Applications préinstallées
+  LITTERAL | UI\app.py | 49 | Nettoyage
+  LITTERAL | UI\app.py | 50 | Rappels bien-être
+  LITTERAL | UI\app.py | 50 | État des lieux
+  LITTERAL | UI\app.py | 38 | Nettoyer
+  LITTERAL | UI\app.py | 39 | Régler Windows
+  LITTERAL | UI\app.py | 44 | Paramètres
+  LITTERAL | UI\app.py | 136 | Rechauffe les lectures lentes pendant que l'utilisateur prend ses marques.
+
+        Le rel
+  LITTERAL | UI\app.py | 38 | Nettoyage
+  LITTERAL | UI\app.py | 38 | Fichiers et résidus
+  LITTERAL | UI\app.py | 39 | Démarrage
+  LITTERAL | UI\app.py | 43 | État des lieux
+  LITTERAL | UI\app.py | 228 | Nettoyage
+  LITTERAL | UI\app.py | 229 | Fichiers et résidus
+  LITTERAL | UI\app.py | 231 | Démarrage
+  LITTERAL | UI\app.py | 233 | Applications préinstallées
+  LITTERAL | UI\app.py | 235 | Rappels bien-être
+  LITTERAL | UI\app.py | 236 | État des lieux
+  LITTERAL | UI\app.py | 242 | À propos
+  LITTERAL | UI\app.py | 40 | Applications préinstallées
+  LITTERAL | UI\app.py | 40 | Avancé
+  LITTERAL | UI\app.py | 343 | Ça fait un moment : on fait un petit nettoyage de 10 secondes ?
+
+(Une seule validation, ri
+  LITTERAL | UI\app.py | 321 | Couper aussi les notifications Windows pendant que le mode est actif ?
+(Elles seront rétab
+  LITTERAL | UI\components.py | 1 | Composants réutilisés partout.
+  LITTERAL | UI\components.py | 42 | Replie tous les libellés a `wraplength` fige qui depassent la largeur utile.
+
+    Les page
+  LITTERAL | UI\components.py | 212 | Barre de volume visible (remplissage + poignée), cliquable et glissable.
+  LITTERAL | UI\components.py | 997 | nom d'utilisateur, PC et chemins masqués
+  LITTERAL | UI\restore_flow.py | 1 | Point de restauration avant une action sensible, avec les bons choix proposés à chaque éch
+  LITTERAL | UI\restore_flow.py | 9 | Appelle proceed() quand on peut continuer (point créé, ou l'utilisateur choisit de continu
+  LITTERAL | UI\routine.py | 1 | Nettoyage doux recommandé / « Bouton magique » : une seule validation, que des choses sûre
+  LITTERAL | UI\theme.py | 1 | Thèmes : clair chaleureux, sombre, palette daltonien (bleu/orange, jamais rouge/vert).
+Les
+  LITTERAL | UI\theme.py | 65 | ● Sûr
+  LITTERAL | UI\theme.py | 65 | ▲ À vérifier
+  LITTERAL | UI\theme.py | 65 | ⬢ Irréversible
+  LITTERAL | UI\theme.py | 65 | ✕ Désactivé
+  LITTERAL | UI\theme.py | 66 | ▲ À voir quand tu veux
+  LITTERAL | UI\theme.py | 66 | ⬢ À faire une seule fois
+  LITTERAL | UI\theme.py | 66 | ✕ Désactivé
+  LITTERAL | UI\toast.py | 1 | Petite bulle de rappel : en bas à droite, sans voler le focus clavier, se ferme toute seul
+  LITTERAL | UI\tray.py | 2 | Icône système (zone de notification, à côté de l'horloge) — pur ctypes, zéro dépendance.
+
+
+  LITTERAL | UI\tray.py | 176 | Affiche l'icône ; True si l'icône est bien en place (False = repli tâche).
+  LITTERAL | UI\tray.py | 200 | Vide la file d'événements icône (à appeler depuis le thread Tk).
+  LITTERAL | UI\Home\home.py | 37 | 2. Je te montre la liste et la place concernée : tu confirmes une seule fois (ou tu annule
+  LITTERAL | UI\Home\home.py | 40 | Ce que je ne fais jamais ici : vider la Corbeille, toucher à un navigateur ouvert, changer
+  LITTERAL | UI\Pages\about_page.py | 14 | Réversibilité : les fichiers nettoyés sont mis en quarantaine et annulables pendant la dur
+  LITTERAL | UI\Pages\about_page.py | 16 | Exception unique et assumée : vider la Corbeille est immédiat et définitif. TidyDeck te le
+  LITTERAL | UI\Pages\about_page.py | 18 | Absence de garantie : dans les limites permises par la loi, le logiciel est fourni « en l'
+  LITTERAL | UI\Pages\about_page.py | 22 | Privilèges : les fonctions qui demandent une élévation la demandent explicitement, une foi
+  LITTERAL | UI\Pages\about_page.py | 24 | Applications préinstallées : TidyDeck liste, explique et propose. Rien n'est désinstallé s
+  LITTERAL | UI\Pages\about_page.py | 27 | Vie privée : aucun compte, aucune inscription, aucune collecte et aucune télémétrie. Aucun
+  LITTERAL | UI\Pages\about_page.py | 30 | Rappels : ils ne fonctionnent que si TidyDeck reste ouvert (réduit dans la barre des tâche
+  LITTERAL | UI\Pages\about_page.py | 32 | Mode Discret : il masque à l'écran ce que TidyDeck affiche. Pas les notifications des autr
+  LITTERAL | UI\Pages\about_page.py | 34 | Licence : GPL-3.0 (GNU General Public License v3), voir le fichier LICENSE fourni avec le 
+  LITTERAL | UI\Pages\about_page.py | 42 | Tu peux revenir en arrière : ce que TidyDeck déplace reste récupérable pendant la durée qu
+  LITTERAL | UI\Pages\about_page.py | 44 | Une seule exception, et on te la redit à chaque fois : vider la Corbeille est définitif. R
+  LITTERAL | UI\Pages\about_page.py | 46 | Le logiciel est fourni « en l'état », dans les limites permises par la loi. Il fait attent
+  LITTERAL | UI\Pages\about_page.py | 48 | On ne demande les droits administrateur que quand c'est vraiment nécessaire, une seule foi
+  LITTERAL | UI\Pages\about_page.py | 50 | Les applis préinstallées : on te montre la liste et ce que chaque programme fait. Rien n'e
+  LITTERAL | UI\Pages\about_page.py | 53 | Tes données restent chez toi : pas de compte, pas d'inscription, pas de collecte, pas de t
+  LITTERAL | UI\Pages\about_page.py | 55 | Les rappels fonctionnent seulement si TidyDeck reste ouvert, réduit dans la barre des tâch
+  LITTERAL | UI\Pages\about_page.py | 57 | Le Mode Discret masque ce que TidyDeck affiche à l'écran, pas les notifications des autres
+  LITTERAL | UI\Pages\about_page.py | 59 | Le code est sous licence GPL-3.0 : tu peux le lire, le modifier et le redistribuer libreme
+  LITTERAL | UI\Pages\base.py | 102 | Affiche tout de suite la dernière valeur connue, puis rafraîchit EN ARRIÈRE-PLAN si elle e
+  LITTERAL | UI\Pages\check_page.py | 30 | Constat + « que faire » (chargé en arrière-plan, avec cache).
+  LITTERAL | UI\Pages\check_page.py | 33 | État des lieux
+  LITTERAL | UI\Pages\check_page.py | 34 | Un état des lieux clair, et pour chaque point : que faire. Les infos sont en haut.
+  LITTERAL | UI\Pages\clean_page.py | 128 | Un seul bouton pour les deux : tout cocher, puis tout décocher.
+  LITTERAL | UI\Pages\clean_page.py | 142 | Ids que « Tout cocher » peut honnêtement cocher : ni bloqués, ni définitifs.
+  LITTERAL | UI\Pages\clean_page.py | 208 | Après un nettoyage, ce qui n'a pas pu bouger est expliqué : l'utilisateur doit
+        com
+  LITTERAL | UI\Pages\clean_page.py | 268 | Message de fin de nettoyage : les fichiers laissés sont explicitement expliqués.
+  LITTERAL | UI\Pages\clean_page.py | 32 | 🗂  Fichiers temporaires et système
+  LITTERAL | UI\Pages\clean_page.py | 40 | Nettoyage
+  LITTERAL | UI\Pages\clean_page.py | 41 | Libère de la place en mettant de côté uniquement des fichiers temporaires et des caches. T
+  LITTERAL | UI\Pages\debloat_page.py | 13 | Désinstallation des appli préinstallées. Réservé au mode avancé.
+  LITTERAL | UI\Pages\debloat_page.py | 58 | Rappelle le lien avec « Calmer Windows » : le réglage silent_apps est ce
+        qui empêc
+  LITTERAL | UI\Pages\debloat_page.py | 16 | Applications préinstallées
+  LITTERAL | UI\Pages\debloat_page.py | 17 | Désinstalle les applications préinstallées inutiles. (Mode avancé uniquement — rien n'est 
+  LITTERAL | UI\Pages\debloat_page.py | 29 | ↻ Actualiser (relire les applis installées)
+  LITTERAL | UI\Pages\debloat_page.py | 54 | Lecture des applis installées…
+  LITTERAL | UI\Pages\debloat_page.py | 33 | Ce que tu désinstalles :
+  LITTERAL | UI\Pages\games_page.py | 19 | 🔍 Détecteur jeux inactifs
+  LITTERAL | UI\Pages\games_page.py | 112 | Jeux/launchers détectés
+  LITTERAL | UI\Pages\health_page.py | 13 | Santé PC > Constat · Services · Calmer Windows · Nettoyage · Démarrage · Rangement.
+  LITTERAL | UI\Pages\info_pc_page.py | 13 | Les détails techniques de ta machine : processeur, RAM, carte graphique, disques.
+  LITTERAL | UI\Pages\journal_page.py | 31 | Tout ce que TidyDeck a fait est noté ici. Sélectionne une ligne puis « Annuler ».
+  LITTERAL | UI\Pages\journal_page.py | 32 | ↩ Annuler l'action sélectionnée
+  LITTERAL | UI\Pages\journal_page.py | 51 | TidyDeck va effacer tout l'historique des actions.
+
+⚠ Après ça, tu ne pourras plus annuler
+  LITTERAL | UI\Pages\largest_view.py | 1 | Vue « Les plus gros fichiers / plus gros dossiers ».
+
+Lecture seule : aucune suppression, 
+  LITTERAL | UI\Pages\largest_view.py | 24 | Taille arrondie et rassurante : « environ 4 Go », jamais un chiffre précis.
+    Unités et 
+  LITTERAL | UI\Pages\largest_view.py | 64 | Petite infobulle maison (ttk n'en fournit pas) : apparaît après un court
+    survol, dispa
+  LITTERAL | UI\Pages\largest_view.py | 211 | Nombre de lignes : avancé uniquement.
+        En Sérénité + Avancé, présentation Sérénité 
+  LITTERAL | UI\Pages\largest_view.py | 483 | L'Explorateur Windows affichera ton vrai chemin à l'écran.
+Quelqu'un qui regarde ton écran
+  LITTERAL | UI\Pages\profile_page.py | 11 | Profils : partager ou sauvegarder ses réglages
+  LITTERAL | UI\Pages\profile_page.py | 12 | Transfère tes préférences d'un PC à l'autre en un clin d'œil, ou conserve une copie de sec
+  LITTERAL | UI\Pages\profile_page.py | 35 | 💾 Sauvegarde de tes réglages
+  LITTERAL | UI\Pages\profile_page.py | 36 | Pour garder une copie de secours de tes préférences sur ton PC, ou pour les retrouver faci
+  LITTERAL | UI\Pages\profile_page.py | 40 | 💾 Sauvegarde avancée (Fichier JSON)
+  LITTERAL | UI\Pages\profile_page.py | 41 | Pour les passionnés qui préfèrent conserver un fichier de configuration brut sur leur mach
+  LITTERAL | UI\Pages\profile_page.py | 38 | 💾 Télécharger mes réglages
+  LITTERAL | UI\Pages\profile_page.py | 38 | 📂 Restaurer mes réglages
+  LITTERAL | UI\Pages\reminders_page.py | 20 | Rappels bien-être
+  LITTERAL | UI\Pages\reminders_page.py | 21 | Des petits coups de pouce doux, jamais insistants. Tout est désactivé tant que tu ne l'act
+  LITTERAL | UI\Pages\residus_view.py | 1 | Vue « Résidus d'applications » (Phase 0 : lecture seule).
+
+Liste les dossiers laissés par 
+  LITTERAL | UI\Pages\residus_view.py | 25 | Résidus probables d'applications désinstallées (lecture seule).
+  LITTERAL | UI\Pages\services_page.py | 10 | Désactivable sans risque
+  LITTERAL | UI\Pages\services_page.py | 19 | Coche = service ACTIF ; décoche = désactivé. Rien ne change avant « Appliquer ».
+  LITTERAL | UI\Pages\services_page.py | 14 | À vérifier (selon ton usage)
+  LITTERAL | UI\Pages\services_page.py | 23 | Coche = le service est actif ; décoche = il sera désactivé. Rien ne change avant que tu va
+  LITTERAL | UI\Pages\settings_page.py | 94 | Onglet Apparence — indépendant de la Configuration.
+  LITTERAL | UI\Pages\settings_page.py | 146 | Onglet Configuration — indépendant de l'Apparence.
+  LITTERAL | UI\Pages\settings_page.py | 101 | Thème
+  LITTERAL | UI\Pages\settings_page.py | 113 | Mode daltonien : couleurs adaptées. Les états ont toujours un symbole et un mot en plus de
+  LITTERAL | UI\Pages\settings_page.py | 115 | Mode Sérénité : des mots rassurants à la place des chiffres et des couleurs d'alerte. Pens
+  LITTERAL | UI\Pages\settings_page.py | 117 | Mode avancé : plus de détails (composants dépliables, toutes les options de nettoyage). Dé
+  LITTERAL | UI\Pages\settings_page.py | 128 | Info — Ces options demandent plus d'attention : les actions sensibles (Corbeille, fichiers
+  LITTERAL | UI\Pages\settings_page.py | 155 | Comportement de la fenêtre — quand je clique sur la croix
+  LITTERAL | UI\Pages\settings_page.py | 170 | 🕶️ Mode Discret : masque ton nom d'utilisateur, le nom du PC et tes chemins personnels à l
+  LITTERAL | UI\Pages\settings_page.py | 173 | Rappel doux, une fois par mois au maximum, pour penser à un petit nettoyage.
+  LITTERAL | UI\Pages\settings_page.py | 207 | Petit carillon doux quand une action un peu longue est terminée.
+  LITTERAL | UI\Pages\settings_page.py | 158 | Réduire à côté de l'horloge (zone de notification) : la croix cache la fenêtre et TidyDeck
+  LITTERAL | UI\Pages\settings_page.py | 156 | Réduire dans la barre des tâches
+  LITTERAL | UI\Pages\startup_page.py | 15 | Coche = lancé au démarrage. Tu coches / décoches librement, PUIS tu valides : rien ne chan
+  LITTERAL | UI\Pages\startup_page.py | 10 | Essentiel — à garder
+  LITTERAL | UI\Pages\startup_page.py | 10 | Désactivable sans risque
+  LITTERAL | UI\Pages\startup_page.py | 11 | Inconnu — à vérifier
+  LITTERAL | UI\Pages\startup_page.py | 18 | Démarrage
+  LITTERAL | UI\Pages\startup_page.py | 50 | 📂 Ouvrir « Applications au démarrage » (Windows)
+  LITTERAL | UI\Pages\startup_page.py | 153 | Tout sélectionner
+  LITTERAL | UI\Pages\startup_page.py | 154 | Cocher « Tout sélectionner » active aussi des programmes essentiels (antivirus, audio, séc
+  LITTERAL | UI\Pages\storage_page.py | 110 | Rappel honnête : des fichiers ne sont pas vraiment sur le disque.
+  LITTERAL | UI\Pages\storage_page.py | 156 | Ferme les vues plein-page (plus gros, résidus) et rend la liste.
+        Une seule vue à l
+  LITTERAL | UI\Pages\storage_page.py | 175 | Point d'entrée commun : la vue ouverte disparaît, puis l'action.
+  LITTERAL | UI\Pages\storage_page.py | 207 | Vue « résidus d'applications » : la Phase 0 est en lecture seule,
+        aucun fichier n'
+  LITTERAL | UI\Pages\storage_page.py | 19 | Fichiers et résidus
+  LITTERAL | UI\Pages\storage_page.py | 20 | Trie tes Téléchargements, repère les gros fichiers oubliés et les traces des applis désins
+  LITTERAL | UI\Pages\storage_page.py | 25 | 📥 Trier mes Téléchargements
+  LITTERAL | UI\Pages\storage_page.py | 26 | 🕸 Fichiers oubliés
+  LITTERAL | UI\Pages\storage_page.py | 32 | ✔ Appliquer la sélection…
+  LITTERAL | UI\Pages\storage_page.py | 31 | 🧹 Résidus d'applications
+  LITTERAL | UI\Pages\tweaks_page.py | 11 | ✔ Appliqué
+  LITTERAL | UI\Pages\tweaks_page.py | 11 | ✕ Pas appliqué
+  LITTERAL | UI\Pages\tweaks_page.py | 11 | ⚠ Défait (mise à jour ?)
+  LITTERAL | UI\Pages\tweaks_page.py | 17 | Coche un réglage pour l'appliquer, décoche-le pour revenir comme avant. Tu vois un aperçu 
+  LITTERAL | UI\Pages\tweaks_page.py | 56 | 🌙 Anti-lumière bleue (veilleuse Windows)
+  LITTERAL | UI\Pages\tweaks_page.py | 151 | Rien à changer : ta sélection correspond déjà à l'état de Windows.
+Coche un réglage « Pas 
+  LITTERAL | UI\Pages\tweaks_page.py | 40 | À quoi ça sert ?
+  LITTERAL | UI\PreInstall\appearance.py | 1 | Réglages d'accessibilité et de comportement.
+  LITTERAL | UI\PreInstall\appearance.py | 22 | Thème
+  LITTERAL | UI\PreInstall\appearance.py | 41 | Quand je clique sur la croix de la fenêtre
+  LITTERAL | UI\PreInstall\appearance.py | 26 | Mode daltonien (bleu / orange). Les états ont toujours un symbole et un mot en plus de la 
+  LITTERAL | UI\PreInstall\appearance.py | 27 | Mode Sérénité : des mots rassurants à la place des chiffres et des couleurs d'alerte. Pens
+  LITTERAL | UI\PreInstall\appearance.py | 29 | Mode avancé : plus de détails (composants dépliables, toutes les options de nettoyage). Dé
+  LITTERAL | UI\PreInstall\appearance.py | 31 | Petit carillon doux quand une action un peu longue est terminée.
+  LITTERAL | UI\PreInstall\appearance.py | 32 | Rappel doux, une fois par mois au maximum, pour penser à un petit nettoyage.
+  LITTERAL | UI\PreInstall\appearance.py | 33 | 🕶️ Mode Discret : masque ton nom d'utilisateur, le nom du PC et tes chemins personnels à l
+  LITTERAL | UI\PreInstall\appearance.py | 42 | Réduire dans la barre des tâches
+  LITTERAL | UI\Profile\profile.py | 1 | Export / import de profil — avec QR code pour un transfert simple et rapide.
+La bibliothèq
+  LITTERAL | UI\Profile\profile.py | 63 | EXPORTER génère un QR code qui contient :
+  • ton APPARENCE et tes préférences : thème, ta
+  LITTERAL | UI\Profile\profile.py | 17 | Charge qrcode : installé par l'utilisateur, sinon la copie embarquée dans vendor/.
+  LITTERAL | UI\Profile\profile.py | 30 | Convertit une matrice QR en image PNG 100 % Python (zlib standard, aucune dépendance).
+  LITTERAL | UI\Profile\profile.py | 57 | Thème
+  LITTERAL | UI\Profile\profile.py | 57 | Mode avancé
+  LITTERAL | UI\Profile\profile.py | 58 | Mode Sérénité
+  LITTERAL | UI\Profile\profile.py | 58 | Réduire à côté de l'horloge
+  LITTERAL | UI\Profile\profile.py | 174 | Garde uniquement les identifiants de réglages qui existent vraiment.
+  LITTERAL | Core\Debloat\debloat.py | 1 | Débloat Windows : désinstallation des applications préinstallées inutiles.
+
+RÈGLE : réserv
+  LITTERAL | Core\Debloat\debloat.py | 73 | Noms des paquets AppX installés pour l'utilisateur courant.
+
+    On utilise $_.Name (et no
+  LITTERAL | Core\Debloat\debloat.py | 92 | En une seule passe : paquets marqués NonRemovable ou IsFramework par Windows.
+
+    Ils ne 
+  LITTERAL | Core\Debloat\debloat.py | 111 | (NonRemovable, IsFramework) d'un paquet installé.
+
+    Échec de lecture → (True, False) : 
+  LITTERAL | Core\Debloat\debloat.py | 132 | Retourne les paquets installés qui correspondent (préfixe) à la liste donnée.
+  LITTERAL | Core\Debloat\debloat.py | 142 | Applis tierces sponsorisées : appariement par mot-clé, jamais par nom codé en dur.
+  LITTERAL | Core\Debloat\debloat.py | 156 | Groupe les appli reconnues et réellement installées.
+
+    Retourne une liste de dicts : la
+  LITTERAL | Core\Debloat\debloat.py | 178 | Désinstalle un paquet pour l'utilisateur courant. Renvoie (ok, message).
+
+    Trois verrou
+  LITTERAL | Core\Debloat\debloat.py | 24 | Actualités
+  LITTERAL | Core\Debloat\debloat.py | 25 | Météo
+  LITTERAL | Core\Debloat\debloat.py | 34 | Visionneuse 3D, Print 3D, Portail de réalité mixte
+  LITTERAL | Core\Debloat\debloat.py | 36 | Cortana (abandonnée)
+  LITTERAL | Core\Games\games.py | 1 | Contrôles pour joueurs : des CONSEILS, aucune modification automatique.
+  LITTERAL | Core\Games\games.py | 9 | Utilisation normale (équilibré)
+  LITTERAL | Core\Games\games.py | 10 | Performances élevées
+  LITTERAL | Core\Games\games.py | 11 | Économie d'énergie
+  LITTERAL | Core\Games\games.py | 98 | Enregistrement de jeu en arrière-plan (Captures)
+  LITTERAL | Core\Games\games.py | 114 | Planification GPU accélérée
+  LITTERAL | Core\Games\games.py | 115 | Paramètres > Système > Affichage > Graphiques. Selon le jeu, l'effet peut être positif ou 
+  LITTERAL | Core\Games\games.py | 73 | Ces contrôles lisent les réglages de Windows.
+  LITTERAL | Core\Games\games.py | 78 | Paramètres > Jeux > Mode jeu : active-le. Il limite les tâches de fond pendant que tu joue
+  LITTERAL | Core\Games\games.py | 81 | Actif (ou réglage par défaut de Windows).
+  LITTERAL | Core\Games\games.py | 86 | Pas d'inquiétude : ouvre Démarrer > « Choisir un mode d'alimentation » et vérifie que « Pe
+  LITTERAL | Core\Games\games.py | 100 | Si tu n'enregistres pas tes parties : Paramètres > Jeux > Captures, désactive « Enregistre
+  LITTERAL | Core\Games\games.py | 102 | Paramètres > Jeux > Captures
+  LITTERAL | Core\Games\games.py | 112 | Réglée par le pilote (valeur par défaut) : fie-toi à l'affichage de Windows.
+  LITTERAL | Core\Games\games.py | 117 | Paramètres > Système > Affichage > Graphiques
+  LITTERAL | Core\Games\games.py | 79 | Paramètres > Jeux (Mode jeu)
+  LITTERAL | Core\Games\games.py | 82 | Paramètres > Jeux (Mode jeu)
+  LITTERAL | Core\Games\games.py | 91 | Panneau de configuration > Options d'alimentation : choisis « Performances élevées » pour 
+  LITTERAL | Core\Games\power.py | 45 | (ok, message). Crée le plan s'il n'existe pas, puis l'active. Annulable.
+  LITTERAL | Core\Games\quick_mode.py | 1 | Mode Jeu rapide : repère des applis gourmandes ouvertes et les ferme POLIMENT
+(comme un cl
+  LITTERAL | Core\Games\quick_mode.py | 42 | Demande la fermeture (sans /F : aucune fermeture forcée).
+  LITTERAL | Core\Games\quick_mode.py | 9 | Beaucoup de mémoire. Tes onglets peuvent être restaurés à la réouverture.
+  LITTERAL | Core\Games\quick_mode.py | 10 | Beaucoup de mémoire.
+  LITTERAL | Core\Games\quick_mode.py | 11 | Beaucoup de mémoire.
+  LITTERAL | Core\Games\quick_mode.py | 12 | Beaucoup de mémoire.
+  LITTERAL | Core\Games\quick_mode.py | 15 | Utile à fermer pendant une session de jeu.
+  LITTERAL | Core\Games\quick_mode.py | 16 | Utile à fermer pendant une session de jeu.
+  LITTERAL | Core\Games\quick_mode.py | 17 | La synchronisation reprendra à la réouverture.
+  LITTERAL | Core\Games\quick_mode.py | 18 | Fond animé : consomme du processeur et du GPU.
+  LITTERAL | Core\Games\quick_mode.py | 19 | Mises à jour Adobe
+  LITTERAL | Core\Games\quick_mode.py | 19 | Sans danger à fermer.
+  LITTERAL | Core\Health\cleaner.py | 1 | Analyse -> aperçu -> nettoyage (par mise en quarantaine, donc annulable).
+  LITTERAL | Core\Health\cleaner.py | 80 | Nettoyage
+  LITTERAL | Core\Health\frozen.py | 1 | Applications qui ne répondent plus — fermeture propre d'abord, forcée seulement si tu conf
+  LITTERAL | Core\Health\report.py | 1 | Rapport « Santé du PC » : chaque ligne dit ce qu'on a vu ET quoi faire.
+  LITTERAL | Core\Health\services.py | 1 | Services Windows NON essentiels (liste courte, conservatrice). Les services vitaux ne figu
+  LITTERAL | Core\Health\services.py | 67 | `sc.exe config`. Renvoie (ok, code, sortie).
+
+    Le CODE de retour du processus est la so
+  LITTERAL | Core\Health\services.py | 89 | Désactive (arrête + mode « disabled »). Renvoie (ok, échecs).
+  LITTERAL | Core\Health\services.py | 9 | Télémétrie (expériences utilisateur connectées)
+  LITTERAL | Core\Health\services.py | 10 | Envoie des données de diagnostic à Microsoft.
+  LITTERAL | Core\Health\services.py | 11 | Cartes téléchargées
+  LITTERAL | Core\Health\services.py | 12 | Met à jour les cartes hors-ligne de l'appli Cartes.
+  LITTERAL | Core\Health\services.py | 13 | Démonstration en magasin
+  LITTERAL | Core\Health\services.py | 14 | Mode vitrine pour PC exposés en boutique.
+  LITTERAL | Core\Health\services.py | 15 | Télécopie (fax)
+  LITTERAL | Core\Health\services.py | 15 | Envoi/réception de fax.
+  LITTERAL | Core\Health\services.py | 16 | Registre à distance
+  LITTERAL | Core\Health\services.py | 17 | Permet de modifier le registre depuis un autre ordinateur du réseau.
+  LITTERAL | Core\Health\services.py | 18 | Aucun, et c'est même plus sûr désactivé.
+  LITTERAL | Core\Health\services.py | 19 | Contrôle parental
+  LITTERAL | Core\Health\services.py | 20 | Applique les règles Microsoft Family.
+  LITTERAL | Core\Health\services.py | 20 | À garder si tu utilises le contrôle parental Microsoft.
+  LITTERAL | Core\Health\services.py | 21 | Service téléphonique
+  LITTERAL | Core\Health\services.py | 21 | Liaison téléphonie (rarement utilisée).
+  LITTERAL | Core\Health\services.py | 22 | Géolocalisation
+  LITTERAL | Core\Health\services.py | 23 | Météo, cartes… ne verront plus ta position.
+  LITTERAL | Core\Health\services.py | 27 | Gère les appareils Bluetooth.
+  LITTERAL | Core\Health\services.py | 27 | Plus de souris/casque/manette Bluetooth tant qu'il est désactivé.
+  LITTERAL | Core\Health\services.py | 29 | Gère les imprimantes.
+  LITTERAL | Core\Health\services.py | 29 | Plus d'impression tant qu'il est désactivé.
+  LITTERAL | Core\Health\services.py | 32 | ⚠ À garder si tu joues à des jeux Xbox ou du Microsoft Store.
+  LITTERAL | Core\Startup\startup.py | 1 | Programmes lancés au démarrage — activer/désactiver SANS supprimer.
+Même source que le Ges
+  LITTERAL | Core\Startup\startup.py | 859 | Programme non reconnu par TidyDeck : cherche son nom sur internet avant de décider. Désact
+  LITTERAL | Core\Startup\startup.py | 26 | Les deux dossiers « Demarrage », resolues par Windows et non par un chemin recolle.
+
+    L
+  LITTERAL | Core\Startup\startup.py | 905 | StartupApproved : 2 = activé, 3 = désactivé (+horodatage). Certaines machines
+    portent 
+  LITTERAL | Core\Startup\startup.py | 915 | Le fichier visé par la commande existe-t-il encore ? Une commande qui ne vise
+    pas un c
+  LITTERAL | Core\Startup\startup.py | 950 | Liste identique au Gestionnaire des tâches : clés Run (HKCU/HKLM/32 bits) + dossiers Démar
+  LITTERAL | Core\Startup\startup.py | 47 | Sécurité Windows (antivirus). À GARDER activé.
+  LITTERAL | Core\Startup\startup.py | 48 | Antivirus Microsoft Defender. À GARDER activé.
+  LITTERAL | Core\Startup\startup.py | 49 | Pilote audio Realtek. À garder (sinon plus de panneau son).
+  LITTERAL | Core\Startup\startup.py | 50 | Outils de ta carte graphique NVIDIA. Désactivable si tu n'en as pas l'usage.
+  LITTERAL | Core\Startup\startup.py | 51 | Périphériques Razer (souris, clavier). Désactivable si tu n'utilises pas Razer Synapse.
+  LITTERAL | Core\Startup\startup.py | 52 | Périphériques Logitech (G Hub, Options). Désactivable si tu gères tes périphériques autrem
+  LITTERAL | Core\Startup\startup.py | 53 | Périphériques SteelSeries. Désactivable si tu n'utilises pas leur logiciel.
+  LITTERAL | Core\Startup\startup.py | 54 | Messagerie/vocal Discord. Utile au démarrage seulement si tu l'ouvres toujours tout de sui
+  LITTERAL | Core\Startup\startup.py | 55 | Lecteur de musique Spotify. Tu peux l'ouvrir à la main quand tu veux.
+  LITTERAL | Core\Startup\startup.py | 56 | Lanceur de jeux Steam. Tu peux le lancer toi-même avant de jouer.
+  LITTERAL | Core\Startup\startup.py | 57 | Lanceur de jeux Epic Games. Tu peux le lancer toi-même.
+  LITTERAL | Core\Startup\startup.py | 58 | Lanceur EA (jeux EA). Désactivable, tu peux le lancer manuellement.
+  LITTERAL | Core\Startup\startup.py | 59 | Lanceur Blizzard (WoW, Overwatch, etc.). Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 60 | Synchronise tes dossiers avec le cloud Microsoft. À garder si tu t'en sers pour sauvegarde
+  LITTERAL | Core\Startup\startup.py | 61 | Microsoft Teams. Désactivable si tu ne l'utilises pas chaque jour.
+  LITTERAL | Core\Startup\startup.py | 62 | Skype. Désactivable si tu ne l'utilises plus.
+  LITTERAL | Core\Startup\startup.py | 63 | Outils de mise à jour Adobe. Désactivable : les applis Adobe se mettent à jour à l'ouvertu
+  LITTERAL | Core\Startup\startup.py | 64 | Mises à jour Google. Désactivable, Chrome se met à jour seul.
+  LITTERAL | Core\Startup\startup.py | 65 | Adobe Acrobat Reader. Désactivable, ouvre-le quand tu as besoin d'un PDF.
+  LITTERAL | Core\Startup\startup.py | 66 | Java Update Scheduler. Désactivable si tu n'utilises pas Java régulièrement.
+  LITTERAL | Core\Startup\startup.py | 67 | Java Update Scheduler. Désactivable si tu n'utilises pas Java régulièrement.
+  LITTERAL | Core\Startup\startup.py | 68 | VMware Tools / Workstation. Désactivable si tu n'utilises pas de machines virtuelles.
+  LITTERAL | Core\Startup\startup.py | 69 | VirtualBox. Désactivable si tu n'utilises pas de VM.
+  LITTERAL | Core\Startup\startup.py | 70 | Docker Desktop. Désactivable si tu ne développes pas avec Docker en ce moment.
+  LITTERAL | Core\Startup\startup.py | 71 | Windows Subsystem for Linux. Désactivable si tu n'utilises pas WSL quotidiennement.
+  LITTERAL | Core\Startup\startup.py | 72 | Client VPN. Désactivable, mais le VPN ne se lancera plus tout seul : à toi de l'ouvrir ava
+  LITTERAL | Core\Startup\startup.py | 74 | NordVPN. Désactivable, mais le VPN ne se lancera plus tout seul.
+  LITTERAL | Core\Startup\startup.py | 75 | ExpressVPN. Désactivable, mais le VPN ne se lancera plus tout seul.
+  LITTERAL | Core\Startup\startup.py | 76 | Cisco AnyConnect VPN. Désactivable, mais le VPN ne se lancera plus tout seul.
+  LITTERAL | Core\Startup\startup.py | 77 | Cisco AnyConnect VPN. Désactivable, mais le VPN ne se lancera plus tout seul.
+  LITTERAL | Core\Startup\startup.py | 78 | Mullvad VPN. Désactivable, mais le VPN ne se lancera plus tout seul.
+  LITTERAL | Core\Startup\startup.py | 79 | Apple iCloud pour Windows. Désactivable si tu ne synchronises pas avec un appareil Apple.
+  LITTERAL | Core\Startup\startup.py | 80 | Apple iTunes. Désactivable si tu ne synchronises pas d'iPod/iPhone.
+  LITTERAL | Core\Startup\startup.py | 81 | Services Apple (bonjour, etc.). Désactivable si tu n'as pas d'appareil Apple.
+  LITTERAL | Core\Startup\startup.py | 82 | Amazon Music / Alexa. Désactivable si tu ne l'utilises pas quotidiennement.
+  LITTERAL | Core\Startup\startup.py | 83 | Application Netflix. Désactivable, ouvre-la quand tu veux regarder.
+  LITTERAL | Core\Startup\startup.py | 84 | OBS Studio (streaming/enregistrement). Désactivable si tu ne streams pas.
+  LITTERAL | Core\Startup\startup.py | 85 | Streamlabs (streaming). Désactivable si tu ne streams pas.
+  LITTERAL | Core\Startup\startup.py | 86 | Zoom (visioconférence). Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 87 | Cisco Webex (visioconférence). Désactivable si tu ne l'utilises pas chaque jour.
+  LITTERAL | Core\Startup\startup.py | 88 | Slack (messagerie pro). Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 89 | Telegram (messagerie). Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 90 | WhatsApp Desktop. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 91 | Signal (messagerie sécurisée). Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 92 | Antivirus Bitdefender. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 93 | Antivirus Avast. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 94 | Antivirus AVG. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 95 | Antivirus McAfee. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 96 | Antivirus Kaspersky. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 97 | Antivirus Norton. À GARDER si c'est ton antivirus principal.
+  LITTERAL | Core\Startup\startup.py | 98 | Anti-malware Malwarebytes. Désactivable si tu lances des scans manuels.
+  LITTERAL | Core\Startup\startup.py | 99 | CCleaner. Désactivable, lance-le quand tu veux nettoyer.
+  LITTERAL | Core\Startup\startup.py | 100 | WinRAR. Désactivable, ouvre-le quand tu as besoin de dézipper.
+  LITTERAL | Core\Startup\startup.py | 101 | 7-Zip. Désactivable, ouvre-le quand tu as besoin d'archiver.
+  LITTERAL | Core\Startup\startup.py | 102 | Lecteur VLC. Désactivable, ouvre-le quand tu veux regarder une vidéo.
+  LITTERAL | Core\Startup\startup.py | 103 | GIMP (retouche photo). Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 104 | Blender (3D). Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 105 | Adobe Photoshop. Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 106 | Adobe Lightroom. Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 107 | AutoCAD. Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 108 | SolidWorks. Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 109 | MATLAB. Désactivable, ouvre-le quand tu en as besoin.
+  LITTERAL | Core\Startup\startup.py | 110 | Python / Anaconda. Désactivable si tu ne développes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 111 | Node.js. Désactivable si tu ne développes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 112 | Git / GitHub Desktop. Désactivable si tu ne codes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 113 | Visual Studio Code. Désactivable si tu ne codes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 114 | Visual Studio. Désactivable si tu ne codes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 115 | JetBrains (IntelliJ, PyCharm, etc.). Désactivable si tu ne codes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 116 | Android Studio / ADB. Désactivable si tu ne développes pas Android.
+  LITTERAL | Core\Startup\startup.py | 117 | Unity Editor. Désactivable si tu ne développes pas de jeux.
+  LITTERAL | Core\Startup\startup.py | 118 | Unreal Engine. Désactivable si tu ne développes pas de jeux.
+  LITTERAL | Core\Startup\startup.py | 119 | Xbox App / Game Bar. Désactivable si tu ne joues pas aux jeux Xbox.
+  LITTERAL | Core\Startup\startup.py | 120 | Xbox Game Bar. Désactivable si tu n'utilises pas les overlays Xbox.
+  LITTERAL | Core\Startup\startup.py | 121 | Epic Games Launcher. Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 122 | Riot Client (Valorant, LoL). Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 123 | Battlestate Games (Escape from Tarkov). Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 124 | Rockstar Games Launcher (GTA, RDR2). Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 125 | Ubisoft Connect (ex-Uplay). Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 126 | Ubisoft Connect. Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 127 | GOG Galaxy. Désactivable, lance-le quand tu joues.
+  LITTERAL | Core\Startup\startup.py | 128 | X-Mouse Button Control. Désactivable si tu n'utilises pas de souris personnalisée.
+  LITTERAL | Core\Startup\startup.py | 129 | AutoHotkey. Désactivable si tu n'utilises pas de scripts AHK.
+  LITTERAL | Core\Startup\startup.py | 130 | Microsoft Power Automate. Désactivable si tu n'automatises pas de tâches.
+  LITTERAL | Core\Startup\startup.py | 131 | Microsoft Copilot. Désactivable si tu n'utilises pas l'assistant IA.
+  LITTERAL | Core\Startup\startup.py | 132 | Microsoft Edge Update. Désactivable, Edge se met à jour seul.
+  LITTERAL | Core\Startup\startup.py | 133 | Windows Update. À GARDER pour la sécurité du système.
+  LITTERAL | Core\Startup\startup.py | 134 | Indexeur de recherche Windows. Désactivable si tu n'utilises pas la recherche Windows.
+  LITTERAL | Core\Startup\startup.py | 135 | SysMain (Superfetch). Désactivable sur SSD (inutile, peut user le disque).
+  LITTERAL | Core\Startup\startup.py | 136 | Superfetch. Désactivable sur SSD (inutile, peut user le disque).
+  LITTERAL | Core\Startup\startup.py | 137 | Windows Search. Désactivable si tu n'utilises pas la recherche Windows.
+  LITTERAL | Core\Startup\startup.py | 138 | Task Host Windows. À GARDER (composant système).
+  LITTERAL | Core\Startup\startup.py | 139 | CTFMON (clavier, langue). À GARDER (indispensable pour taper).
+  LITTERAL | Core\Startup\startup.py | 140 | Presse-papiers RDP. Désactivable si tu ne fais pas de bureau à distance.
+  LITTERAL | Core\Startup\startup.py | 141 | Bureau à distance Windows. Désactivable si tu ne te connectes pas à distance.
+  LITTERAL | Core\Startup\startup.py | 142 | TeamViewer (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.
+  LITTERAL | Core\Startup\startup.py | 143 | AnyDesk (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.
+  LITTERAL | Core\Startup\startup.py | 144 | Splashtop (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.
+  LITTERAL | Core\Startup\startup.py | 145 | LogMeIn (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.
+  LITTERAL | Core\Startup\startup.py | 146 | GoToMeeting. Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 147 | GoToMeeting. Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 148 | Citrix Workspace. Désactivable si tu n'utilises pas de bureau virtuel.
+  LITTERAL | Core\Startup\startup.py | 149 | VMware Horizon. Désactivable si tu n'utilises pas de bureau virtuel.
+  LITTERAL | Core\Startup\startup.py | 150 | Paragon Software (disques, VPN). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 151 | Acronis (sauvegarde). Désactivable si tu fais des sauvegardes manuelles.
+  LITTERAL | Core\Startup\startup.py | 152 | Macrium Reflect (sauvegarde). Désactivable si tu fais des sauvegardes manuelles.
+  LITTERAL | Core\Startup\startup.py | 153 | EaseUS (récupération/sauvegarde). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 154 | EaseUS (récupération/sauvegarde). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 155 | Wondershare (outils variés). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 156 | IObit (outils système). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 157 | Glary Utilities. Désactivable, lance-le quand tu veux nettoyer.
+  LITTERAL | Core\Startup\startup.py | 158 | Ashampoo (outils système). Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 159 | Nexus Mods / Vortex. Désactivable si tu ne modes pas de jeux.
+  LITTERAL | Core\Startup\startup.py | 160 | Vortex (Nexus Mods). Désactivable si tu ne modes pas de jeux.
+  LITTERAL | Core\Startup\startup.py | 161 | CurseForge (mods WoW, etc.). Désactivable si tu ne modes pas.
+  LITTERAL | Core\Startup\startup.py | 162 | Mod.io. Désactivable si tu ne modes pas de jeux.
+  LITTERAL | Core\Startup\startup.py | 163 | Logitech G Hub. Désactivable si tu n'utilises pas de périphérique Logitech G.
+  LITTERAL | Core\Startup\startup.py | 164 | Logitech G Hub. Désactivable si tu n'utilises pas de périphérique Logitech G.
+  LITTERAL | Core\Startup\startup.py | 165 | Razer Synapse. Désactivable si tu n'utilises pas de périphérique Razer.
+  LITTERAL | Core\Startup\startup.py | 166 | Razer Synapse. Désactivable si tu n'utilises pas de périphérique Razer.
+  LITTERAL | Core\Startup\startup.py | 167 | Corsair iCUE. Désactivable si tu n'utilises pas de périphérique Corsair.
+  LITTERAL | Core\Startup\startup.py | 168 | Corsair Software. Désactivable si tu n'utilises pas de périphérique Corsair.
+  LITTERAL | Core\Startup\startup.py | 169 | MSI Center / Dragon Center. Désactivable si tu n'utilises pas les outils MSI.
+  LITTERAL | Core\Startup\startup.py | 170 | ASUS Armoury Crate / AI Suite. Désactivable si tu n'utilises pas les outils ASUS.
+  LITTERAL | Core\Startup\startup.py | 171 | Gigabyte Control Center. Désactivable si tu n'utilises pas les outils Gigabyte.
+  LITTERAL | Core\Startup\startup.py | 172 | ASRock Tool. Désactivable si tu n'utilises pas les outils ASRock.
+  LITTERAL | Core\Startup\startup.py | 173 | Lenovo Vantage / Services. Désactivable si tu n'utilises pas les outils Lenovo.
+  LITTERAL | Core\Startup\startup.py | 174 | HP Support Assistant. Désactivable si tu n'utilises pas les outils HP.
+  LITTERAL | Core\Startup\startup.py | 175 | Dell Support / SupportAssist. Désactivable si tu n'utilises pas les outils Dell.
+  LITTERAL | Core\Startup\startup.py | 176 | Acer Care Center. Désactivable si tu n'utilises pas les outils Acer.
+  LITTERAL | Core\Startup\startup.py | 177 | Samsung Magician / Settings. Désactivable si tu n'utilises pas les outils Samsung.
+  LITTERAL | Core\Startup\startup.py | 178 | Intel Graphics / Rapid Storage. Désactivable si tu n'utilises pas les outils Intel.
+  LITTERAL | Core\Startup\startup.py | 179 | AMD Software / Radeon Settings. Désactivable si tu n'utilises pas les outils AMD.
+  LITTERAL | Core\Startup\startup.py | 180 | Razer Zone. Désactivable si tu n'utilises pas de périphérique Razer.
+  LITTERAL | Core\Startup\startup.py | 181 | SteelSeries GG. Désactivable si tu n'utilises pas de périphérique SteelSeries.
+  LITTERAL | Core\Startup\startup.py | 182 | Mad Catz / Nacon. Désactivable si tu n'utilises pas de périphérique Mad Catz.
+  LITTERAL | Core\Startup\startup.py | 183 | Saitek / Mad Catz. Désactivable si tu n'utilises pas de périphérique Saitek.
+  LITTERAL | Core\Startup\startup.py | 184 | Thrustmaster (volants, joysticks). Désactivable si tu ne simules pas.
+  LITTERAL | Core\Startup\startup.py | 185 | Logitech Gaming Software. Désactivable si tu n'utilises pas de périphérique Logitech Gamin
+  LITTERAL | Core\Startup\startup.py | 186 | Logitech G Hub. Désactivable si tu n'utilises pas de périphérique Logitech G.
+  LITTERAL | Core\Startup\startup.py | 187 | Wacom (tablette graphique). Désactivable si tu n'utilises pas de tablette Wacom.
+  LITTERAL | Core\Startup\startup.py | 188 | Huion (tablette graphique). Désactivable si tu n'utilises pas de tablette Huion.
+  LITTERAL | Core\Startup\startup.py | 189 | Gaomon (tablette graphique). Désactivable si tu n'utilises pas de tablette Gaomon.
+  LITTERAL | Core\Startup\startup.py | 190 | XP-Pen (tablette graphique). Désactivable si tu n'utilises pas de tablette XP-Pen.
+  LITTERAL | Core\Startup\startup.py | 191 | XP-Pen (tablette graphique). Désactivable si tu n'utilises pas de tablette XP-Pen.
+  LITTERAL | Core\Startup\startup.py | 192 | Elgato (capture vidéo/streaming). Désactivable si tu ne captures pas.
+  LITTERAL | Core\Startup\startup.py | 193 | AVerMedia (capture vidéo). Désactivable si tu ne captures pas.
+  LITTERAL | Core\Startup\startup.py | 194 | RØDE (micros). Désactivable si tu n'utilises pas de micro RØDE.
+  LITTERAL | Core\Startup\startup.py | 195 | Blue Microphones (Yeti, etc.). Désactivable si tu n'utilises pas de micro Blue.
+  LITTERAL | Core\Startup\startup.py | 196 | Fifine (micros). Désactivable si tu n'utilises pas de micro Fifine.
+  LITTERAL | Core\Startup\startup.py | 197 | Behringer (audio). Désactivable si tu n'utilises pas d'audio Behringer.
+  LITTERAL | Core\Startup\startup.py | 198 | Focusrite (audio). Désactivable si tu n'utilises pas d'audio Focusrite.
+  LITTERAL | Core\Startup\startup.py | 199 | Audient (audio). Désactivable si tu n'utilises pas d'audio Audient.
+  LITTERAL | Core\Startup\startup.py | 200 | PreSonus (audio). Désactivable si tu n'utilises pas d'audio PreSonus.
+  LITTERAL | Core\Startup\startup.py | 201 | Steinberg (audio/DAW). Désactivable si tu n'utilises pas de DAW Steinberg.
+  LITTERAL | Core\Startup\startup.py | 202 | Ableton Live (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 203 | FL Studio (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 204 | REAPER (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 205 | Cubase (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 206 | Pro Tools (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 207 | Logic Pro (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 208 | GarageBand (DAW). Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 209 | Audacity (audio). Désactivable si tu n'enregistres pas d'audio.
+  LITTERAL | Core\Startup\startup.py | 210 | OBS Studio. Désactivable si tu ne streams pas.
+  LITTERAL | Core\Startup\startup.py | 211 | Elgato Stream Deck. Désactivable si tu n'utilises pas de Stream Deck.
+  LITTERAL | Core\Startup\startup.py | 212 | Touch Portal. Désactivable si tu n'utilises pas de console tactile.
+  LITTERAL | Core\Startup\startup.py | 213 | Bitfocus (Touch Portal). Désactivable si tu n'utilises pas de console tactile.
+  LITTERAL | Core\Startup\startup.py | 214 | Périphériques MIDI. Désactivable si tu ne produis pas de musique.
+  LITTERAL | Core\Startup\startup.py | 215 | Audio Loopback. Désactivable si tu ne routes pas d'audio.
+  LITTERAL | Core\Startup\startup.py | 216 | VoiceMeeter (mixage audio). Désactivable si tu ne mixe pas d'audio.
+  LITTERAL | Core\Startup\startup.py | 217 | VoiceMeeter (mixage audio). Désactivable si tu ne mixe pas d'audio.
+  LITTERAL | Core\Startup\startup.py | 218 | Cheat Engine. Désactivable (outil de triche, pas de démarrage nécessaire).
+  LITTERAL | Core\Startup\startup.py | 219 | Xbox Gaming Services. Désactivable si tu ne joues pas aux jeux Xbox.
+  LITTERAL | Core\Startup\startup.py | 220 | GameInput (périphériques de jeu). Désactivable si tu ne joues pas.
+  LITTERAL | Core\Startup\startup.py | 221 | XInput (manettes Xbox). Désactivable si tu n'utilises pas de manette.
+  LITTERAL | Core\Startup\startup.py | 222 | DS4Windows (manette PS4/PS5). Désactivable si tu n'utilises pas de manette PlayStation.
+  LITTERAL | Core\Startup\startup.py | 223 | reWASD (mapping manette/clavier). Désactivable si tu ne remaps pas tes périphériques.
+  LITTERAL | Core\Startup\startup.py | 224 | JoyToKey (mapping manette). Désactivable si tu ne remaps pas tes périphériques.
+  LITTERAL | Core\Startup\startup.py | 225 | x360ce (manette Xbox 360). Désactivable si tu n'utilises pas de manette Xbox 360.
+  LITTERAL | Core\Startup\startup.py | 226 | Input Mapper. Désactivable si tu ne remaps pas tes périphériques.
+  LITTERAL | Core\Startup\startup.py | 227 | Key Remapper. Désactivable si tu ne remaps pas ton clavier.
+  LITTERAL | Core\Startup\startup.py | 228 | SharpKeys (remap clavier). Désactivable si tu ne remaps pas ton clavier.
+  LITTERAL | Core\Startup\startup.py | 229 | AutoHotkey. Désactivable si tu n'utilises pas de scripts AHK.
+  LITTERAL | Core\Startup\startup.py | 230 | AutoHotkey. Désactivable si tu n'utilises pas de scripts AHK.
+  LITTERAL | Core\Startup\startup.py | 231 | Microsoft PowerToys. Désactivable si tu n'utilises pas les outils avancés Windows.
+  LITTERAL | Core\Startup\startup.py | 232 | Microsoft PowerToys. Désactivable si tu n'utilises pas les outils avancés Windows.
+  LITTERAL | Core\Startup\startup.py | 233 | Microsoft PowerToys Flow. Désactivable si tu n'utilises pas Flow.
+  LITTERAL | Core\Startup\startup.py | 234 | Microsoft PowerToys Run. Désactivable si tu n'utilises pas Run.
+  LITTERAL | Core\Startup\startup.py | 235 | Microsoft PowerToys FancyZones. Désactivable si tu n'utilises pas FancyZones.
+  LITTERAL | Core\Startup\startup.py | 236 | Microsoft PowerToys ColorPicker. Désactivable si tu n'utilises pas le sélecteur de couleur
+  LITTERAL | Core\Startup\startup.py | 237 | Microsoft PowerToys TextExtractor. Désactivable si tu n'utilises pas l'extraction de texte
+  LITTERAL | Core\Startup\startup.py | 238 | Microsoft PowerToys ImageResizer. Désactivable si tu ne redimensionnes pas d'images.
+  LITTERAL | Core\Startup\startup.py | 239 | Microsoft PowerToys Keyboard Manager. Désactivable si tu ne remaps pas le clavier.
+  LITTERAL | Core\Startup\startup.py | 240 | Microsoft PowerToys Awake. Désactivable si tu n'utilises pas Awake.
+  LITTERAL | Core\Startup\startup.py | 241 | Microsoft PowerToys FindMyMouse. Désactivable si tu n'utilises pas FindMyMouse.
+  LITTERAL | Core\Startup\startup.py | 242 | Microsoft Mouse Without Borders. Désactivable si tu ne partages pas souris/clavier entre P
+  LITTERAL | Core\Startup\startup.py | 243 | Microsoft Keyboard Without Borders. Désactivable si tu ne partages pas souris/clavier entr
+  LITTERAL | Core\Startup\startup.py | 244 | Microsoft Command Palette. Désactivable si tu n'utilises pas la palette de commandes.
+  LITTERAL | Core\Startup\startup.py | 245 | Microsoft Workspaces. Désactivable si tu n'utilises pas Workspaces.
+  LITTERAL | Core\Startup\startup.py | 246 | Microsoft Peek. Désactivable si tu n'utilises pas Peek.
+  LITTERAL | Core\Startup\startup.py | 247 | Microsoft Advanced Paste. Désactivable si tu n'utilises pas Advanced Paste.
+  LITTERAL | Core\Startup\startup.py | 248 | Microsoft New Plus. Désactivable si tu n'utilises pas New Plus.
+  LITTERAL | Core\Startup\startup.py | 249 | Show Desktop. Désactivable si tu n'utilises pas cette fonction.
+  LITTERAL | Core\Startup\startup.py | 250 | Windows Quick Assist. Désactivable si tu n'utilises pas l'assistance à distance.
+  LITTERAL | Core\Startup\startup.py | 251 | Windows Remote Assistance. Désactivable si tu n'utilises pas l'assistance à distance.
+  LITTERAL | Core\Startup\startup.py | 252 | Démarrage rapide Windows. Désactivable si tu préfères un démarrage complet.
+  LITTERAL | Core\Startup\startup.py | 253 | Réparation du démarrage. À GARDER (composant système).
+  LITTERAL | Core\Startup\startup.py | 254 | Windows Defender. À GARDER (antivirus).
+  LITTERAL | Core\Startup\startup.py | 255 | Windows Defender. À GARDER (antivirus).
+  LITTERAL | Core\Startup\startup.py | 256 | Pare-feu Windows. À GARDER (sécurité).
+  LITTERAL | Core\Startup\startup.py | 257 | Pare-feu Windows. À GARDER (sécurité).
+  LITTERAL | Core\Startup\startup.py | 258 | Centre de sécurité Windows. À GARDER.
+  LITTERAL | Core\Startup\startup.py | 259 | Centre de sécurité Windows. À GARDER.
+  LITTERAL | Core\Startup\startup.py | 260 | Windows Update. À GARDER (mises à jour de sécurité).
+  LITTERAL | Core\Startup\startup.py | 261 | Background Intelligent Transfer. À GARDER (téléchargements Windows).
+  LITTERAL | Core\Startup\startup.py | 262 | Services cryptographiques. À GARDER (sécurité).
+  LITTERAL | Core\Startup\startup.py | 263 | Remote Procedure Call. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 264 | DCOM Launch. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 265 | Service Host Windows. À GARDER (composant système).
+  LITTERAL | Core\Startup\startup.py | 266 | Local Security Authority. À GARDER (sécurité critique).
+  LITTERAL | Core\Startup\startup.py | 267 | Client/Server Runtime. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 268 | Windows Init. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 269 | Session Manager. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 270 | Contrôleur des services. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 271 | Windows Logon. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 272 | User Init. À GARDER (composant système critique).
+  LITTERAL | Core\Startup\startup.py | 273 | Explorateur Windows. À GARDER (interface graphique).
+  LITTERAL | Core\Startup\startup.py | 274 | Gestionnaire des tâches. Désactivable au démarrage (ouvre-le avec Ctrl+Shift+Esc).
+  LITTERAL | Core\Startup\startup.py | 275 | Panneau de configuration. Désactivable, ouvre-le à la demande.
+  LITTERAL | Core\Startup\startup.py | 276 | Paramètres Windows. Désactivable, ouvre-les à la demande.
+  LITTERAL | Core\Startup\startup.py | 277 | Microsoft Store. Désactivable, ouvre-le à la demande.
+  LITTERAL | Core\Startup\startup.py | 278 | Microsoft Edge. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 279 | Google Chrome. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 280 | Mozilla Firefox. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 281 | Brave Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 282 | Opera Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 283 | Vivaldi Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 284 | Tor Browser. Désactivable, ouvre-le quand tu as besoin d'anonymat.
+  LITTERAL | Core\Startup\startup.py | 285 | Brave Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 286 | Chromium. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 287 | Safari (via iCloud). Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 288 | Maxthon Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 289 | K-Meleon Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 290 | Pale Moon Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 291 | Waterfox Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 292 | LibreWolf Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 293 | Falkon Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 294 | Midori Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 295 | Konqueror (KDE). Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 296 | Epiphany (GNOME). Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 297 | Surf (suckless). Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 298 | Luakit. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 299 | qutebrowser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 300 | Nyxt Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 301 | Zen Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 302 | Floorp Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 303 | Cromite. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 304 | Bromite. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 305 | Ungoogled Chromium. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 306 | Iridium Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 307 | Slimjet Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 308 | Cent Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 309 | Sleipnir Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 310 | Avira Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 311 | Avast Secure Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 312 | AVG Secure Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 313 | Norton Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 314 | Kaspersky Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 315 | Comodo Dragon Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 316 | Torch Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 317 | Sputnik Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 318 | Yandex Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 319 | Mail.ru Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 320 | AmiLite Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 321 | Citrio Browser. Désactivable si tu utilises un autre navigateur.
+  LITTERAL | Core\Startup\startup.py | 322 | Element (Matrix chat). Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 323 | Matrix / Element. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 324 | Rocket.Chat. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 325 | Mattermost. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 326 | Zello (radio push-to-talk). Désactivable si tu ne l'utilises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 327 | Mumble (voIP). Désactivable si tu ne l'utilises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 328 | TeamSpeak (voIP). Désactivable si tu ne l'utilises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 329 | Viber. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 330 | LINE. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 331 | KakaoTalk. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 332 | WeChat. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 333 | QQ. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 334 | DingTalk. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 335 | Feishu / Lark. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 336 | Lark / Feishu. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 337 | Tencent Meeting. Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 338 | Tencent Meeting / WeChat. Désactivable si tu peux l'ouvrir à la demande.
+  LITTERAL | Core\Startup\startup.py | 339 | Jitsi Meet. Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 340 | Jami (visioconférence). Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 341 | Ring (visioconférence). Désactivable si tu n'as pas de réunion régulière.
+  LITTERAL | Core\Startup\startup.py | 342 | Linphone (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 343 | Zoiper (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 344 | MicroSIP (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 345 | Bria (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 346 | CounterPath (Bria). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 347 | 3CX (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 348 | Grandstream (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 349 | Yealink (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 350 | snom (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 351 | Polycom (VoIP). Désactivable si tu ne passes pas d'appels SIP en continu.
+  LITTERAL | Core\Startup\startup.py | 352 | Jabra (casques/micros). Désactivable si tu n'utilises pas de casque Jabra.
+  LITTERAL | Core\Startup\startup.py | 353 | Plantronics (casques/micros). Désactivable si tu n'utilises pas de casque Plantronics.
+  LITTERAL | Core\Startup\startup.py | 354 | Poly (casques/micros). Désactivable si tu n'utilises pas de casque Poly.
+  LITTERAL | Core\Startup\startup.py | 355 | Sennheiser (casques/micros). Désactivable si tu n'utilises pas de casque Sennheiser.
+  LITTERAL | Core\Startup\startup.py | 356 | Bose (casques/enceintes). Désactivable si tu n'utilises pas d'appareil Bose.
+  LITTERAL | Core\Startup\startup.py | 357 | Sony (casques/enceintes). Désactivable si tu n'utilises pas d'appareil Sony.
+  LITTERAL | Core\Startup\startup.py | 358 | JBL (enceintes/casques). Désactivable si tu n'utilises pas d'appareil JBL.
+  LITTERAL | Core\Startup\startup.py | 359 | Harman Kardon. Désactivable si tu n'utilises pas d'appareil Harman.
+  LITTERAL | Core\Startup\startup.py | 360 | Marantz (audio). Désactivable si tu n'utilises pas d'appareil Marantz.
+  LITTERAL | Core\Startup\startup.py | 361 | Denon (audio/vidéo). Désactivable si tu n'utilises pas d'appareil Denon.
+  LITTERAL | Core\Startup\startup.py | 362 | Onkyo (audio/vidéo). Désactivable si tu n'utilises pas d'appareil Onkyo.
+  LITTERAL | Core\Startup\startup.py | 363 | Pioneer (audio/vidéo). Désactivable si tu n'utilises pas d'appareil Pioneer.
+  LITTERAL | Core\Startup\startup.py | 364 | Yamaha (audio). Désactivable si tu n'utilises pas d'appareil Yamaha.
+  LITTERAL | Core\Startup\startup.py | 365 | KEF (enceintes). Désactivable si tu n'utilises pas d'enceintes KEF.
+  LITTERAL | Core\Startup\startup.py | 366 | Bowers & Wilkins. Désactivable si tu n'utilises pas d'enceintes B&W.
+  LITTERAL | Core\Startup\startup.py | 367 | Focal (enceintes/casques). Désactivable si tu n'utilises pas d'appareil Focal.
+  LITTERAL | Core\Startup\startup.py | 368 | Audio-Technica (micros/casques). Désactivable si tu n'utilises pas d'appareil Audio-Techni
+  LITTERAL | Core\Startup\startup.py | 369 | Audio-Technica (micros/casques). Désactivable si tu n'utilises pas d'appareil Audio-Techni
+  LITTERAL | Core\Startup\startup.py | 370 | Shure (micros). Désactivable si tu n'utilises pas de micro Shure.
+  LITTERAL | Core\Startup\startup.py | 371 | Neumann (micros). Désactivable si tu n'utilises pas de micro Neumann.
+  LITTERAL | Core\Startup\startup.py | 372 | AKG (casques/micros). Désactivable si tu n'utilises pas d'appareil AKG.
+  LITTERAL | Core\Startup\startup.py | 373 | Beyerdynamic (casques/micros). Désactivable si tu n'utilises pas d'appareil Beyerdynamic.
+  LITTERAL | Core\Startup\startup.py | 374 | Ultrasone (casques). Désactivable si tu n'utilises pas de casque Ultrasone.
+  LITTERAL | Core\Startup\startup.py | 375 | Grado Labs (casques). Désactivable si tu n'utilises pas de casque Grado.
+  LITTERAL | Core\Startup\startup.py | 376 | STAX (casques électrostatiques). Désactivable si tu n'utilises pas de casque STAX.
+  LITTERAL | Core\Startup\startup.py | 377 | Hi-Fi / Audio. Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 378 | Hi-Res Audio. Désactivable selon ton usage.
+  LITTERAL | Core\Startup\startup.py | 379 | Bluetooth. Désactivable si tu n'utilises pas de périphérique Bluetooth.
+  LITTERAL | Core\Startup\startup.py | 380 | Wi-Fi. À GARDER si tu te connectes sans fil.
+  LITTERAL | Core\Startup\startup.py | 381 | Wi-Fi. À GARDER si tu te connectes sans fil.
+  LITTERAL | Core\Startup\startup.py | 382 | Services réseau. À GARDER (connectivité).
+  LITTERAL | Core\Startup\startup.py | 383 | Services de partage réseau. Désactivable si tu ne partages pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 384 | SMB (partage de fichiers). Désactivable si tu ne partages pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 385 | NFS (partage réseau). Désactivable si tu n'utilises pas NFS.
+  LITTERAL | Core\Startup\startup.py | 386 | FTP. Désactivable si tu ne transfères pas de fichiers par FTP.
+  LITTERAL | Core\Startup\startup.py | 387 | SFTP. Désactivable si tu ne transfères pas de fichiers par SFTP.
+  LITTERAL | Core\Startup\startup.py | 388 | Rsync. Désactivable si tu ne synchronises pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 389 | Syncthing (synchronisation). Désactivable si tu ne synchronises pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 390 | Resilio Sync. Désactivable si tu ne synchronises pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 391 | BitTorrent Sync. Désactivable si tu ne synchronises pas de fichiers.
+  LITTERAL | Core\Startup\startup.py | 392 | FreeFileSync. Désactivable, lance-le quand tu synchronises.
+  LITTERAL | Core\Startup\startup.py | 393 | GoodSync. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 394 | Arq Backup. Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 395 | Duplicati (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 396 | Restic (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 397 | BorgBackup. Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 398 | rdiff-backup. Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 399 | Time Machine (via第三方). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 400 | Carbon Copy Cloner. Désactivable si tu ne clonnes pas de disques.
+  LITTERAL | Core\Startup\startup.py | 401 | SuperDuper!. Désactivable si tu ne clonnes pas de disques.
+  LITTERAL | Core\Startup\startup.py | 402 | Clonezilla. Désactivable si tu ne clonnes pas de disques.
+  LITTERAL | Core\Startup\startup.py | 403 | Acronis True Image. Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 404 | Veeam (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 405 | Unitrends (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 406 | Zerto (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 407 | Asigra (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 408 | Commvault (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 409 | Veritas (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 410 | NetBackup (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 411 | Backup Exec (sauvegarde). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 412 | Windows Server Backup. Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 413 | Azure Backup. Désactivable si tu ne sauvegardes pas sur Azure.
+  LITTERAL | Core\Startup\startup.py | 414 | AWS Backup. Désactivable si tu ne sauvegardes pas sur AWS.
+  LITTERAL | Core\Startup\startup.py | 415 | Google Cloud Backup. Désactivable si tu ne sauvegardes pas sur GCP.
+  LITTERAL | Core\Startup\startup.py | 416 | Backblaze (sauvegarde cloud). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 417 | Carbonite (sauvegarde cloud). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 418 | Mozy (sauvegarde cloud). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 419 | SpiderOak (sauvegarde cloud). Désactivable si tu ne sauvegardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 420 | Dropbox. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 421 | Google Drive. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 422 | OneDrive. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 423 | Box. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 424 | MEGA. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 425 | MEGA. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 426 | pCloud. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 427 | sync.com. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 428 | Wuala. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 429 | TeamDrive. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 430 | Hightail. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 431 | YouSendIt. Désactivable si tu ne synchronises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 432 | WeTransfer. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 433 | TransferNow. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 434 | Send Anywhere. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 435 | SendThisFile. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 436 | SendBigFile. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 437 | Send Space. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 438 | SendTransfer. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 439 | SendFile. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 440 | SendMail. Désactivable si tu n'envoies pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 441 | SendMessage. Désactivable si tu n'envoies pas de messages en continu.
+  LITTERAL | Core\Startup\startup.py | 442 | SendChat. Désactivable si tu n'envoies pas de messages en continu.
+  LITTERAL | Core\Startup\startup.py | 443 | SendVoice. Désactivable si tu n'envoies pas de messages vocaux en continu.
+  LITTERAL | Core\Startup\startup.py | 444 | SendVideo. Désactivable si tu n'envoies pas de vidéos en continu.
+  LITTERAL | Core\Startup\startup.py | 445 | SendPhoto. Désactivable si tu n'envoies pas de photos en continu.
+  LITTERAL | Core\Startup\startup.py | 446 | SendDoc. Désactivable si tu n'envoies pas de documents en continu.
+  LITTERAL | Core\Startup\startup.py | 447 | SendFile. Désactivable si tu ne transfères pas de fichiers en continu.
+  LITTERAL | Core\Startup\startup.py | 448 | SendFolder. Désactivable si tu ne transfères pas de dossiers en continu.
+  LITTERAL | Core\Startup\startup.py | 449 | SendZip. Désactivable si tu ne transfères pas de fichiers ZIP en continu.
+  LITTERAL | Core\Startup\startup.py | 450 | SendRar. Désactivable si tu ne transfères pas de fichiers RAR en continu.
+  LITTERAL | Core\Startup\startup.py | 451 | Send7z. Désactivable si tu ne transfères pas de fichiers 7Z en continu.
+  LITTERAL | Core\Startup\startup.py | 452 | SendISO. Désactivable si tu ne transfères pas d'ISO en continu.
+  LITTERAL | Core\Startup\startup.py | 453 | SendImg. Désactivable si tu ne transfères pas d'images en continu.
+  LITTERAL | Core\Startup\startup.py | 454 | SendAudio. Désactivable si tu ne transfères pas d'audio en continu.
+  LITTERAL | Core\Startup\startup.py | 455 | SendMusic. Désactivable si tu ne transfères pas de musique en continu.
+  LITTERAL | Core\Startup\startup.py | 456 | SendMovie. Désactivable si tu ne transfères pas de films en continu.
+  LITTERAL | Core\Startup\startup.py | 457 | SendClip. Désactivable si tu ne transfères pas de clips en continu.
+  LITTERAL | Core\Startup\startup.py | 458 | SendStream. Désactivable si tu ne streams pas en continu.
+  LITTERAL | Core\Startup\startup.py | 459 | SendBroadcast. Désactivable si tu ne broadcasts pas en continu.
+  LITTERAL | Core\Startup\startup.py | 460 | SendLive. Désactivable si tu ne diffuses pas en direct en continu.
+  LITTERAL | Core\Startup\startup.py | 461 | SendWebcam. Désactivable si tu n'utilises pas de webcam en continu.
+  LITTERAL | Core\Startup\startup.py | 462 | SendCamera. Désactivable si tu n'utilises pas de caméra en continu.
+  LITTERAL | Core\Startup\startup.py | 463 | SendRecording. Désactivable si tu n'enregistres pas en continu.
+  LITTERAL | Core\Startup\startup.py | 464 | SendScreen. Désactivable si tu ne partages pas ton écran en continu.
+  LITTERAL | Core\Startup\startup.py | 465 | SendDesktop. Désactivable si tu ne partages pas ton bureau en continu.
+  LITTERAL | Core\Startup\startup.py | 466 | SendWindow. Désactivable si tu ne partages pas de fenêtres en continu.
+  LITTERAL | Core\Startup\startup.py | 467 | SendApp. Désactivable si tu ne partages pas d'applications en continu.
+  LITTERAL | Core\Startup\startup.py | 468 | SendProgram. Désactivable si tu ne partages pas de programmes en continu.
+  LITTERAL | Core\Startup\startup.py | 469 | SendService. Désactivable si tu ne partages pas de services en continu.
+  LITTERAL | Core\Startup\startup.py | 470 | SendProcess. Désactivable si tu ne partages pas de processus en continu.
+  LITTERAL | Core\Startup\startup.py | 471 | SendTask. Désactivable si tu ne partages pas de tâches en continu.
+  LITTERAL | Core\Startup\startup.py | 472 | SendJob. Désactivable si tu ne partages pas de jobs en continu.
+  LITTERAL | Core\Startup\startup.py | 473 | SendWork. Désactivable si tu ne partages pas de travail en continu.
+  LITTERAL | Core\Startup\startup.py | 474 | SendProject. Désactivable si tu ne partages pas de projets en continu.
+  LITTERAL | Core\Startup\startup.py | 475 | SendSolution. Désactivable si tu ne partages pas de solutions en continu.
+  LITTERAL | Core\Startup\startup.py | 476 | SendPlan. Désactivable si tu ne partages pas de plans en continu.
+  LITTERAL | Core\Startup\startup.py | 477 | SendSchedule. Désactivable si tu ne partages pas d'horaires en continu.
+  LITTERAL | Core\Startup\startup.py | 478 | SendCalendar. Désactivable si tu ne partages pas de calendriers en continu.
+  LITTERAL | Core\Startup\startup.py | 479 | SendAppointment. Désactivable si tu ne partages pas de rendez-vous en continu.
+  LITTERAL | Core\Startup\startup.py | 480 | SendMeeting. Désactivable si tu ne partages pas de réunions en continu.
+  LITTERAL | Core\Startup\startup.py | 481 | SendEvent. Désactivable si tu ne partages pas d'événements en continu.
+  LITTERAL | Core\Startup\startup.py | 482 | SendReminder. Désactivable si tu n'envoies pas de rappels en continu.
+  LITTERAL | Core\Startup\startup.py | 483 | SendAlert. Désactivable si tu n'envoies pas d'alertes en continu.
+  LITTERAL | Core\Startup\startup.py | 484 | SendNotification. Désactivable si tu n'envoies pas de notifications en continu.
+  LITTERAL | Core\Startup\startup.py | 485 | SendMessage. Désactivable si tu n'envoies pas de messages en continu.
+  LITTERAL | Core\Startup\startup.py | 486 | SendNote. Désactivable si tu n'envoies pas de notes en continu.
+  LITTERAL | Core\Startup\startup.py | 487 | SendMemo. Désactivable si tu n'envoies pas de mémos en continu.
+  LITTERAL | Core\Startup\startup.py | 488 | SendTodo. Désactivable si tu n'envoies pas de to-do en continu.
+  LITTERAL | Core\Startup\startup.py | 489 | SendChecklist. Désactivable si tu n'envoies pas de checklists en continu.
+  LITTERAL | Core\Startup\startup.py | 490 | SendSurvey. Désactivable si tu n'envoies pas de sondages en continu.
+  LITTERAL | Core\Startup\startup.py | 491 | SendForm. Désactivable si tu n'envoies pas de formulaires en continu.
+  LITTERAL | Core\Startup\startup.py | 492 | SendQuestion. Désactivable si tu n'envoies pas de questions en continu.
+  LITTERAL | Core\Startup\startup.py | 493 | SendAnswer. Désactivable si tu n'envoies pas de réponses en continu.
+  LITTERAL | Core\Startup\startup.py | 494 | SendFeedback. Désactivable si tu n'envoies pas de feedback en continu.
+  LITTERAL | Core\Startup\startup.py | 495 | SendReview. Désactivable si tu n'envoies pas de reviews en continu.
+  LITTERAL | Core\Startup\startup.py | 496 | SendRating. Désactivable si tu n'envoies pas de ratings en continu.
+  LITTERAL | Core\Startup\startup.py | 497 | SendVote. Désactivable si tu n'envoies pas de votes en continu.
+  LITTERAL | Core\Startup\startup.py | 498 | SendPoll. Désactivable si tu n'envoies pas de sondages en continu.
+  LITTERAL | Core\Startup\startup.py | 499 | SendComment. Désactivable si tu n'envoies pas de commentaires en continu.
+  LITTERAL | Core\Startup\startup.py | 500 | SendReply. Désactivable si tu n'envoies pas de réponses en continu.
+  LITTERAL | Core\Startup\startup.py | 501 | SendForward. Désactivable si tu ne transfères pas de messages en continu.
+  LITTERAL | Core\Startup\startup.py | 502 | SendQuote. Désactivable si tu n'envoies pas de citations en continu.
+  LITTERAL | Core\Startup\startup.py | 503 | SendReference. Désactivable si tu n'envoies pas de références en continu.
+  LITTERAL | Core\Startup\startup.py | 504 | SendLink. Désactivable si tu n'envoies pas de liens en continu.
+  LITTERAL | Core\Startup\startup.py | 505 | SendURL. Désactivable si tu n'envoies pas d'URL en continu.
+  LITTERAL | Core\Startup\startup.py | 506 | SendSite. Désactivable si tu n'envoies pas de sites en continu.
+  LITTERAL | Core\Startup\startup.py | 507 | SendPage. Désactivable si tu n'envoies pas de pages en continu.
+  LITTERAL | Core\Startup\startup.py | 508 | SendPost. Désactivable si tu n'envoies pas de posts en continu.
+  LITTERAL | Core\Startup\startup.py | 509 | SendArticle. Désactivable si tu n'envoies pas d'articles en continu.
+  LITTERAL | Core\Startup\startup.py | 510 | SendBlog. Désactivable si tu n'envoies pas de blogs en continu.
+  LITTERAL | Core\Startup\startup.py | 511 | SendNews. Désactivable si tu n'envoies pas de news en continu.
+  LITTERAL | Core\Startup\startup.py | 512 | SendPress. Désactivable si tu n'envoies pas de communiqués en continu.
+  LITTERAL | Core\Startup\startup.py | 513 | SendRelease. Désactivable si tu n'envoies pas de releases en continu.
+  LITTERAL | Core\Startup\startup.py | 514 | SendUpdate. Désactivable si tu n'envoies pas de mises à jour en continu.
+  LITTERAL | Core\Startup\startup.py | 515 | SendPatch. Désactivable si tu n'envoies pas de patches en continu.
+  LITTERAL | Core\Startup\startup.py | 516 | SendFix. Désactivable si tu n'envoies pas de correctifs en continu.
+  LITTERAL | Core\Startup\startup.py | 517 | SendHotfix. Désactivable si tu n'envoies pas de hotfix en continu.
+  LITTERAL | Core\Startup\startup.py | 518 | SendBug. Désactivable si tu n'envoies pas de bugs en continu.
+  LITTERAL | Core\Startup\startup.py | 519 | SendIssue. Désactivable si tu n'envoies pas d'issues en continu.
+  LITTERAL | Core\Startup\startup.py | 520 | SendSupport. Désactivable si tu n'envoies pas de tickets support en continu.
+  LITTERAL | Core\Startup\startup.py | 521 | SendService. Désactivable si tu n'envoies pas de demandes de service en continu.
+  LITTERAL | Core\Startup\startup.py | 522 | SendSOS. Désactivable si tu n'envoies pas de demandes d'urgence en continu.
+  LITTERAL | Core\Startup\startup.py | 523 | SendHelp. Désactivable si tu n'envoies pas de demandes d'aide en continu.
+  LITTERAL | Core\Startup\startup.py | 524 | SendAssist. Désactivable si tu n'envoies pas de demandes d'assistance en continu.
+  LITTERAL | Core\Startup\startup.py | 525 | SendRescue. Désactivable si tu n'envoies pas de demandes de secours en continu.
+  LITTERAL | Core\Startup\startup.py | 526 | SendEmergency. Désactivable si tu n'envoies pas d'urgences en continu.
+  LITTERAL | Core\Startup\startup.py | 527 | SendCritical. Désactivable si tu n'envoies pas de messages critiques en continu.
+  LITTERAL | Core\Startup\startup.py | 528 | SendUrgent. Désactivable si tu n'envoies pas de messages urgents en continu.
+  LITTERAL | Core\Startup\startup.py | 529 | SendImportant. Désactivable si tu n'envoies pas de messages importants en continu.
+  LITTERAL | Core\Startup\startup.py | 530 | SendPriority. Désactivable si tu n'envoies pas de messages prioritaires en continu.
+  LITTERAL | Core\Startup\startup.py | 531 | SendHigh. Désactivable si tu n'envoies pas de messages haute priorité en continu.
+  LITTERAL | Core\Startup\startup.py | 532 | SendLow. Désactivable si tu n'envoies pas de messages basse priorité en continu.
+  LITTERAL | Core\Startup\startup.py | 533 | SendNormal. Désactivable si tu n'envoies pas de messages normaux en continu.
+  LITTERAL | Core\Startup\startup.py | 534 | SendBulk. Désactivable si tu n'envoies pas de messages en masse en continu.
+  LITTERAL | Core\Startup\startup.py | 535 | SendMass. Désactivable si tu n'envoies pas de messages de masse en continu.
+  LITTERAL | Core\Startup\startup.py | 536 | SendBlast. Désactivable si tu n'envoies pas de blasts en continu.
+  LITTERAL | Core\Startup\startup.py | 537 | SendCampaign. Désactivable si tu n'envoies pas de campagnes en continu.
+  LITTERAL | Core\Startup\startup.py | 538 | SendMarketing. Désactivable si tu n'envoies pas de marketing en continu.
+  LITTERAL | Core\Startup\startup.py | 539 | SendPromo. Désactivable si tu n'envoies pas de promos en continu.
+  LITTERAL | Core\Startup\startup.py | 540 | SendSale. Désactivable si tu n'envoies pas de ventes en continu.
+  LITTERAL | Core\Startup\startup.py | 541 | SendOffer. Désactivable si tu n'envoies pas d'offres en continu.
+  LITTERAL | Core\Startup\startup.py | 542 | SendDeal. Désactivable si tu n'envoies pas de deals en continu.
+  LITTERAL | Core\Startup\startup.py | 543 | SendCoupon. Désactivable si tu n'envoies pas de coupons en continu.
+  LITTERAL | Core\Startup\startup.py | 544 | SendDiscount. Désactivable si tu n'envoies pas de remises en continu.
+  LITTERAL | Core\Startup\startup.py | 545 | SendVoucher. Désactivable si tu n'envoies pas de vouchers en continu.
+  LITTERAL | Core\Startup\startup.py | 546 | SendScript. Désactivable si tu n'envoies pas de scripts en continu.
+  LITTERAL | Core\Startup\startup.py | 547 | SendCode. Désactivable si tu n'envoies pas de code en continu.
+  LITTERAL | Core\Startup\startup.py | 548 | SendProgram. Désactivable si tu n'envoies pas de programmes en continu.
+  LITTERAL | Core\Startup\startup.py | 549 | SendSoftware. Désactivable si tu n'envoies pas de logiciels en continu.
+  LITTERAL | Core\Startup\startup.py | 550 | SendApp. Désactivable si tu n'envoies pas d'applications en continu.
+  LITTERAL | Core\Startup\startup.py | 551 | SendTool. Désactivable si tu n'envoies pas d'outils en continu.
+  LITTERAL | Core\Startup\startup.py | 552 | SendUtility. Désactivable si tu n'envoies pas d'utilitaires en continu.
+  LITTERAL | Core\Startup\startup.py | 553 | SendDriver. Désactivable si tu n'envoies pas de pilotes en continu.
+  LITTERAL | Core\Startup\startup.py | 554 | SendFirmware. Désactivable si tu n'envoies pas de firmware en continu.
+  LITTERAL | Core\Startup\startup.py | 555 | SendBIOS. Désactivable si tu n'envoies pas de BIOS en continu.
+  LITTERAL | Core\Startup\startup.py | 556 | SendUEFI. Désactivable si tu n'envoies pas d'UEFI en continu.
+  LITTERAL | Core\Startup\startup.py | 557 | SendBoot. Désactivable si tu n'envoies pas de boot en continu.
+  LITTERAL | Core\Startup\startup.py | 558 | SendKernel. Désactivable si tu n'envoies pas de kernel en continu.
+  LITTERAL | Core\Startup\startup.py | 559 | SendSystem. Désactivable si tu n'envoies pas de système en continu.
+  LITTERAL | Core\Startup\startup.py | 560 | SendCore. Désactivable si tu n'envoies pas de core en continu.
+  LITTERAL | Core\Startup\startup.py | 561 | SendBase. Désactivable si tu n'envoies pas de base en continu.
+  LITTERAL | Core\Startup\startup.py | 562 | SendRoot. Désactivable si tu n'envoies pas de root en continu.
+  LITTERAL | Core\Startup\startup.py | 563 | SendAdmin. Désactivable si tu n'envoies pas d'admin en continu.
+  LITTERAL | Core\Startup\startup.py | 564 | SendUser. Désactivable si tu n'envoies pas d'utilisateur en continu.
+  LITTERAL | Core\Startup\startup.py | 565 | SendGuest. Désactivable si tu n'envoies pas d'invité en continu.
+  LITTERAL | Core\Startup\startup.py | 566 | SendClient. Désactivable si tu n'envoies pas de client en continu.
+  LITTERAL | Core\Startup\startup.py | 567 | SendServer. Désactivable si tu n'envoies pas de serveur en continu.
+  LITTERAL | Core\Startup\startup.py | 568 | SendHost. Désactivable si tu n'envoies pas d'hôte en continu.
+  LITTERAL | Core\Startup\startup.py | 569 | SendNode. Désactivable si tu n'envoies pas de nœud en continu.
+  LITTERAL | Core\Startup\startup.py | 570 | SendDevice. Désactivable si tu n'envoies pas d'appareil en continu.
+  LITTERAL | Core\Startup\startup.py | 571 | SendMachine. Désactivable si tu n'envoies pas de machine en continu.
+  LITTERAL | Core\Startup\startup.py | 572 | SendComputer. Désactivable si tu n'envoies pas d'ordinateur en continu.
+  LITTERAL | Core\Startup\startup.py | 573 | SendPC. Désactivable si tu n'envoies pas de PC en continu.
+  LITTERAL | Core\Startup\startup.py | 574 | SendLaptop. Désactivable si tu n'envoies pas de laptop en continu.
+  LITTERAL | Core\Startup\startup.py | 575 | SendDesktop. Désactivable si tu n'envoies pas de desktop en continu.
+  LITTERAL | Core\Startup\startup.py | 576 | SendSurface. Désactivable si tu n'envoies pas de Surface en continu.
+  LITTERAL | Core\Startup\startup.py | 577 | SendTablet. Désactivable si tu n'envoies pas de tablette en continu.
+  LITTERAL | Core\Startup\startup.py | 578 | SendPhone. Désactivable si tu n'envoies pas de téléphone en continu.
+  LITTERAL | Core\Startup\startup.py | 579 | SendMobile. Désactivable si tu n'envoies pas de mobile en continu.
+  LITTERAL | Core\Startup\startup.py | 580 | SendWatch. Désactivable si tu n'envoies pas de montre en continu.
+  LITTERAL | Core\Startup\startup.py | 581 | SendBand. Désactivable si tu n'envoies pas de bracelet en continu.
+  LITTERAL | Core\Startup\startup.py | 582 | SendGlasses. Désactivable si tu n'envoies pas de lunettes en continu.
+  LITTERAL | Core\Startup\startup.py | 583 | SendVR. Désactivable si tu n'envoies pas de VR en continu.
+  LITTERAL | Core\Startup\startup.py | 584 | SendAR. Désactivable si tu n'envoies pas d'AR en continu.
+  LITTERAL | Core\Startup\startup.py | 585 | SendXR. Désactivable si tu n'envoies pas de XR en continu.
+  LITTERAL | Core\Startup\startup.py | 586 | SendHeadset. Désactivable si tu n'envoies pas de casque en continu.
+  LITTERAL | Core\Startup\startup.py | 587 | SendController. Désactivable si tu n'envoies pas de contrôleur en continu.
+  LITTERAL | Core\Startup\startup.py | 588 | SendGamepad. Désactivable si tu n'envoies pas de manette en continu.
+  LITTERAL | Core\Startup\startup.py | 589 | SendJoystick. Désactivable si tu n'envoies pas de joystick en continu.
+  LITTERAL | Core\Startup\startup.py | 590 | SendWheel. Désactivable si tu n'envoies pas de volant en continu.
+  LITTERAL | Core\Startup\startup.py | 591 | SendPedal. Désactivable si tu n'envoies pas de pédale en continu.
+  LITTERAL | Core\Startup\startup.py | 592 | SendSim. Désactivable si tu n'envoies pas de simulateur en continu.
+  LITTERAL | Core\Startup\startup.py | 593 | SendFlight. Désactivable si tu n'envoies pas de vol en continu.
+  LITTERAL | Core\Startup\startup.py | 594 | SendDrive. Désactivable si tu n'envoies pas de conduite en continu.
+  LITTERAL | Core\Startup\startup.py | 595 | SendRace. Désactivable si tu n'envoies pas de course en continu.
+  LITTERAL | Core\Startup\startup.py | 596 | SendPlay. Désactivable si tu n'envoies pas de jeu en continu.
+  LITTERAL | Core\Startup\startup.py | 597 | SendGame. Désactivable si tu n'envoies pas de jeu en continu.
+  LITTERAL | Core\Startup\startup.py | 598 | SendFun. Désactivable si tu n'envoies pas de fun en continu.
+  LITTERAL | Core\Startup\startup.py | 599 | SendJoy. Désactivable si tu n'envoies pas de joie en continu.
+  LITTERAL | Core\Startup\startup.py | 600 | SendHappy. Désactivable si tu n'envoies pas de bonheur en continu.
+  LITTERAL | Core\Startup\startup.py | 601 | SendLove. Désactivable si tu n'envoies pas d'amour en continu.
+  LITTERAL | Core\Startup\startup.py | 602 | SendPeace. Désactivable si tu n'envoies pas de paix en continu.
+  LITTERAL | Core\Startup\startup.py | 603 | SendCalm. Désactivable si tu n'envoies pas de calme en continu.
+  LITTERAL | Core\Startup\startup.py | 604 | SendRelax. Désactivable si tu n'envoies pas de relaxation en continu.
+  LITTERAL | Core\Startup\startup.py | 605 | SendZen. Désactivable si tu n'envoies pas de zen en continu.
+  LITTERAL | Core\Startup\startup.py | 606 | SendMeditate. Désactivable si tu ne médites pas en continu.
+  LITTERAL | Core\Startup\startup.py | 607 | SendBreathe. Désactivable si tu ne respires pas en continu.
+  LITTERAL | Core\Startup\startup.py | 608 | SendRest. Désactivable si tu ne te reposes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 609 | SendNap. Désactivable si tu ne fais pas de sieste en continu.
+  LITTERAL | Core\Startup\startup.py | 610 | SendDream. Désactivable si tu ne rêves pas en continu.
+  LITTERAL | Core\Startup\startup.py | 611 | SendImagine. Désactivable si tu n'imagines pas en continu.
+  LITTERAL | Core\Startup\startup.py | 612 | SendCreate. Désactivable si tu ne crées pas en continu.
+  LITTERAL | Core\Startup\startup.py | 613 | SendBuild. Désactivable si tu ne construis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 614 | SendMake. Désactivable si tu ne fabriques pas en continu.
+  LITTERAL | Core\Startup\startup.py | 615 | SendCraft. Désactivable si tu n'artisanes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 616 | SendDesign. Désactivable si tu ne dessines pas en continu.
+  LITTERAL | Core\Startup\startup.py | 617 | SendDraw. Désactivable si tu ne dessines pas en continu.
+  LITTERAL | Core\Startup\startup.py | 618 | SendPaint. Désactivable si tu ne peins pas en continu.
+  LITTERAL | Core\Startup\startup.py | 619 | SendColor. Désactivable si tu ne colories pas en continu.
+  LITTERAL | Core\Startup\startup.py | 620 | SendArt. Désactivable si tu ne fais pas d'art en continu.
+  LITTERAL | Core\Startup\startup.py | 621 | SendMusic. Désactivable si tu ne fais pas de musique en continu.
+  LITTERAL | Core\Startup\startup.py | 622 | SendSong. Désactivable si tu ne chantes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 623 | SendSing. Désactivable si tu ne chantes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 624 | SendDance. Désactivable si tu ne danses pas en continu.
+  LITTERAL | Core\Startup\startup.py | 625 | SendMove. Désactivable si tu ne bouges pas en continu.
+  LITTERAL | Core\Startup\startup.py | 626 | SendWalk. Désactivable si tu ne marches pas en continu.
+  LITTERAL | Core\Startup\startup.py | 627 | SendRun. Désactivable si tu ne cours pas en continu.
+  LITTERAL | Core\Startup\startup.py | 628 | SendJump. Désactivable si tu ne sautes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 629 | SendExercise. Désactivable si tu ne fais pas d'exercice en continu.
+  LITTERAL | Core\Startup\startup.py | 630 | SendWorkout. Désactivable si tu ne t'entraînes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 631 | SendTrain. Désactivable si tu ne t'entraînes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 632 | SendPractice. Désactivable si tu ne pratiques pas en continu.
+  LITTERAL | Core\Startup\startup.py | 633 | SendStudy. Désactivable si tu n'étudies pas en continu.
+  LITTERAL | Core\Startup\startup.py | 634 | SendLearn. Désactivable si tu n'apprends pas en continu.
+  LITTERAL | Core\Startup\startup.py | 635 | SendTeach. Désactivable si tu n'enseignes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 636 | SendRead. Désactivable si tu ne lis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 637 | SendWrite. Désactivable si tu n'écris pas en continu.
+  LITTERAL | Core\Startup\startup.py | 638 | SendType. Désactivable si tu ne tapes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 639 | SendSpeak. Désactivable si tu ne parles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 640 | SendSay. Désactivable si tu ne dis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 641 | SendTell. Désactivable si tu ne racontes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 642 | SendAsk. Désactivable si tu ne demandes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 643 | SendAnswer. Désactivable si tu ne réponds pas en continu.
+  LITTERAL | Core\Startup\startup.py | 644 | SendQuestion. Désactivable si tu ne questions pas en continu.
+  LITTERAL | Core\Startup\startup.py | 645 | SendThink. Désactivable si tu ne réfléchis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 646 | SendPonder. Désactivable si tu ne ponderes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 647 | SendContemplate. Désactivable si tu ne contemples pas en continu.
+  LITTERAL | Core\Startup\startup.py | 648 | SendReflect. Désactivable si tu ne réfléchis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 649 | SendAnalyze. Désactivable si tu n'analyses pas en continu.
+  LITTERAL | Core\Startup\startup.py | 650 | SendEvaluate. Désactivable si tu n'évalues pas en continu.
+  LITTERAL | Core\Startup\startup.py | 651 | SendAssess. Désactivable si tu n'évalues pas en continu.
+  LITTERAL | Core\Startup\startup.py | 652 | SendReview. Désactivable si tu ne review pas en continu.
+  LITTERAL | Core\Startup\startup.py | 653 | SendAudit. Désactivable si tu n'audites pas en continu.
+  LITTERAL | Core\Startup\startup.py | 654 | SendInspect. Désactivable si tu n'inspectes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 655 | SendCheck. Désactivable si tu ne vérifies pas en continu.
+  LITTERAL | Core\Startup\startup.py | 656 | SendVerify. Désactivable si tu ne verifies pas en continu.
+  LITTERAL | Core\Startup\startup.py | 657 | SendValidate. Désactivable si tu ne valides pas en continu.
+  LITTERAL | Core\Startup\startup.py | 658 | SendScan. Désactivable si tu ne scans pas en continu.
+  LITTERAL | Core\Startup\startup.py | 659 | SendSearch. Désactivable si tu ne cherches pas en continu.
+  LITTERAL | Core\Startup\startup.py | 660 | SendFind. Désactivable si tu ne trouves pas en continu.
+  LITTERAL | Core\Startup\startup.py | 661 | SendLocate. Désactivable si tu ne localises pas en continu.
+  LITTERAL | Core\Startup\startup.py | 662 | SendSpot. Désactivable si tu ne repères pas en continu.
+  LITTERAL | Core\Startup\startup.py | 663 | SendDetect. Désactivable si tu ne détectes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 664 | SendDiscover. Désactivable si tu ne découvres pas en continu.
+  LITTERAL | Core\Startup\startup.py | 665 | SendExplore. Désactivable si tu n'explorés pas en continu.
+  LITTERAL | Core\Startup\startup.py | 666 | SendInvestigate. Désactivable si tu n'enquêtes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 667 | SendResearch. Désactivable si tu ne recherches pas en continu.
+  LITTERAL | Core\Startup\startup.py | 668 | SendStudy. Désactivable si tu n'étudies pas en continu.
+  LITTERAL | Core\Startup\startup.py | 669 | SendExperiment. Désactivable si tu n'expérimentes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 670 | SendTest. Désactivable si tu ne testes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 671 | SendTry. Désactivable si tu n'essaies pas en continu.
+  LITTERAL | Core\Startup\startup.py | 672 | SendAttempt. Désactivable si tu ne tentes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 673 | SendFail. Désactivable si tu n'échoues pas en continu.
+  LITTERAL | Core\Startup\startup.py | 674 | SendSucceed. Désactivable si tu ne réussis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 675 | SendWin. Désactivable si tu ne gagnes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 676 | SendLose. Désactivable si tu ne perds pas en continu.
+  LITTERAL | Core\Startup\startup.py | 677 | SendDraw. Désactivable si tu ne fais pas match nul en continu.
+  LITTERAL | Core\Startup\startup.py | 678 | SendTie. Désactivable si tu ne fais pas match nul en continu.
+  LITTERAL | Core\Startup\startup.py | 679 | SendMatch. Désactivable si tu ne fais pas de match en continu.
+  LITTERAL | Core\Startup\startup.py | 680 | SendGame. Désactivable si tu ne fais pas de partie en continu.
+  LITTERAL | Core\Startup\startup.py | 681 | SendRound. Désactivable si tu ne fais pas de round en continu.
+  LITTERAL | Core\Startup\startup.py | 682 | SendSession. Désactivable si tu ne fais pas de session en continu.
+  LITTERAL | Core\Startup\startup.py | 683 | SendSprint. Désactivable si tu ne fais pas de sprint en continu.
+  LITTERAL | Core\Startup\startup.py | 684 | SendMarathon. Désactivable si tu ne fais pas de marathon en continu.
+  LITTERAL | Core\Startup\startup.py | 685 | SendRace. Désactivable si tu ne fais pas de course en continu.
+  LITTERAL | Core\Startup\startup.py | 686 | SendChase. Désactivable si tu ne poursuis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 687 | SendHunt. Désactivable si tu ne chasses pas en continu.
+  LITTERAL | Core\Startup\startup.py | 688 | SendSearch. Désactivable si tu ne cherches pas en continu.
+  LITTERAL | Core\Startup\startup.py | 689 | SendSeek. Désactivable si tu ne cherches pas en continu.
+  LITTERAL | Core\Startup\startup.py | 690 | SendLook. Désactivable si tu ne regardes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 691 | SendWatch. Désactivable si tu ne surveilles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 692 | SendObserve. Désactivable si tu n'observes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 693 | SendMonitor. Désactivable si tu ne monitors pas en continu.
+  LITTERAL | Core\Startup\startup.py | 694 | SendTrack. Désactivable si tu ne traces pas en continu.
+  LITTERAL | Core\Startup\startup.py | 695 | SendFollow. Désactivable si tu ne suis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 696 | SendLead. Désactivable si tu ne diriges pas en continu.
+  LITTERAL | Core\Startup\startup.py | 697 | SendGuide. Désactivable si tu ne guides pas en continu.
+  LITTERAL | Core\Startup\startup.py | 698 | SendDirect. Désactivable si tu ne diriges pas en continu.
+  LITTERAL | Core\Startup\startup.py | 699 | SendManage. Désactivable si tu ne gères pas en continu.
+  LITTERAL | Core\Startup\startup.py | 700 | SendControl. Désactivable si tu ne contrôles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 701 | SendOperate. Désactivable si tu n'opères pas en continu.
+  LITTERAL | Core\Startup\startup.py | 702 | SendRun. Désactivable si tu ne fais pas tourner en continu.
+  LITTERAL | Core\Startup\startup.py | 703 | SendExecute. Désactivable si tu n'exécutes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 704 | SendPerform. Désactivable si tu ne performs pas en continu.
+  LITTERAL | Core\Startup\startup.py | 705 | SendAction. Désactivable si tu n'agis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 706 | SendDo. Désactivable si tu ne fais pas en continu.
+  LITTERAL | Core\Startup\startup.py | 707 | SendAct. Désactivable si tu n'agis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 708 | SendWork. Désactivable si tu ne travailles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 709 | SendLabor. Désactivable si tu ne travailles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 710 | SendToil. Désactivable si tu ne peines pas en continu.
+  LITTERAL | Core\Startup\startup.py | 711 | SendEffort. Désactivable si tu ne fais pas d'efforts en continu.
+  LITTERAL | Core\Startup\startup.py | 712 | SendStruggle. Désactivable si tu ne luttes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 713 | SendFight. Désactivable si tu ne combats pas en continu.
+  LITTERAL | Core\Startup\startup.py | 714 | SendBattle. Désactivable si tu ne bats pas en continu.
+  LITTERAL | Core\Startup\startup.py | 715 | SendWar. Désactivable si tu ne fais pas la guerre en continu.
+  LITTERAL | Core\Startup\startup.py | 716 | SendConflict. Désactivable si tu n'es pas en conflit en continu.
+  LITTERAL | Core\Startup\startup.py | 717 | SendDispute. Désactivable si tu n'es pas en dispute en continu.
+  LITTERAL | Core\Startup\startup.py | 718 | SendArgument. Désactivable si tu ne te disputes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 719 | SendDebate. Désactivable si tu ne débates pas en continu.
+  LITTERAL | Core\Startup\startup.py | 720 | SendDiscuss. Désactivable si tu ne discutes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 721 | SendTalk. Désactivable si tu ne parles pas en continu.
+  LITTERAL | Core\Startup\startup.py | 722 | SendChat. Désactivable si tu ne chattes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 723 | SendConverse. Désactivable si tu ne converses pas en continu.
+  LITTERAL | Core\Startup\startup.py | 724 | SendCommunicate. Désactivable si tu ne communiques pas en continu.
+  LITTERAL | Core\Startup\startup.py | 725 | SendInteract. Désactivable si tu n'interagis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 726 | SendEngage. Désactivable si tu ne t'engages pas en continu.
+  LITTERAL | Core\Startup\startup.py | 727 | SendParticipate. Désactivable si tu ne participes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 728 | SendJoin. Désactivable si tu ne rejoins pas en continu.
+  LITTERAL | Core\Startup\startup.py | 729 | SendEnter. Désactivable si tu n'entres pas en continu.
+  LITTERAL | Core\Startup\startup.py | 730 | SendExit. Désactivable si tu ne sors pas en continu.
+  LITTERAL | Core\Startup\startup.py | 731 | SendLeave. Désactivable si tu ne quittes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 732 | SendDepart. Désactivable si tu ne pars pas en continu.
+  LITTERAL | Core\Startup\startup.py | 733 | SendArrive. Désactivable si tu n'arrives pas en continu.
+  LITTERAL | Core\Startup\startup.py | 734 | SendCome. Désactivable si tu ne viens pas en continu.
+  LITTERAL | Core\Startup\startup.py | 735 | SendGo. Désactivable si tu ne vas pas en continu.
+  LITTERAL | Core\Startup\startup.py | 736 | SendStay. Désactivable si tu ne restes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 737 | SendWait. Désactivable si tu n'attends pas en continu.
+  LITTERAL | Core\Startup\startup.py | 738 | SendPause. Désactivable si tu ne pauses pas en continu.
+  LITTERAL | Core\Startup\startup.py | 739 | SendStop. Désactivable si tu ne t'arrêtes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 740 | SendHalt. Désactivable si tu ne haltes pas en continu.
+  LITTERAL | Core\Startup\startup.py | 741 | SendBreak. Désactivable si tu ne fais pas de pause en continu.
+  LITTERAL | Core\Startup\startup.py | 742 | SendResume. Désactivable si tu ne reprends pas en continu.
+  LITTERAL | Core\Startup\startup.py | 743 | SendContinue. Désactivable si tu ne continues pas en continu.
+  LITTERAL | Core\Startup\startup.py | 744 | SendStart. Désactivable si tu ne démarres pas en continu.
+  LITTERAL | Core\Startup\startup.py | 745 | SendBegin. Désactivable si tu ne commences pas en continu.
+  LITTERAL | Core\Startup\startup.py | 746 | SendFinish. Désactivable si tu ne finis pas en continu.
+  LITTERAL | Core\Startup\startup.py | 747 | SendEnd. Désactivable si tu ne termines pas en continu.
+  LITTERAL | Core\Startup\startup.py | 748 | SendComplete. Désactivable si tu n'achèves pas en continu.
+  LITTERAL | Core\Startup\startup.py | 749 | SendDone. Désactivable si tu n'as pas fini en continu.
+  LITTERAL | Core\Startup\startup.py | 750 | SendReady. Désactivable si tu n'es pas prêt en continu.
+  LITTERAL | Core\Startup\startup.py | 751 | SendSet. Désactivable si tu n'es pas prêt en continu.
+  LITTERAL | Core\Startup\startup.py | 752 | SendGo. Désactivable si tu n'es pas prêt en continu.
+  LITTERAL | Core\Startup\startup.py | 753 | SendOK. Désactivable si tu n'es pas OK en continu.
+  LITTERAL | Core\Startup\startup.py | 754 | SendYes. Désactivable si tu ne dis pas oui en continu.
+  LITTERAL | Core\Startup\startup.py | 755 | SendNo. Désactivable si tu ne dis pas non en continu.
+  LITTERAL | Core\Startup\startup.py | 756 | SendMaybe. Désactivable si tu ne dis pas peut-être en continu.
+  LITTERAL | Core\Startup\startup.py | 757 | SendPerhaps. Désactivable si tu ne dis pas peut-être en continu.
+  LITTERAL | Core\Startup\startup.py | 758 | SendUncertain. Désactivable si tu n'es pas certain en continu.
+  LITTERAL | Core\Startup\startup.py | 759 | SendUnsure. Désactivable si tu n'es pas sûr en continu.
+  LITTERAL | Core\Startup\startup.py | 760 | SendConfused. Désactivable si tu n'es pas confus en continu.
+  LITTERAL | Core\Startup\startup.py | 761 | SendLost. Désactivable si tu n'es pas perdu en continu.
+  LITTERAL | Core\Startup\startup.py | 762 | SendFound. Désactivable si tu n'es pas trouvé en continu.
+  LITTERAL | Core\Startup\startup.py | 763 | SendHidden. Désactivable si tu n'es pas caché en continu.
+  LITTERAL | Core\Startup\startup.py | 764 | SendVisible. Désactivable si tu n'es pas visible en continu.
+  LITTERAL | Core\Startup\startup.py | 765 | SendSeen. Désactivable si tu n'es pas vu en continu.
+  LITTERAL | Core\Startup\startup.py | 766 | SendUnseen. Désactivable si tu n'es pas invisible en continu.
+  LITTERAL | Core\Startup\startup.py | 767 | SendKnown. Désactivable si tu n'es pas connu en continu.
+  LITTERAL | Core\Startup\startup.py | 768 | SendUnknown. Désactivable si tu n'es pas inconnu en continu.
+  LITTERAL | Core\Startup\startup.py | 769 | SendFamiliar. Désactivable si tu n'es pas familier en continu.
+  LITTERAL | Core\Startup\startup.py | 770 | SendStrange. Désactivable si tu n'es pas étranger en continu.
+  LITTERAL | Core\Startup\startup.py | 771 | SendDifferent. Désactivable si tu n'es pas différent en continu.
+  LITTERAL | Core\Startup\startup.py | 772 | SendSame. Désactivable si tu n'es pas pareil en continu.
+  LITTERAL | Core\Startup\startup.py | 773 | SendSimilar. Désactivable si tu n'es pas similaire en continu.
+  LITTERAL | Core\Startup\startup.py | 774 | SendEqual. Désactivable si tu n'es pas égal en continu.
+  LITTERAL | Core\Startup\startup.py | 775 | SendUnequal. Désactivable si tu n'es pas inégal en continu.
+  LITTERAL | Core\Startup\startup.py | 776 | SendFair. Désactivable si tu n'es pas juste en continu.
+  LITTERAL | Core\Startup\startup.py | 777 | SendUnfair. Désactivable si tu n'es pas injuste en continu.
+  LITTERAL | Core\Startup\startup.py | 778 | SendRight. Désactivable si tu n'as pas raison en continu.
+  LITTERAL | Core\Startup\startup.py | 779 | SendWrong. Désactivable si tu n'as pas tort en continu.
+  LITTERAL | Core\Startup\startup.py | 780 | SendTrue. Désactivable si tu n'es pas vrai en continu.
+  LITTERAL | Core\Startup\startup.py | 781 | SendFalse. Désactivable si tu n'es pas faux en continu.
+  LITTERAL | Core\Startup\startup.py | 782 | SendReal. Désactivable si tu n'es pas réel en continu.
+  LITTERAL | Core\Startup\startup.py | 783 | SendFake. Désactivable si tu n'es pas faux en continu.
+  LITTERAL | Core\Startup\startup.py | 784 | SendGenuine. Désactivable si tu n'es pas authentique en continu.
+  LITTERAL | Core\Startup\startup.py | 785 | SendAuthentic. Désactivable si tu n'es pas authentique en continu.
+  LITTERAL | Core\Startup\startup.py | 786 | SendOriginal. Désactivable si tu n'es pas original en continu.
+  LITTERAL | Core\Startup\startup.py | 787 | SendCopy. Désactivable si tu n'es pas une copie en continu.
+  LITTERAL | Core\Startup\startup.py | 788 | SendSimple. Désactivable si tu n'es pas simple en continu.
+  LITTERAL | Core\Startup\startup.py | 789 | SendComplex. Désactivable si tu n'es pas complexe en continu.
+  LITTERAL | Core\Startup\startup.py | 790 | SendEasy. Désactivable si tu n'es pas facile en continu.
+  LITTERAL | Core\Startup\startup.py | 791 | SendHard. Désactivable si tu n'es pas difficile en continu.
+  LITTERAL | Core\Startup\startup.py | 792 | SendSoft. Désactivable si tu n'es pas doux en continu.
+  LITTERAL | Core\Startup\startup.py | 793 | SendRough. Désactivable si tu n'es pas rude en continu.
+  LITTERAL | Core\Startup\startup.py | 794 | SendSmooth. Désactivable si tu n'es pas lisse en continu.
+  LITTERAL | Core\Startup\startup.py | 795 | SendBumpy. Désactivable si tu n'es pas inégal en continu.
+  LITTERAL | Core\Startup\startup.py | 796 | SendFlat. Désactivable si tu n'es pas plat en continu.
+  LITTERAL | Core\Startup\startup.py | 797 | SendRound. Désactivable si tu n'es pas rond en continu.
+  LITTERAL | Core\Startup\startup.py | 798 | SendSquare. Désactivable si tu n'es pas carré en continu.
+  LITTERAL | Core\Startup\startup.py | 799 | SendTriangle. Désactivable si tu n'es pas triangulaire en continu.
+  LITTERAL | Core\Startup\startup.py | 800 | SendCircle. Désactivable si tu n'es pas circulaire en continu.
+  LITTERAL | Core\Startup\startup.py | 801 | SendSphere. Désactivable si tu n'es pas sphérique en continu.
+  LITTERAL | Core\Startup\startup.py | 802 | SendCube. Désactivable si tu n'es pas cubique en continu.
+  LITTERAL | Core\Startup\startup.py | 803 | SendPyramid. Désactivable si tu n'es pas pyramidal en continu.
+  LITTERAL | Core\Startup\startup.py | 804 | SendCone. Désactivable si tu n'es pas conique en continu.
+  LITTERAL | Core\Startup\startup.py | 805 | SendCylinder. Désactivable si tu n'es pas cylindrique en continu.
+  LITTERAL | Core\Startup\startup.py | 806 | SendSolid. Désactivable si tu n'es pas solide en continu.
+  LITTERAL | Core\Startup\startup.py | 807 | SendLiquid. Désactivable si tu n'es pas liquide en continu.
+  LITTERAL | Core\Startup\startup.py | 808 | SendGas. Désactivable si tu n'es pas gazeux en continu.
+  LITTERAL | Core\Startup\startup.py | 809 | SendPlasma. Désactivable si tu n'es pas plasma en continu.
+  LITTERAL | Core\Startup\startup.py | 810 | SendEnergy. Désactivable si tu n'es pas énergie en continu.
+  LITTERAL | Core\Startup\startup.py | 811 | SendMatter. Désactivable si tu n'es pas matière en continu.
+  LITTERAL | Core\Startup\startup.py | 812 | SendForce. Désactivable si tu n'es pas force en continu.
+  LITTERAL | Core\Startup\startup.py | 813 | SendPower. Désactivable si tu n'es pas puissance en continu.
+  LITTERAL | Core\Startup\startup.py | 814 | SendStrength. Désactivable si tu n'es pas force en continu.
+  LITTERAL | Core\Startup\startup.py | 815 | SendWeak. Désactivable si tu n'es pas faible en continu.
+  LITTERAL | Core\Startup\startup.py | 816 | SendStrong. Désactivable si tu n'es pas fort en continu.
+  LITTERAL | Core\Startup\startup.py | 817 | SendBig. Désactivable si tu n'es pas gros en continu.
+  LITTERAL | Core\Startup\startup.py | 818 | SendSmall. Désactivable si tu n'es pas petit en continu.
+  LITTERAL | Core\Startup\startup.py | 819 | SendLarge. Désactivable si tu n'es pas grand en continu.
+  LITTERAL | Core\Startup\startup.py | 820 | SendLittle. Désactivable si tu n'es pas petit en continu.
+  LITTERAL | Core\Startup\startup.py | 821 | SendGiant. Désactivable si tu n'es pas géant en continu.
+  LITTERAL | Core\Startup\startup.py | 822 | SendTiny. Désactivable si tu n'es pas minuscule en continu.
+  LITTERAL | Core\Startup\startup.py | 823 | SendHuge. Désactivable si tu n'es pas énorme en continu.
+  LITTERAL | Core\Startup\startup.py | 824 | SendMassive. Désactivable si tu n'es pas massif en continu.
+  LITTERAL | Core\Startup\startup.py | 825 | SendColossal. Désactivable si tu n'es pas colossal en continu.
+  LITTERAL | Core\Startup\startup.py | 826 | SendImmense. Désactivable si tu n'es pas immense en continu.
+  LITTERAL | Core\Startup\startup.py | 827 | SendVast. Désactivable si tu n'es pas vaste en continu.
+  LITTERAL | Core\Startup\startup.py | 828 | SendWide. Désactivable si tu n'es pas large en continu.
+  LITTERAL | Core\Startup\startup.py | 829 | SendNarrow. Désactivable si tu n'es pas étroit en continu.
+  LITTERAL | Core\Startup\startup.py | 830 | SendTall. Désactivable si tu n'es pas haut en continu.
+  LITTERAL | Core\Startup\startup.py | 831 | SendShort. Désactivable si tu n'es pas court en continu.
+  LITTERAL | Core\Startup\startup.py | 832 | SendLong. Désactivable si tu n'es pas long en continu.
+  LITTERAL | Core\Startup\startup.py | 833 | SendDeep. Désactivable si tu n'es pas profond en continu.
+  LITTERAL | Core\Startup\startup.py | 834 | SendShallow. Désactivable si tu n'es pas peu profond en continu.
+  LITTERAL | Core\Startup\startup.py | 835 | SendHigh. Désactivable si tu n'es pas haut en continu.
+  LITTERAL | Core\Startup\startup.py | 836 | SendLow. Désactivable si tu n'es pas bas en continu.
+  LITTERAL | Core\Startup\startup.py | 837 | SendSlow. Désactivable si tu n'es pas lent en continu.
+  LITTERAL | Core\Startup\startup.py | 838 | SendFast. Désactivable si tu n'es pas rapide en continu.
+  LITTERAL | Core\Startup\startup.py | 839 | SendQuick. Désactivable si tu n'es pas rapide en continu.
+  LITTERAL | Core\Startup\startup.py | 840 | SendSpeedy. Désactivable si tu n'es pas rapide en continu.
+  LITTERAL | Core\Startup\startup.py | 841 | SendRapid. Désactivable si tu n'es pas rapide en continu.
+  LITTERAL | Core\Startup\startup.py | 842 | SendSwift. Désactivable si tu n'es pas rapide en continu.
+  LITTERAL | Core\Startup\startup.py | 843 | SendBrisk. Désactivable si tu n'es pas vif en continu.
+  LITTERAL | Core\Startup\startup.py | 844 | SendLively. Désactivable si tu n'es pas vif en continu.
+  LITTERAL | Core\Startup\startup.py | 845 | SendActive. Désactivable si tu n'es pas actif en continu.
+  LITTERAL | Core\Startup\startup.py | 846 | SendPassive. Désactivable si tu n'es passif en continu.
+  LITTERAL | Core\Startup\startup.py | 847 | SendIdle. Désactivable si tu n'es pas inactif en continu.
+  LITTERAL | Core\Startup\startup.py | 848 | SendBusy. Désactivable si tu n'es pas occupé en continu.
+  LITTERAL | Core\Startup\startup.py | 849 | SendFree. Désactivable si tu n'es pas libre en continu.
+  LITTERAL | Core\Startup\startup.py | 850 | SendStuck. Désactivable si tu n'es pas bloqué en continu.
+  LITTERAL | Core\Startup\startup.py | 851 | SendJammed. Désactivable si tu n'es pas coincé en continu.
+  LITTERAL | Core\Startup\startup.py | 852 | SendLocked. Désactivable si tu n'es pas verrouillé en continu.
+  LITTERAL | Core\Startup\startup.py | 853 | SendUnlocked. Désactivable si tu n'es pas déverrouillé en continu.
+  LITTERAL | Core\Startup\startup.py | 854 | SendOpen. Désactivable si tu n'es pas ouvert en continu.
+  LITTERAL | Core\Startup\startup.py | 855 | SendClosed. Désactivable si tu n'es pas fermé en continu.
+  LITTERAL | Core\Startup\startup.py | 856 | SendSealed. Désactivable si tu n'es pas scellé en continu.
+  LITTERAL | Core\Startup\startup.py | 857 | SendSealed. Désactivable si tu n'es pas scellé en continu.
+  LITTERAL | Core\Startup\startup.py | 865 | Mobile connecté (Lien avec Windows)
+  LITTERAL | Core\Startup\startup.py | 866 | Synchronise ton téléphone avec le PC (notifications, SMS, photos). Désactivable sans risqu
+  LITTERAL | Core\Startup\startup.py | 867 | Mobile connecté (expérience multi-appareils)
+  LITTERAL | Core\Startup\startup.py | 868 | Même famille que « Lien avec Windows » : liaison PC ↔ téléphone. Désactivable si tu ne l'u
+  LITTERAL | Core\Startup\startup.py | 869 | Désactivable si tu ne l'utilises pas chaque jour.
+  LITTERAL | Core\Startup\startup.py | 870 | Assistant vocal Microsoft, rarement utilisé.
+  LITTERAL | Core\Startup\startup.py | 871 | Désactivable si tu ne l'utilises plus.
+  LITTERAL | Core\Startup\startup.py | 872 | Tu peux l'ouvrir à la main quand tu veux.
+  LITTERAL | Core\Startup\startup.py | 873 | Désactivable sans risque.
+  LITTERAL | Core\Storage\residus.py | 1 | Détection des résidus d'applications désinstallées (Phase 0 : LECTURE SEULE).
+
+Règle (cahi
+  LITTERAL | Core\Storage\residus.py | 78 | Nom réduit pour la comparaison : minuscule, sans ponctuation de séparation,
+    sans suffi
+  LITTERAL | Core\Storage\residus.py | 88 | Distance d'édition entre deux chaînes (petites).
+  LITTERAL | Core\Storage\residus.py | 115 | Dossier nuage (OneDrive, Dropbox…) : on ne le propose jamais, on ne le
+    lit même pas en
+  LITTERAL | Core\Storage\residus.py | 174 | Liste des programmes installés : registre (3 sources) + menu Démarrer +
+    applications M
+  LITTERAL | Core\Storage\residus.py | 247 | Taille et dernière activité d'un sous-dossier (sans jamais suivre de lien).
+  LITTERAL | Core\Storage\residus.py | 286 | Règle 1 : exclusions absolues et dossiers interdits (sauvegardes de jeux,
+    documents, n
+  LITTERAL | Core\Storage\residus.py | 297 | Règle 3 : téléchargements inachevés.
+  LITTERAL | Core\Storage\residus.py | 304 | Correspondance « faute de frappe » (distance d'édition <= 2 sur des noms
+    d'au moins 6 
+  LITTERAL | Core\Storage\residus.py | 324 | Tous les noms qu'un logiciel installé rend « connus » : nom affiché,
+    éditeur, chemin d
+  LITTERAL | Core\Storage\residus.py | 349 | Le dossier appartient-il à un logiciel installé ? Dans le doute, OUI
+    (on ne propose pa
+  LITTERAL | Core\Storage\residus.py | 373 | Règle corrigée : un dossier n'est proposé que si AUCUN logiciel installé
+    ne lui corres
+  LITTERAL | Core\Storage\residus.py | 394 | Analyse complète (lecture seule). Retourne un dictionnaire :
+    lignes, scan_partiel, non
+  LITTERAL | Core\Storage\residus.py | 475 | Noms des processus en cours (best effort). Échoue en silence : ce n'est
+    qu'un indice d
+  LITTERAL | Core\Storage\storage.py | 1 | Rangement : tri des Téléchargements, fichiers oubliés, clips.
+Rien n'est supprimé : les dé
+  LITTERAL | Core\Storage\storage.py | 17 | Vidéos
+  LITTERAL | Core\Storage\storage.py | 246 | Liste de déplacements proposés (source, destination, catégorie).
+  LITTERAL | Core\Storage\storage.py | 328 | Grosses vidéos dans Vidéos/ (là où Game Bar, ShadowPlay, ReLive enregistrent par défaut).
+
+  LITTERAL | Core\SystemInfo\hardware.py | 1 | Lecture du matériel (Windows : CIM/PowerShell, lecture seule). Hors Windows : données de d
+  LITTERAL | Core\SystemInfo\hardware.py | 31 | Édition Windows fournie par l'OS (« Windows 11 Famille ») : casse et
+    nom anglais quand
+  LITTERAL | Core\SystemInfo\hardware.py | 41 | Noms d'appareils fournis par Windows en français : les dire en anglais
+    quand l'interfa
+  LITTERAL | Core\SystemInfo\hardware.py | 93 | Sortie audio par défaut + d'autres sorties actives. '' si rien de lisible.
+
+    Deux nivea
+  LITTERAL | Core\SystemInfo\hardware.py | 116 | ✔ Bon état
+  LITTERAL | Core\SystemInfo\hardware.py | 116 | ⚠ À surveiller
+  LITTERAL | Core\SystemInfo\hardware.py | 116 | ⚠ Défaillant — sauvegarde tes fichiers
+  LITTERAL | Core\SystemInfo\hardware.py | 141 | Relevé gardé en mémoire durable ; None s'il est absent, abîmé ou trop vieux.
+  LITTERAL | Core\SystemInfo\hardware.py | 167 | Le relevé est-il déjà disponible (mémoire ou disque) ?
+  LITTERAL | Core\SystemInfo\hardware.py | 201 | Espace réellement libre MAINTENANT sur ce lecteur.
+
+    Le relevé matériel est garde 12 h 
+  LITTERAL | Core\SystemInfo\hardware.py | 18 | Périphérique High Definition Audio
+  LITTERAL | Core\SystemInfo\hardware.py | 19 | Périphérique audio USB
+  LITTERAL | Core\SystemInfo\hardware.py | 20 | Périphérique audio haute définition
+  LITTERAL | Core\SystemInfo\hardware.py | 23 | Édition
+  LITTERAL | Core\SystemInfo\hardware.py | 26 | Éducation
+  LITTERAL | Core\SystemInfo\hardware.py | 27 | Intégrée à une seule langue
+  LITTERAL | Core\SystemInfo\sensors.py | 1 | Températures et fréquence turbo — sans pilote noyau.
+
+Pourquoi pas comme MSI Center / HWiN
+  LITTERAL | Core\SystemInfo\sensors.py | 103 | Fréquence MAX observée (MHz) : 1 cœur chargé, puis tous les cœurs. Environ 10 s au total.
+  LITTERAL | Core\SystemInfo\thermal.py | 1 | Indicateur de chaleur minimaliste. Honnête : sans capteur lisible, on le dit.
+  LITTERAL | Core\SystemInfo\thermal.py | 16 | None si aucun capteur lisible, sinon (texte, niveau, détail, astuce).
+  LITTERAL | Core\Tweaks\tweaks.py | 1 | Réglages Windows « anti-distraction » : valeurs utilisateur (HKCU), réversibles,
+avec déte
+  LITTERAL | Core\Tweaks\tweaks.py | 62 | {id_du_réglage: {"previous": {clé|valeur: ancienne valeur}}}
+  LITTERAL | Core\Tweaks\tweaks.py | 83 | 'active' | 'drift' (appliqué un jour puis défait, ex. par une mise à jour) | 'inactive'
+  LITTERAL | Core\Tweaks\tweaks.py | 98 | Valeur de remise : l'ancienne valeur mémorisée par TidyDeck, sinon le réglage par défaut d
+  LITTERAL | Core\Tweaks\tweaks.py | 126 | Applique, puis RELIT le registre pour vérifier. Renvoie la liste des réglages non pris en 
+  LITTERAL | Core\Tweaks\tweaks.py | 144 | Remet les réglages comme avant (décocher). Renvoie ceux qui sont restés actifs malgré tout
+  LITTERAL | Core\Tweaks\tweaks.py | 20 | Masquer les pubs et suggestions du menu Démarrer
+  LITTERAL | Core\Tweaks\tweaks.py | 21 | Windows y affiche des applications « suggérées » (souvent sponsorisées).
+  LITTERAL | Core\Tweaks\tweaks.py | 22 | Menu Démarrer plus propre, moins de sollicitations.
+  LITTERAL | Core\Tweaks\tweaks.py | 23 | Aucun. Même réglage que Paramètres > Personnalisation > Démarrer.
+  LITTERAL | Core\Tweaks\tweaks.py | 25 | Masquer les astuces et notifications « découvrez Windows »
+  LITTERAL | Core\Tweaks\tweaks.py | 30 | Masquer les pubs de l'écran de verrouillage
+  LITTERAL | Core\Tweaks\tweaks.py | 31 | Images et textes promotionnels sur l'écran de verrouillage.
+  LITTERAL | Core\Tweaks\tweaks.py | 32 | Écran de verrouillage calme.
+  LITTERAL | Core\Tweaks\tweaks.py | 34 | Masquer les suggestions dans Paramètres
+  LITTERAL | Core\Tweaks\tweaks.py | 35 | Bandeaux de suggestions dans Paramètres.
+  LITTERAL | Core\Tweaks\tweaks.py | 35 | Paramètres plus lisible.
+  LITTERAL | Core\Tweaks\tweaks.py | 38 | Empêcher l'installation automatique d'applis sponsorisées
+  LITTERAL | Core\Tweaks\tweaks.py | 40 | Évite que de nouvelles applis inutiles apparaissent.
+  LITTERAL | Core\Tweaks\tweaks.py | 41 | Aucun. Ne désinstalle PAS celles déjà présentes.
+  LITTERAL | Core\Tweaks\tweaks.py | 48 | Désactiver l'identifiant publicitaire
+  LITTERAL | Core\Tweaks\tweaks.py | 49 | Numéro qui permet aux applis de te proposer des pubs ciblées.
+  LITTERAL | Core\Tweaks\tweaks.py | 50 | Aucun : les pubs seront simplement moins ciblées.
+  LITTERAL | Core\Tweaks\tweaks.py | 52 | Confort et sécurité
+  LITTERAL | Core\Tweaks\tweaks.py | 53 | Windows cache par défaut la fin des noms de fichiers.
+  LITTERAL | Core\Tweaks\tweaks.py | 54 | Plus clair, et plus sûr : on repère un faux « facture.pdf.exe ».
+  LITTERAL | Core\Tweaks\tweaks.py | 180 | réglage
+  LITTERAL | Core\Tweaks\tweaks.py | 180 | réglages
+  LITTERAL | Core\Tweaks\tweaks.py | 138 | réglage
+  LITTERAL | Core\Tweaks\tweaks.py | 138 | réglages
+  LITTERAL | Core\Tweaks\tweaks.py | 138 | appliqué
+  LITTERAL | Core\Tweaks\tweaks.py | 138 | appliqués
+  LITTERAL | Core\Tweaks\tweaks.py | 160 | réglage
+  LITTERAL | Core\Tweaks\tweaks.py | 160 | réglages
+  LITTERAL | Core\Tweaks\tweaks.py | 121 | suppression (retour au défaut Windows)
+  LITTERAL | Services\restore.py | 1 | Point de restauration Windows — avec diagnostic précis de l'échec.
+
+Causes fréquentes d'éc
+  LITTERAL | Services\Reminders\autostart.py | 1 | Lancer TidyDeck avec Windows (réduit) : nécessaire pour que les rappels fonctionnent sans 
+  LITTERAL | Services\Reminders\autostart.py | 28 | Le fichier que l'entrée « Run » essaie de lancer ('' si aucune entrée).
+  LITTERAL | Services\Reminders\autostart.py | 35 | Vrai si l'entrée de démarrage pointe vers un fichier qui n'existe plus.
+
+    Cas réel : l'
+  LITTERAL | Services\Reminders\autostart.py | 45 | Supprime l'entrée morte. Renvoie le chemin visé, ou '' s'il n'y avait rien
+    à réparer. 
+  LITTERAL | Services\Reminders\scheduler.py | 1 | Rappels bien-être (hydratation, repas, 20-20-20, étirements) avec « Ne pas déranger pendan
+  LITTERAL | Services\Reminders\scheduler.py | 13 | Ton corps te dira merci. Prends quelques gorgées.
+  LITTERAL | Services\Reminders\scheduler.py | 14 | 🍽 C'est l'heure du déjeuner
+  LITTERAL | Services\Reminders\scheduler.py | 14 | Une vraie pause fait du bien à la concentration.
+  LITTERAL | Services\Reminders\scheduler.py | 15 | 🍽 C'est l'heure du dîner
+  LITTERAL | Services\Reminders\scheduler.py | 15 | Pause repas (ou petit snack) : tu l'as mérité.
+  LITTERAL | Services\Reminders\scheduler.py | 16 | Un petit encas pour tenir jusqu'au déjeuner.
+  LITTERAL | Services\Reminders\scheduler.py | 17 | 🍪 Pause snack de l'après-midi
+  LITTERAL | Services\Reminders\scheduler.py | 17 | Recharge-toi avec un snack avant la fin de journée.
+  LITTERAL | Services\Reminders\scheduler.py | 18 | Regarde quelque chose à environ 6 mètres, pendant 20 secondes.
+  LITTERAL | Services\Reminders\scheduler.py | 19 | Étire-toi, marche un peu, roule des épaules : 1 minute suffit.
+  LITTERAL | Services\Reminders\scheduler.py | 20 | ⏰ Rendez-vous bientôt !
+  LITTERAL | Services\Reminders\scheduler.py | 20 | Prépare-toi à arrêter : ton rendez-vous approche. Tu peux finir ta partie tranquillement.
+  LITTERAL | Services\Reminders\scheduler.py | 21 | ⏰ Rendez-vous manqué
+  LITTERAL | Services\Reminders\scheduler.py | 21 | L'heure que tu avais réglée est passée pendant que TidyDeck était fermé. Rien n'a pu t'ave
+  LITTERAL | Services\Reminders\scheduler.py | 120 | Au démarrage, le minuteur RDV n'existe plus : on le rearme depuis la config.
+        Si l'
+  LITTERAL | Services\UpdateChecker\checker.py | 1 | Vérification de mise à jour : UNIQUEMENT quand l'utilisateur clique, jamais en arrière-pla
+  LITTERAL | Services\UpdateChecker\checker.py | 16 | « 0.6.0 » / « v1.2 » / « 1.4.0-beta1 » -> tuple de nombres. Vide si pas de numéro.
+  LITTERAL | Services\UpdateChecker\checker.py | 27 | >0 si a plus récent que b, 0 si identique, <0 si plus ancien. 0.10 > 0.9.
+  LITTERAL | Services\UpdateChecker\checker.py | 60 | Seule la page de téléchargement du dépôt fait foi : rien d'autre.
+  LITTERAL | Services\UpdateChecker\checker.py | 65 | Dernière release publiée (tag + fichiers), None si injoignable ou illisible.
+  LITTERAL | Services\UpdateChecker\checker.py | 79 | État complet pour le bouton « Mises à jour » (appelé sur clic uniquement).
+
+    statuts : 
+  LITTERAL | Services\UpdateChecker\checker.py | 98 | Jamais écraser : si le nom existe déjà, « (2) », « (3) »…
+  LITTERAL | Services\UpdateChecker\checker.py | 109 | Télécharge le .sha256 d'abord, puis le zip vers un « .part », vérifie, renomme.
+
+    Aucun
+  LITTERAL | Shared\Constants\catalog.py | 1 | Catalogue du nettoyage : chaque entrée dit CE QUE c'est, OÙ c'est, et le RISQUE.
+Rien n'es
+  LITTERAL | Shared\Constants\catalog.py | 34 | Fichiers de travail laissés par les programmes (installateurs, documents ouverts, archives
+  LITTERAL | Shared\Constants\catalog.py | 41 | Dossier temporaire partagé par Windows et les installateurs.
+  LITTERAL | Shared\Constants\catalog.py | 47 | Effets graphiques précompilés par ta carte graphique pour les jeux.
+  LITTERAL | Shared\Constants\catalog.py | 68 | Copies temporaires de pages, images et scripts déjà visités avec Opera ou Opera GX.
+  LITTERAL | Shared\Constants\catalog.py | 76 | Corbeille
+  LITTERAL | Shared\Constants\catalog.py | 77 | Fichiers que tu as déjà supprimés mais qui occupent encore de la place.
+  LITTERAL | Shared\Models\models.py | 1 | Modèles de données partagés.
+  LITTERAL | Shared\Utils\cloud.py | 2 | Fichiers « dans le nuage » : OneDrive, Dropbox, Google Drive…
+
+Un fichier placeholder (mat
+  LITTERAL | Shared\Utils\cloud.py | 36 | Racines des dossiers synchronisés connues (OneDrive, Dropbox, Drive).
+
+    Les variables d
+  LITTERAL | Shared\Utils\cloud.py | 63 | Vrai si les données du fichier ne sont pas réellement sur le disque.
+
+    Ne lève jamais :
+  LITTERAL | Shared\Utils\cloud.py | 92 | Phrase à montrer AVANT de déplacer/copier ces fichiers. Vide si rien à dire.
+
+    On ne li
+  LITTERAL | Shared\Utils\common.py | 1 | Fonctions utilitaires communes (aucun accès réseau ici).
+  LITTERAL | Shared\Utils\common.py | 90 | (octets, nb de fichiers) d'un fichier ou dossier. Erreurs ignorées.
+  LITTERAL | Shared\Utils\common.py | 120 | Lance une commande et renvoie (code, texte). Décodage tolérant : les outils Windows
+    éc
+  LITTERAL | Shared\Utils\common.py | 149 | Donne au processus sa vraie identité Windows (AppUserModelID).
+
+    Sans cela, la barre de
+  LITTERAL | Shared\Utils\common.py | 164 | Vrai si p est une alias Microsoft Store (PythonManager). Lance en élève,
+    cet alias éch
+  LITTERAL | Shared\Utils\common.py | 194 | Relance TidyDeck avec l'invite Windows (UAC). Renvoie True si la demande est partie.
+
+    
+  LITTERAL | Shared\Utils\common.py | 284 | Ouvre la page correspondante des Paramètres Windows. Lecture seule : aucune
+    valeur mod
+  LITTERAL | Shared\Utils\dossiers.py | 49 | Téléchargements
+  LITTERAL | Shared\Utils\dossiers.py | 53 | Vidéos
+  LITTERAL | Shared\Utils\instance.py | 2 | Sensibilisation DPI et instance unique.
+
+Deux points de diffusion :
+
+* ÉCRAN DENSE — Sur u
+  LITTERAL | Shared\Utils\instance.py | 29 | À appeler AVANT `tk.Tk()`. Renvoie un libelle pour le journal.
+
+    Niveau 1 = « system aw
+  LITTERAL | Shared\Utils\instance.py | 95 | Attend qu'une autre instance rende le mutex, puis le prend pour nous.
+
+    Cas réel : rela
+  LITTERAL | Shared\Utils\lang.py | 1 | Traduction FR/EN — zéro dépendance.
+
+Le français est la langue-source du programme : les c
+  LITTERAL | Shared\Utils\lang.py | 44 | Traduit si la langue est l'anglais ; retourne le français sinon (passe-partout).
+  LITTERAL | Shared\Utils\lang.py | 14 | Français
+  LITTERAL | Shared\Utils\lang.py | 17 | Français
+  LITTERAL | Shared\Utils\nvidia.py | 1 | Lecture NVIDIA via nvidia-smi (fourni avec le pilote) : VRAM exacte, température.
+  LITTERAL | Shared\Utils\quarantine.py | 1 | Quarantaine : on déplace au lieu de supprimer -> tout reste annulable.
+
+Les fichiers mis d
+  LITTERAL | Shared\Utils\quarantine.py | 22 | Placeholder OneDrive/Dropbox : pas de données sur le disque. Le déplacer
+    le télécharge
+  LITTERAL | Shared\Utils\quarantine.py | 57 | Supprime pour de bon les lots plus vieux que N jours. Renvoie les octets libérés.
+  LITTERAL | Shared\Utils\refus.py | 2 | Traduire un refus de Windows en français qui dit quoi faire.
+
+Sur un PC géré par une entre
+  LITTERAL | Shared\Utils\refus.py | 12 | il faut les droits administrateur. Clique « Relancer en administrateur », ou demande à la 
+  LITTERAL | Shared\Utils\refus.py | 14 | une règle de groupe (GPO) de ton organisation le refuse : tu es administrateur et Windows 
+  LITTERAL | Shared\Utils\refus.py | 19 | accès refusé par Windows
+  LITTERAL | Shared\Utils\refus.py | 20 | emplacement protégé
+  LITTERAL | Shared\Utils\refus.py | 21 | privilège insuffisant pour écrire à cet endroit
+  LITTERAL | Shared\Utils\refus.py | 22 | le service est désactivé et ne peut pas démarrer
+  LITTERAL | Shared\Utils\refus.py | 24 | un autre service en dépend : on ne peut pas le toucher isolément
+  LITTERAL | Shared\Utils\refus.py | 25 | le service a déjà été arrêté à cause d'une dépendance
+  LITTERAL | Shared\Utils\refus.py | 31 | Le numero Windows dans une ligne `[SC] ...` de sc.exe, une fois par trait.
+
+    Le texte e
+  LITTERAL | Shared\Utils\refus.py | 48 | Le code Windows, d'où qu'il vienne : code de retour, exception, sortie de sc.exe.
+
+    Le 
+  LITTERAL | Shared\Utils\refus.py | 64 | Phrase complète, en français, qui se termine par la conduite à tenir.
+
+    `action` se dit
+  LITTERAL | Shared\Utils\registry.py | 1 | Lecture/écriture du registre — uniquement les valeurs que l'on cite à l'écran.
+  LITTERAL | Shared\Utils\sound.py | 1 | Petit carillon doux de fin d'action (généré en mémoire, aucun fichier, aucun réseau).
+  LITTERAL | Shared\Utils\tkmsg.py | 1 | Traduit les boîtes messagebox à un seul endroit (titre + message).
+
+Les appels restent en 
+  LITTERAL | Shared\Utils\winapi.py | 1 | Petits appels Windows via ctypes (corbeille, mémoire, uptime).
+  LITTERAL | Shared\Utils\winapi.py | 55 | Dernier repli si aucun lecteur fixe n'a pu être énuméré : l'ancien appel
+    (le lecteur c
+  LITTERAL | Shared\Utils\winapi.py | 68 | (taille en octets, nb d'éléments) de la Corbeille, sommée lecteur par lecteur.
+
+    L'anci
+  LITTERAL | Shared\Utils\winui.py | 1 | Petits appels Windows pour les rappels : état « ne pas déranger » et clignotement de la ba
+  LITTERAL | Shared\Utils\winui.py | 31 | Fait clignoter doucement le bouton TidyDeck dans la barre des tâches (orange par défaut). 
+  LITTERAL | main.py | 1 | TidyDeck — point d'entrée.  Lancer :  python main.py   (Python 3.10+, aucune dépendance)
+O
+  LITTERAL | main.py | 32 | TidyDeck est déjà ouvert dans une autre fenêtre.
+
+Deux instances en même temps se marchera
+=== B. Clés sans traduction EN (doit être 0) ===
+manquantes: 0
+=== C. Défauts du dictionnaire (doit être 0) ===
+défauts: 0
