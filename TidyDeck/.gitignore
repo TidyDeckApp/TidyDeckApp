@@ -1,0 +1,12 @@
+# Le bytecode Python n'est pas du code source.
+__pycache__/
+*.pyc
+
+# Traces de chantier locales (les scripts _*.py ne sont pas livres non plus).
+_shots/
+verif_pages_windows.txt
+hardware.json
+V1-mode-discret.md
+
+# Journaux de debug locaux : jamais livrés, jamais commités.
+*.log
