@@ -236,9 +236,10 @@ class PersistanceLangueTest(unittest.TestCase):
         page = SettingsPage(root, ctx, on_apply=lambda prev: ctx.save())
         texts = _all_text(page)
         self.assertIn("Langue", texts)
-        # En francais, l'option anglais se dit « Anglais » (et « French » en anglais)
-        self.assertIn("Anglais", texts)
-        self.assertIn("Français", texts)
+        # En francais, l'option anglais se dit « Anglais » (et « French » en anglais).
+        # Les radios portent le symbole ○/● devant le texte.
+        self.assertTrue(any(t.strip("○ ◉ ● ") == "Anglais" for t in texts), texts)
+        self.assertTrue(any(t.strip("○ ◉ ● ") == "Français" for t in texts), texts)
         root.destroy()
 
 

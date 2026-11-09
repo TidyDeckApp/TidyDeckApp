@@ -108,9 +108,10 @@ class TailleTexteSupprimeeTest(_Case):
                             pass
                         walk(c)
                 walk(app.pages["Apparence et modes"])
-                self.assertIn("Normale", labels)
-                self.assertIn("Grande", labels)
-                self.assertNotIn("Très grande", labels,
+                nets = [l.strip("○ ◉ ● ") for l in labels]
+                self.assertIn("Normale", nets)
+                self.assertIn("Grande", nets)
+                self.assertNotIn("Très grande", nets,
                                 "« Très grande » est encore propose sur la page Theme")
             finally:
                 try:

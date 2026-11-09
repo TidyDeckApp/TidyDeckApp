@@ -113,5 +113,6 @@ def measure_turbo(seconds=4):
                 try:
                     p.kill()
                 except Exception:
-                    pass
+                    from Shared.Utils import depannage
+                    depannage.noter("Core/SystemInfo/sensors.py:115")
     return res

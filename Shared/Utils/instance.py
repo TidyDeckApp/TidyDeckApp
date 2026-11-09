@@ -87,7 +87,8 @@ def liberer():
         try:
             ctypes.windll.kernel32.CloseHandle(wintypes.HANDLE(_handle))
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Shared/Utils/instance.py:89")
     _handle = None
 
 
@@ -114,7 +115,8 @@ def attendre_instance_libre(duree):
             try:
                 k32.CloseHandle(wintypes.HANDLE(h))
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("Shared/Utils/instance.py:116")
         if _time.monotonic() >= fin:
             return False
         _time.sleep(0.25)

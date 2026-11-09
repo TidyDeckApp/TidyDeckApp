@@ -91,6 +91,26 @@ def human_size(n) -> str:
         n /= 1024
 
 
+_BAREME_ESPACE = ((50 * 1024 * 1024, "un peu de place"),
+                  (1024 * 1024 * 1024, "de la place"),
+                  (10 * 1024 * 1024 * 1024, "une bonne place"))
+
+
+def mots_espace(n):
+    """Équivalent Sérénité de human_size : des mots, jamais un chiffre.
+    Barème fixe, identique partout dans l'app."""
+    from Shared.Utils.lang import T
+    for seuil, mot in _BAREME_ESPACE:
+        if n < seuil:
+            return T(mot)
+    return T("beaucoup de place")
+
+
+def formater_espace(n, serene=False):
+    """Taille lisible : chiffres en mode standard, mots en mode Sérénité."""
+    return mots_espace(n) if serene else human_size(n)
+
+
 def entry_size(path):
     """(octets, nb de fichiers) d'un fichier ou dossier. Erreurs ignorées."""
     total = count = 0
@@ -162,7 +182,8 @@ def identifier_processus_tache():
     try:
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("TidyDeck.TidyDeck")
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/common.py:184")
 
 
 def _alias_windowsapps(p: str) -> bool:
@@ -246,7 +267,8 @@ def open_in_explorer(path: str):
                 subprocess.Popen(["explorer", path])
                 return True
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Shared/Utils/common.py:268")
         return False
 
 

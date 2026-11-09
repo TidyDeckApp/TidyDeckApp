@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 from Core.Health import services
 from Shared.Utils.common import IS_WINDOWS, is_admin
-from UI.components import Checklist, preview_dialog
+from UI.components import Checklist, RadiOpt, preview_dialog
 from UI.restore_flow import with_restore_point
 from UI.Pages.base import Page
 from Shared.Utils.lang import T
@@ -22,14 +22,14 @@ class ServicesPage(Page):
         super().__init__(master, ctx, "Services Windows non essentiels",
                          "Coche = le service est actif ; décoche = il sera désactivé. Rien ne change avant que tu valides "
                          "l'aperçu. Les services vitaux de Windows ne sont volontairement pas dans cette liste.")
-        self.button(T("✔ Appliquer"), self.apply, accent=True)
+        self.button(T("✔ Appliquer mes choix…"), self.apply, accent=True)
         self.button("↻ Actualiser (annule mes choix en attente)", lambda: self.refresh(True))
         fframe = tk.Frame(self, bg=ctx.theme["bg"])
         fframe.pack(fill="x", pady=(0, 6))
         self._filter = tk.StringVar(value="all")
         for val, txt in FILTERS:
-            ttk.Radiobutton(fframe, text=T(txt), variable=self._filter, value=val,
-                            command=self._refilter).pack(side="left", padx=(0, 14))
+            RadiOpt(fframe, text=T(txt), variable=self._filter, value=val,
+                    command=self._refilter).pack(side="left", padx=(0, 14))
         self.list = Checklist(self, ctx, ("Service", T("État")), on_toggle=self._toggled, box_only=True)
         self.list.pack(fill="both", expand=True)
         self.states, self.dirty, self.all_rows = {}, False, {}

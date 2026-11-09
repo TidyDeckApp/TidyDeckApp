@@ -52,13 +52,14 @@ def reparer_entree_orpheline(journal=None):
     if journal is not None:
         try:
             journal.add("autostart",
-                       T("Lancement automatique retiré : le fichier visé n'existait plus"),
-                       T("{v0} — valeur « {v1} » pointait sur « {v2} ». Windows aurait cherché "
-                         "ce fichier à chaque démarrage."
-                         ).format(v0=registry.full_path('HKCU', RUN), v1=NAME, v2=mort),
+                       "Lancement automatique retiré : le fichier visé n'existait plus",
+                       ("{v0} — valeur « {v1} » pointait sur « {v2} ». Windows aurait cherché "
+                        "ce fichier à chaque démarrage."
+                        ).format(v0=registry.full_path('HKCU', RUN), v1=NAME, v2=mort),
                        None)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Services/Reminders/autostart.py:60")
     return mort
 
 
@@ -70,7 +71,7 @@ def set_enabled(on, journal):
         registry.delete("HKCU", RUN, NAME)
     ok = is_enabled() == on
     if ok:
-        journal.add("autostart", "TidyDeck " + (T("se lancera avec Windows (réduit)") if on else "ne se lance plus avec Windows"),
+        journal.add("autostart", "TidyDeck " + ("se lancera avec Windows (réduit)" if on else "ne se lance plus avec Windows"),
                     f"{registry.full_path('HKCU', RUN)} — valeur « {NAME} »", {"prev": prev})
     return ok
 

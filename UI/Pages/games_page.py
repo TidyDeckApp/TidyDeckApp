@@ -45,7 +45,8 @@ class GamesPage(Page):
         try:
             self.ctx.app.banner.refresh()
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/Pages/games_page.py:47")
         self.say(T("🎮 Mode Jeu actif : tes rappels attendent la fin de la session.") if c["game_mode_on"]
                  else T("Mode Jeu désactivé : les rappels reviennent normalement."))
 

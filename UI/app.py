@@ -49,6 +49,44 @@ ADVANCED_ONLY = {"Applications préinstallées"}
 SERENE_TOP = ["Accueil", "Nettoyage", "Calmer Windows",
               "Rappels bien-être", "État des lieux", "Jeu et live"]
 
+_PAGE_CLASSES = {
+    "Accueil": HomePage,
+    "Nettoyage": CleanPage,
+    "Fichiers et résidus": StoragePage,
+    "Calmer Windows": TweaksPage,
+    "Démarrage": StartupPage,
+    "Services": ServicesPage,
+    "Applications préinstallées": DebloatPage,
+    "Jeu et live": GamesPage,
+    "Rappels bien-être": RemindersPage,
+    "État des lieux": ChecksPage,
+    "Journaux": JournalPage,
+    "Info PC": InfoPCPage,
+    "Apparence et modes": SettingsPage,
+    "Configuration": ConfigPage,
+    "Sauvegarde et transfert": ProfilePage,
+    "À propos": AboutPage,
+}
+
+
+class _PagesLazies(dict):
+    """Pages construites à la première visite : à l'ouverture, seule la page
+    affichée est fabriquée (les 16 d'un coup, c'était ~1 seconde de trop)."""
+
+    def __init__(self, app):
+        dict.__init__(self)
+        self._app = app
+
+    def __missing__(self, cle):
+        if cle not in _PAGE_CLASSES:
+            raise KeyError(cle)
+        page = self._app._fabrique_page(cle)
+        self[cle] = page
+        return page
+
+    def __contains__(self, cle):
+        return dict.__contains__(self, cle) or cle in _PAGE_CLASSES
+
 
 def flatten_nav(items):
     out = []
@@ -147,7 +185,8 @@ class App:
             try:
                 hardware.load()
             except Exception:  # noqa: BLE001  un prefetch rate n'est pas grave
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/app.py:149")
         run_bg(self.root, job, lambda r, e: None)
 
     def _size_window(self):
@@ -225,26 +264,21 @@ class App:
         self.banner = ModeBanner(self.content, self.ctx, self.exit_mode, before=self.pages_host)
         self.banner.refresh()
 
-        ctx = self.ctx
-        self.pages["Accueil"] = HomePage(self.pages_host, ctx, self.goto)
-        self.pages["Nettoyage"] = CleanPage(self.pages_host, ctx)
-        self.pages["Fichiers et résidus"] = StoragePage(self.pages_host, ctx)
-        self.pages["Calmer Windows"] = TweaksPage(self.pages_host, ctx)
-        self.pages["Démarrage"] = StartupPage(self.pages_host, ctx)
-        self.pages["Services"] = ServicesPage(self.pages_host, ctx)
-        self.pages["Applications préinstallées"] = DebloatPage(self.pages_host, ctx)
-        self.pages["Jeu et live"] = GamesPage(self.pages_host, ctx)
-        self.pages["Rappels bien-être"] = RemindersPage(self.pages_host, ctx)
-        self.pages["État des lieux"] = ChecksPage(self.pages_host, ctx, lambda: run_checks(ctx.cfg["serenity"]), "health")
-        self.pages["Journaux"] = JournalPage(self.pages_host, ctx)
-        self.pages["Info PC"] = InfoPCPage(self.pages_host, ctx)
-        self.pages["Apparence et modes"] = SettingsPage(self.pages_host, ctx, self.apply_appearance)
-        self.pages["Configuration"] = ConfigPage(self.pages_host, ctx, self.apply_appearance)
-        self.pages["Sauvegarde et transfert"] = ProfilePage(self.pages_host, ctx)
-        self.pages["À propos"] = AboutPage(self.pages_host, ctx)
+        self.pages = _PagesLazies(self)
 
         target = keep if keep in self.pages else "Accueil"
         self.goto(target)
+
+    def _fabrique_page(self, cle):
+        classe = _PAGE_CLASSES[cle]
+        if cle == "Accueil":
+            return classe(self.pages_host, self.ctx, self.goto)
+        if cle == "État des lieux":
+            return classe(self.pages_host, self.ctx,
+                          lambda: run_checks(self.ctx.cfg["serenity"]), "health")
+        if cle in ("Apparence et modes", "Configuration"):
+            return classe(self.pages_host, self.ctx, self.apply_appearance)
+        return classe(self.pages_host, self.ctx)
 
     def goto(self, name):
         if name not in self.pages:
@@ -360,6 +394,8 @@ class App:
         self.ctx.save()
         lang.set_lang(self.ctx.cfg.get("lang", "fr"))
         tkmsg.installe()   # la langue peut changer à chaud
+        self.title = T("{v0} — Le ménage de ton PC, tout en douceur").format(v0=APP_NAME)
+        self.root.title(self.title)
         self._size_window()
         for w in self.root.winfo_children():
             w.destroy()

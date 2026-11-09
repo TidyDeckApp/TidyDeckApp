@@ -22,7 +22,8 @@ class Journal:
         try:
             self.entries = json.loads(self.path.read_text(encoding="utf-8"))
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Services/Logger/journal.py:24")
 
     def _save(self):
         self.path.write_text(json.dumps(self.entries, ensure_ascii=False, indent=1), encoding="utf-8")

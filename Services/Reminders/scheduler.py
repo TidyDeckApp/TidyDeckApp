@@ -61,7 +61,8 @@ class Scheduler:
             else:
                 self._missed_rdv(target.strftime("%H:%M"))
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Services/Reminders/scheduler.py:63")
 
     def _fire_rdv(self, rdv_time, mins_left):
         if not self._rdv_active:

@@ -1,9 +1,7 @@
 """Vérification de mise à jour : UNIQUEMENT quand l'utilisateur clique, jamais en arrière-plan."""
-import hashlib
 import json
 import os
 import re
-import urllib.request
 from Shared.Utils.common import APP_VERSION
 from Shared.Utils.lang import T
 
@@ -33,6 +31,7 @@ def compare(a, b):
 
 
 def check() -> str:
+    import urllib.request
     url = f"https://api.github.com/repos/{REPO}/releases/latest"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "TidyDeck"})
@@ -51,6 +50,7 @@ def check() -> str:
 
 
 def _fetch(url, timeout):
+    import urllib.request
     req = urllib.request.Request(url, headers={"User-Agent": "TidyDeck"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
@@ -111,6 +111,8 @@ def telecharger(dossier, zipa, sha, proges=None, annule=None) -> dict:
     Aucun fichier ne reste en cas d'échec : hash faux = supprimé (« abime »),
     annulation = supprimé (« annule »), réseau = supprimé (« reseau »).
     Retourne {"statut": ..., "chemin": ...}."""
+    import hashlib
+    import urllib.request
     part = os.path.join(dossier, zipa["name"] + ".part")
     try:
         hash_attendu = _fetch(sha["url"], 15).decode("ascii", "replace").strip().split()[0].lower()

@@ -72,13 +72,10 @@ def clean(results, journal, days_kept=7):
                 moved += s
             except OSError:
                 skipped += 1      # fichier en cours d'utilisation : on le laisse
-    names = ", ".join(r.item.name for r in results if not r.blocked)
-    details = ((T("Mis en quarantaine : {v0} élément. Ignorés (utilisés) : {v1}. "
-                  "Corbeille vidée (définitif) : {v2} o. Éléments : {v3}") if len(pairs) == 1
-                else T("Mis en quarantaine : {v0} éléments. Ignorés (utilisés) : {v1}. "
-                       "Corbeille vidée (définitif) : {v2} o. Éléments : {v3}"))
-               .format(v0=len(pairs), v1=skipped, v2=irreversible, v3=names))
+    names = [r.item.name for r in results if not r.blocked]
     if pairs or irreversible:
-        journal.add("pairs", "Nettoyage", details, {"pairs": pairs} if pairs else None,
-                    meta={"bytes": moved + irreversible})
+        journal.add("pairs", "Nettoyage", "", {"pairs": pairs} if pairs else None,
+                    meta={"bytes": moved + irreversible,
+                          "clean": {"q": len(pairs), "skip": skipped,
+                                    "recyc": irreversible, "items": names}})
     return {"moved": moved, "skipped": skipped, "irreversible": irreversible, "n": len(pairs), "pairs": pairs}

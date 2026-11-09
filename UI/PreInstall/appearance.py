@@ -44,11 +44,12 @@ class AppearancePanel(ttk.Frame):
         ttk.Button(self, text=T(button_text), style="Accent.TButton", command=self._apply).pack(anchor="w", pady=14)
 
     def _group(self, title, key, options):
+        from UI.components import RadiOpt
         ttk.Label(self, text=T(title), style="Sub.TLabel").pack(anchor="w", pady=(10, 2))
         row = ttk.Frame(self)
         row.pack(anchor="w")
         for text, val in options:
-            ttk.Radiobutton(row, text=T(text), value=val, variable=self.vars[key]).pack(side="left", padx=(0, 16))
+            RadiOpt(row, text=T(text), value=val, variable=self.vars[key]).pack(side="left", padx=(0, 16))
 
     def _apply(self):
         prev = dict(self.cfg)

@@ -210,6 +210,10 @@ class CleanPage(Page):
         if self._pending_preset:
             mode, self._pending_preset = self._pending_preset, None
             self._apply_preset(mode)
+        elif not self.checked_ids():
+            self.say(T("Coche ce que tu veux ranger, ou utilise « Tout cocher (Recommandé) ».")
+                     if not self.ctx.cfg.get("serenity")
+                     else T("Coche ce que tu veux ranger, ou utilise « Tout cocher (sûr) »."))
         self._explique_le_reste()
 
     def _explique_le_reste(self):

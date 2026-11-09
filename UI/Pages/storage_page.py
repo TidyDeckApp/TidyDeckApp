@@ -3,6 +3,7 @@ import time
 import tkinter as tk
 from tkinter import messagebox
 from Core.Storage import storage
+from Shared.Utils import cloud
 from Shared.Utils.common import human_size, run_cmd
 from UI.components import Checklist, run_bg, preview_dialog
 from UI.Pages.base import Page
@@ -54,7 +55,8 @@ class StoragePage(Page):
                         total += s
                         found_paths.append(p)
                     except Exception:
-                        pass
+                        from Shared.Utils import depannage
+                        depannage.noter("UI/Pages/storage_page.py:56")
             if total > 0:
                 results.append((name, total, found_paths))
         return results
@@ -163,7 +165,8 @@ class StoragePage(Page):
             try:
                 v.cancel.set()
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/storage_page.py:165")
             try:
                 v.destroy()
             except tk.TclError:
@@ -199,7 +202,8 @@ class StoragePage(Page):
             try:
                 cur.cancel.set()
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/storage_page.py:201")
             cur.destroy()
         self.largest = None
         self.list.pack(fill="both", expand=True)
@@ -227,7 +231,8 @@ class StoragePage(Page):
             try:
                 cur.cancel.set()
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/storage_page.py:229")
             cur.destroy()
         self.residus = None
         self.list.pack(fill="both", expand=True)

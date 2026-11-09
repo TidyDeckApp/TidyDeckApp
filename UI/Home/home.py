@@ -33,14 +33,14 @@ class HomePage(Page):
                        "pendant {j} jours depuis la page Journaux.").format(j=ctx.cfg['quarantine_days']))).pack(anchor="w", fill="x", pady=(6, 12))
 
         det_lines = [
-            "1. J'analyse (sans rien modifier) uniquement : Fichiers Temp, Caches Navigateurs Web.",
-            "2. Je te montre la liste et la place concernée : tu confirmes une seule fois (ou tu annules, et rien ne bouge).",
+            T("1. J'analyse (sans rien modifier) uniquement : Fichiers Temp, Caches Navigateurs Web."),
+            T("2. Je te montre la liste et la place concernée : tu confirmes une seule fois (ou tu annules, et rien ne bouge)."),
             T("3. Je mets ces fichiers de côté pendant {j} jours, sans les supprimer tout de "
               "suite : annulable depuis la page Journaux.").format(j=ctx.cfg['quarantine_days']),
-            "• Ce que je ne fais jamais ici : vider la Corbeille, toucher à un navigateur ouvert, changer le démarrage, "
-            "le registre, les réglages Windows ou les services. Ces zones ne font jamais partie du rangement express.",
+            T("• Ce que je ne fais jamais ici : vider la Corbeille, toucher à un navigateur ouvert, changer le démarrage, "
+              "le registre, les réglages Windows ou les services. Ces zones ne font jamais partie du rangement express."),
         ]
-        det = Collapsible(f, "Ce que fait exactement ce bouton", det_lines)
+        det = Collapsible(f, T("Ce que fait exactement ce bouton"), det_lines)
         det.pack(anchor="w", fill="x", pady=(4, 8))
         if not ctx.cfg.get("serenity"):
             det.toggle()

@@ -101,9 +101,10 @@ class RemindersPage(Page):
         # déborder) a été retirée du programme, la ligne tient désormais toujours.
         line = ttk.Frame(f)
         line.pack(anchor="w", pady=1)
+        from UI.components import RadiOpt
         for text, val in ((T("Bas droite"), "bottom-right"), (T("Bas gauche"), "bottom-left"),
                           (T("Haut droite"), "top-right"), (T("Haut gauche"), "top-left")):
-            ttk.Radiobutton(line, text=text, value=val, variable=self.toast_pos).pack(
+            RadiOpt(line, text=text, value=val, variable=self.toast_pos).pack(
                 side="left", padx=(0, 16))
 
         fr = row(pady=(6, 0))
@@ -160,7 +161,8 @@ class RemindersPage(Page):
             try:
                 self.after_cancel(self._save_job)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/reminders_page.py:163")
         self._save_job = self.after(400, self._save_now)
 
     def _save_now(self):

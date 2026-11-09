@@ -82,6 +82,8 @@ class SelectionNettoyeTest(unittest.TestCase):
         self.page.results = {i.id: _res(i, sizes[i.id]) for i in self.items}
         for iid, r in self.page.results.items():
             self.page.cards[iid].set_result(r)
+            # L'analyse ne coche plus rien toute seule : ici, l'utilisateur coche.
+            self.page.cards[iid].var.set(True)
         self.page._update_selection()
 
     def test_apres_nettoyage_plus_rien_de_coche(self):

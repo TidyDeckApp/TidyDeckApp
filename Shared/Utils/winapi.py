@@ -37,7 +37,8 @@ def _fixed_drives():
                 except Exception:
                     continue
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/winapi.py:39")
     return out
 
 
@@ -48,7 +49,8 @@ def _debug_note(msg):
         with open(data_dir() / "debug.log", "a", encoding="utf-8") as fh:
             fh.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M:%S} {msg}\n")
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/winapi.py:50")
 
 
 def _query_global():
@@ -60,7 +62,8 @@ def _query_global():
         if _shell32().SHQueryRecycleBinW(None, ctypes.pointer(info)) == 0:
             return max(0, int(info.i64Size)), max(0, int(info.i64NumItems))
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/winapi.py:62")
     return 0, 0
 
 

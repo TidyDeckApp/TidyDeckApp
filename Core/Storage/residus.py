@@ -18,6 +18,7 @@ explicite quand on le leur demande.
 import os
 import re
 import time
+from collections import deque
 from datetime import datetime
 
 from Shared.Utils.common import human_size, IS_WINDOWS
@@ -107,7 +108,8 @@ def est_lien(chemin):
         if attrs != -1:
             return bool(attrs & 0x400)  # FILE_ATTRIBUTE_REPARSE_POINT
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Core/Storage/residus.py:109")
     return os.path.islink(chemin) or os.path.ismount(chemin)
 
 
@@ -155,7 +157,8 @@ def _iter_uninstall():
             try:
                 winreg.CloseKey(k)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("Core/Storage/residus.py:157")
 
 
 def _val(cle, nom):
@@ -367,6 +370,76 @@ def appartient_a_un_logiciel(nom, installs):
 # Seuils et mots qui disqualifient d'office (données personnelles présumées).
 TAILLE_MIN_OCTETS = 1024 * 1024
 MOTS_DONNEES_PERSO = ("save", "profile", "config", "backup")
+# Quand la mise à l'écart des résidus sera activée (jamais avant les tests
+# manuels M1-M6 sur au moins 5 vraies machines), sa quarantaine devra durer
+# 30 jours, pas 7 : un jeu réinstallé le dimanche ne doit pas perdre ses saves.
+JOURS_QUARANTAINE_RESIDUS = 30
+
+
+MARQUEURS_DONNEES = ("saved", "savegames", "saves", "save", "profile", "profiles",
+                     "userdata", "characters", "config", "backup")
+EXTENSIONS_DONNEES = (".sav", ".save", ".sl2", ".dat", ".db", ".sqlite")
+# Segments de chemin interdits (comparés en minuscules, segment par segment) :
+# dossiers personnels ou territoires de jeux / lanceurs connus.
+SEGMENTS_INTERDITS = ("documents", "saved games", "onedrive", "desktop", "pictures",
+                      "steam", "epic games", "epic", "gog", "galaxy", "ubisoft",
+                      "ea app", "ea games", "electronic arts", "battle.net", "battlenet",
+                      "blizzard", "riot games", "riot client", "riot")
+
+
+LIMIT_ENTREES_RESIDUS = 5000
+PROFONDEUR_MAX_RESIDUS = 4
+
+
+def contient_donnees_utilisateur(chemin):
+    """Vrai si le dossier peut contenir des données de l'utilisateur (sauvegardes
+    de jeux, profils...). Lecture impossible = vrai : dans le doute, jamais proposé.
+
+    Parcours en largeur borné : 4 niveaux de profondeur et 5000 entrées au
+    total. Si la limite d'entrées est atteinte ou si un sous-dossier est
+    illisible, c'est vrai aussi (on ne propose jamais ce qu'on n'a pas pu
+    vérifier). Un lien (symbolique ou jonction) croisé exclut également le
+    candidat : on ne traverse jamais ce vers quoi il pointe.
+    Le scan est purement lecture : rien n'est écrit, rien n'est modifié."""
+    file = deque([(chemin, 1)])
+    vues = 0
+    while file:
+        dossier, profondeur = file.popleft()
+        try:
+            entrees = list(os.scandir(dossier))
+        except OSError:
+            return True
+        for e in entrees:
+            vues += 1
+            if vues > LIMIT_ENTREES_RESIDUS:
+                return True
+            n = e.name.lower()
+            if n in MARQUEURS_DONNEES:
+                return True
+            try:
+                est_fichier = e.is_file(follow_symlinks=False)
+            except OSError:
+                return True
+            if est_fichier:
+                if n.endswith(EXTENSIONS_DONNEES):
+                    return True
+            else:
+                try:
+                    if (est_lien(e.path) if IS_WINDOWS else os.path.islink(e.path)):
+                        return True
+                except OSError:
+                    return True
+                if profondeur < PROFONDEUR_MAX_RESIDUS:
+                    file.append((e.path, profondeur + 1))
+    return False
+
+
+def sur_zone_interdite(chemin):
+    """Vrai si le chemin passe par Documents, Desktop, Pictures, OneDrive, Saved
+    Games, ou un dossier de jeu / lanceur connu (Steam, Epic, GOG, Ubisoft, EA,
+    Battle.net, Riot...)."""
+    return any(seg in SEGMENTS_INTERDITS
+               for seg in os.path.normpath(chemin).lower().split(os.sep))
 
 
 def criteres(nom, taille, age_jours, installs, jours=90):
@@ -453,6 +526,10 @@ def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers
             age = min(age_dir, age_fichiers) if mtime_fichiers else age_dir
             res = criteres(e.name, taille, age, installs, jours)
             if res is None:
+                continue
+            if sur_zone_interdite(e.path) or contient_donnees_utilisateur(e.path):
+                # Données de l'utilisateur peut-être à l'intérieur, ou zone de jeu /
+                # lanceur connu : exclusion totale, avant même la confiance « Moyenne ».
                 continue
             motif, confiance, preuve = res
             lignes.append({

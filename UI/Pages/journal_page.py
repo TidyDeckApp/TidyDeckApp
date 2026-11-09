@@ -45,6 +45,47 @@ def relative(ts):
     return T("Aujourd'hui") if d <= 0 else T("Hier") if d == 1 else T("Il y a {v0} jours").format(v0=d)
 
 
+_PHRASE_NETTOYAGE = ("Nettoyage : {v0} mis de côté · {v1} ignorés (utilisés) · "
+                     "Corbeille vidée (définitif) : {v2} · Éléments : {v3}")
+# Détail de nettoyage écrit avant la version « données seules » : phrase française
+# collee dans le journal. On la reconstitue dans la langue courante.
+_LEGACY_NETTOYAGE = re.compile(
+    r"^Mis en quarantaine : (\d+) élément[s]?\. Ignorés \(utilisés\) : (\d+)\. "
+    r"Corbeille vidée \(définitif\) : (\d+) o\. Éléments : (.+)$")
+_LEGACY_FICHIERS = (
+    (re.compile(r"^(\d+) fichier déplacé\.$"), r"\1 file moved."),
+    (re.compile(r"^(\d+) fichiers déplacés\.$"), r"\1 files moved."),
+    (re.compile(r"^(\d+) fichier mis en quarantaine\.$"), r"\1 file quarantined."),
+    (re.compile(r"^(\d+) fichiers mis en quarantaine\.$"), r"\1 files quarantined."),
+)
+
+
+def phrase_nettoyage(c):
+    return T(_PHRASE_NETTOYAGE).format(
+        v0=c["q"], v1=c["skip"], v2=human_size(c["recyc"]),
+        v3=", ".join(T(n) for n in c["items"]))
+
+
+def detail_journal(e):
+    """Texte du détail dans la langue courante, même si l'entrée a été écrite dans l'autre."""
+    c = (e.get("meta") or {}).get("clean")
+    if c:
+        return phrase_nettoyage(c)
+    brut = e.get("details") or ""
+    if lang.get_lang() == "fr":
+        return brut
+    m = _LEGACY_NETTOYAGE.match(brut)
+    if m:
+        return phrase_nettoyage({"q": int(m.group(1)), "skip": int(m.group(2)),
+                                 "recyc": int(m.group(3)),
+                                 "items": [s.strip() for s in m.group(4).split(",")]})
+    for motif, anglais in _LEGACY_FICHIERS:
+        out, n = motif.subn(anglais, brut)
+        if n:
+            return out
+    return T(brut) if brut else brut
+
+
 def friendly(e):
     b = (e.get("meta") or {}).get("bytes")
     if e["kind"] == "pairs" and b:
@@ -69,7 +110,7 @@ class JournalPage(Page):
         self.timeline = tk.Text(self, height=6, wrap="word", relief="flat", padx=12, pady=8, state="disabled",
                                 bg=ctx.theme["card"], fg=ctx.theme["fg"])
         self.timeline.pack(fill="x", pady=(2, 8))
-        self.list = Checklist(self, ctx, (T("Détail technique"), T("Date / état")), checkable=False)
+        self.list = Checklist(self, ctx, (T("Action"), T("Date / état")), checkable=False)
         self.list.pack(fill="both", expand=True)
 
     def open_journal_folder(self):
@@ -96,7 +137,8 @@ class JournalPage(Page):
 
     def refresh(self):
         es = list(reversed(self.ctx.journal.entries))
-        txt = "\n".join(f"{relative(e['ts'])} : {friendly(e)}" + (T("  (annulé)") if e["undone"] else "") for e in es[:6]) \
+        sep = " : " if lang.get_lang() == "fr" else ": "
+        txt = "\n".join(f"{relative(e['ts'])}{sep}{friendly(e)}" + (T("  (annulé)") if e["undone"] else "") for e in es[:6]) \
             or T("Pas encore d'historique : ton premier rangement apparaîtra ici. 🌱")
         self.timeline.configure(state="normal")
         self.timeline.delete("1.0", "end")
@@ -106,7 +148,7 @@ class JournalPage(Page):
         for e in es:
             state = T("↩ annulée") if e["undone"] else (T("✔ annulable") if e["undo"] else T("définitive"))
             rows.append(dict(id=e["id"], name=titre_journal(e["title"]), info=f"{e['ts']} — {state}", status="info",
-                             detail=f"{titre_journal(e['title'])}\n{e['ts']}\n\n{e['details']}\n\n"
+                             detail=f"{titre_journal(e['title'])}\n{e['ts']}\n\n{detail_journal(e)}\n\n"
                                     + T("État : {v0}").format(v0=state),
                              folders=[str(data_dir())]))
         self.list.set_rows(rows)

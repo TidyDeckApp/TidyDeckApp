@@ -65,9 +65,14 @@ STATUS = {
 SYMBOLS = {"ok": "● Sûr", "warn": "▲ À vérifier", "info": "■ Info", "danger": "⬢ Irréversible", "off": "✕ Désactivé"}
 SYMBOLS_SERENE = {"ok": "● Tout est fluide", "warn": "▲ À voir quand tu veux", "info": "■ Info", "danger": "⬢ À faire une seule fois", "off": "✕ Désactivé"}
 SIZES = {"normale": 1.0, "grande": 1.25}
+# Reflète le mode daltonien à chaud (posé par apply()) : les radios en gras
+# sur l'option choisie quand les couleurs seules ne suffisent plus.
+DALTONIEN = False
 
 
 def apply(root, cfg):
+    global DALTONIEN
+    DALTONIEN = bool(cfg.get("colorblind"))
     theme_name = cfg["theme"]
     if theme_name in ("tdah_calm", "gamer"):
         theme_name = "sombre"
@@ -87,7 +92,8 @@ def apply(root, cfg):
         try:
             tkfont.nametofont(n).configure(family="Segoe UI" if n != "TkFixedFont" else "Consolas", size=size)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/theme.py:89")
     s = ttk.Style(root)
     s.theme_use("clam")
     root.configure(bg=p["bg"])
@@ -113,6 +119,42 @@ def apply(root, cfg):
     s.map("TCheckbutton", indicatorcolor=[("selected", p["accent"])])
     s.configure("TRadiobutton", background=p["bg"], foreground=p["fg"], focuscolor=p["accent"])
     s.map("TRadiobutton", indicatorcolor=[("selected", p["accent"])])
+    s.configure("Opt.TRadiobutton", background=p["bg"], foreground=p["fg"], focuscolor=p["accent"],
+                padding=(2, 2))
+    s.map("Opt.TRadiobutton", indicatorcolor=[("selected", p["accent"])],
+          foreground=[("selected", p["accent"])])
+    # Variante « gras » utilisée par RadiOpt pour l'option choisie en mode daltonien
+    # (ttk ne connaît la police que par style, jamais par widget).
+    s.configure("OptB.TRadiobutton", background=p["bg"], foreground=p["fg"], focuscolor=p["accent"],
+                padding=(2, 2), font=("Segoe UI", size, "bold"))
+    s.map("OptB.TRadiobutton", indicatorcolor=[("selected", p["accent"])],
+          foreground=[("selected", p["accent"])])
+    # Opt.TRadiobutton porte son propre symbole ●/○ : l'indicateur natif est
+    # retiré du layout pour n'afficher QU'UN rond par ligne, jamais deux.
+    try:
+        def _sans_ind(el):
+            nom = el[0]
+            props = dict(el[1]) if len(el) > 1 else {}
+            if "children" in props:
+                props["children"] = [_sans_ind(x) for x in props["children"]
+                                     if x[0] != "Radiobutton.indicator"]
+            return (nom, props)
+        epure = [_sans_ind(el) for el in s.layout("TRadiobutton")]
+        s.layout("Opt.TRadiobutton", epure)
+        s.layout("OptB.TRadiobutton", epure)
+    except Exception:
+        from Shared.Utils import depannage
+        depannage.noter("UI/theme.py:layout_opt_radiobutton")
+    s.map("Opt.TRadiobutton", borderwidth=[("focus", 2)], lightcolor=[("focus", p["accent"])])
+    s.map("OptB.TRadiobutton", borderwidth=[("focus", 2)], lightcolor=[("focus", p["accent"])])
+    # Barres de défilement assorties au thème (le gris par défaut jure sur fond sombre).
+    for _orient in ("Vertical", "Horizontal"):
+        s.configure(f"{_orient}.TScrollbar", background=p["card"], troughcolor=p["bg"],
+                    bordercolor=p["bg"], lightcolor=p["card"], darkcolor=p["card"],
+                    arrowcolor=p["fg"], arrowsize=12, relief="flat", borderwidth=0)
+        s.map(f"{_orient}.TScrollbar",
+              background=[("active", p["line"]), ("pressed", p["line"])],
+              arrowcolor=[("pressed", p["bg"])])
     s.map("TButton", borderwidth=[("focus", 2)])
     s.map("TCheckbutton", borderwidth=[("focus", 2)])
     s.map("TRadiobutton", borderwidth=[("focus", 2)])

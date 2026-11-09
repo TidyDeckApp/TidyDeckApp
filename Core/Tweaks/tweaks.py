@@ -135,8 +135,8 @@ def apply(ids, journal):
             registry.write(t.hive, v.key, v.name, v.value)
         st[tid] = {"previous": prev}
     _save_state(st)
-    journal.add("tweaks", (T("{v0} réglage Windows appliqué") if len(ids) == 1
-                           else T("{v0} réglages Windows appliqués")).format(v0=len(ids)),
+    journal.add("tweaks", ("{v0} réglage Windows appliqué" if len(ids) == 1
+                           else "{v0} réglages Windows appliqués").format(v0=len(ids)),
                 ", ".join(BY_ID[i].name for i in ids),
                 {"previous": previous, "ids": list(ids)})
     return [i for i in ids if not is_active(BY_ID[i])]
@@ -159,8 +159,8 @@ def revert(ids, journal):
                 registry.write(t.hive, v.key, v.name, _default(v))
         st.pop(tid, None)
     _save_state(st)
-    journal.add("tweaks_off", (T("{v0} réglage remis comme avant") if len(ids) == 1
-                               else T("{v0} réglages remis comme avant")).format(v0=len(ids)),
+    journal.add("tweaks_off", ("{v0} réglage remis comme avant" if len(ids) == 1
+                               else "{v0} réglages remis comme avant").format(v0=len(ids)),
                 ", ".join(BY_ID[i].name for i in ids),
                 {"before": before, "ids": list(ids)})
     return [i for i in ids if is_active(BY_ID[i])]

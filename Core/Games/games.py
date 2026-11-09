@@ -36,7 +36,8 @@ def _steam_libraries():
             libs += [m.replace("\\\\", "\\") for m in re.findall(r'"path"\s+"([^"]+)"', txt)]
         except OSError:
             pass
-    return list(dict.fromkeys(libs))
+    # Vraie casse Windows affichée (SteamPath du registre est souvent en minuscules).
+    return [_joli_chemin(p) for p in dict.fromkeys(libs)]
 
 
 def _joli_chemin(chemin):

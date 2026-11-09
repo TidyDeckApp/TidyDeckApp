@@ -270,8 +270,8 @@ def apply_moves(moves, journal, title=None):
         except OSError:
             pass
     if pairs:
-        journal.add("pairs", title, (T("{v0} fichier déplacé.") if len(pairs) == 1
-                                     else T("{v0} fichiers déplacés.")).format(v0=len(pairs)),
+        journal.add("pairs", title, ("{v0} fichier déplacé." if len(pairs) == 1
+                                     else "{v0} fichiers déplacés.").format(v0=len(pairs)),
                     {"pairs": [[a, b] for a, b in pairs]})
     return len(pairs)
 
@@ -310,8 +310,8 @@ def quarantine_files(paths, journal, title):
         except OSError as e:
             refuses.append((p, T("Déplacement impossible : {v0}").format(v0=e)))
     if pairs:
-        journal.add("pairs", title, (T("{v0} fichier mis en quarantaine.") if len(pairs) == 1
-                                     else T("{v0} fichiers mis en quarantaine.")).format(v0=len(pairs)), {"pairs": pairs})
+        journal.add("pairs", title, ("{v0} fichier mis en quarantaine." if len(pairs) == 1
+                                     else "{v0} fichiers mis en quarantaine.").format(v0=len(pairs)), {"pairs": pairs})
     return len(pairs), refuses
 
 

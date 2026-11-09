@@ -37,7 +37,8 @@ def load():
     try:
         cfg.update(json.loads((data_dir() / "config.json").read_text(encoding="utf-8")))
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/config.py:39")
     for k, v in DEFAULTS["reminders"].items():          # nouvelles clés ajoutées après coup
         if isinstance(v, dict):
             cfg["reminders"].setdefault(k, {})

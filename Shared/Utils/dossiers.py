@@ -116,7 +116,8 @@ def _api(cle):
         # La chaine est allouee par Windows : a rendre, sinon fuite a chaque appel.
         _ole32.CoTaskMemFree(ctypes.cast(sortie, ctypes.c_void_p))
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/dossiers.py:118")
     return chemin or None
 
 

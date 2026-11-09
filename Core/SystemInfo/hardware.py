@@ -159,7 +159,8 @@ def _ecris_disque(d):
             json.dump({"ts": time.time(), "d": d}, fh, ensure_ascii=False)
         tmp.replace(p)            # atomic : pas de fichier à moitié écrit
     except Exception:
-        pass                     # un cache raté ne doit jamais casser l'affichage
+        from Shared.Utils import depannage
+        depannage.noter("Core/SystemInfo/hardware.py:160")  # un cache raté ne doit jamais casser l'affichage
 
 
 def est_chaud():

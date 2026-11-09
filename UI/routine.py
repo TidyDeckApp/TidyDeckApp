@@ -1,7 +1,7 @@
 """Nettoyage doux recommandé / « Bouton magique » : une seule validation, que des choses sûres."""
 import time
 from Shared.Constants.catalog import build_catalog
-from Shared.Utils.common import human_size
+from Shared.Utils.common import human_size, mots_espace
 from Core.Health import cleaner
 from Core.Tweaks import tweaks
 from UI.components import run_bg, preview_dialog, score_dialog
@@ -28,7 +28,10 @@ def gentle_clean(ctx, page, after=None, express=False):
         if express:
             sel = [r for r in sel if r.item.id in EXPRESS_WHITELIST]
         if not sel:
-            page.say(T("✨ Rien à faire : ton PC est déjà tranquille. Bravo ! 🌿"))
+            if ctx.cfg.get("serenity"):
+                page.say(T("Il n'y avait rien à ranger pour l'instant."))
+            else:
+                page.say(T("✨ Rien à faire : ton PC est déjà tranquille. Bravo ! 🌿"))
             return
         total = sum(r.size for r in sel)
         lines = [f"{r.item.icon}  {r.item.name}" for r in sel]
@@ -49,12 +52,19 @@ def gentle_clean(ctx, page, after=None, express=False):
             return
         ctx.cfg["last_calm"] = time.strftime(T("%Y-%m-%d %H:%M:%S"))
         ctx.save()
-        msg = T("✨ PC apaisé ✓ — {v0} mis de côté, annulable depuis les Journaux.").format(v0=human_size(res['moved']))
+        serene = bool(ctx.cfg.get("serenity"))
+        if serene:
+            msg = T("✨ PC apaisé ✓ — tout est mis de côté en douceur, annulable depuis les Journaux.")
+        else:
+            msg = T("✨ PC apaisé ✓ — {v0} mis de côté, annulable depuis les Journaux.").format(v0=human_size(res['moved']))
         d = tweaks.drift()
         if d:
             _n = len(d)
-            msg += (T(" (Au passage : {v0} réglage Windows a été défait — onglet Calmer Windows.)") if _n == 1
-                    else T(" (Au passage : {v0} réglages Windows ont été défaits — onglet Calmer Windows.)")).format(v0=_n)
+            if serene:
+                msg += T(" (Au passage : des réglages Windows ont été défaits — onglet Calmer Windows.)")
+            else:
+                msg += (T(" (Au passage : {v0} réglage Windows a été défait — onglet Calmer Windows.)") if _n == 1
+                        else T(" (Au passage : {v0} réglages Windows ont été défaits — onglet Calmer Windows.)")).format(v0=_n)
         page.say(msg)
         if res["moved"] or res["n"]:
             score_dialog(ctx, [
@@ -62,8 +72,9 @@ def gentle_clean(ctx, page, after=None, express=False):
                 T("Rien n'est perdu : annulable pendant {v0} jours").format(v0=ctx.cfg['quarantine_days']),
                 T("Ton PC respire mieux — bien joué !"),
                 T("Tu viens de faire un geste concret pour ton confort. Ça compte.")
-            ], serene_text=T("Un bon rangement ! Ton PC respire mieux, et toi aussi. "
-                         "Rien n'est perdu : tout est annulable."),
+            ], serene_text=T("Tu as libéré {espace}. Rien n'est perdu : tu peux tout remettre "
+                             "pendant {j} jours.").format(espace=mots_espace(res['moved']),
+                                                          j=ctx.cfg['quarantine_days']),
                undo_pairs=res.get("pairs"))
             if hasattr(page, "show_undo") and res.get("pairs"):
                 page.show_undo(res["pairs"])

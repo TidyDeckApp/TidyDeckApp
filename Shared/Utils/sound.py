@@ -79,7 +79,8 @@ def chime(volume=None):
             _PATH[k] = p
         winsound.PlaySound(p, winsound.SND_FILENAME | winsound.SND_ASYNC)
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("Shared/Utils/sound.py:81")
 
 
 def play(path=None, volume=None):
@@ -95,5 +96,6 @@ def play(path=None, volume=None):
             winsound.PlaySound(src, winsound.SND_FILENAME | winsound.SND_ASYNC)
             return
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("Shared/Utils/sound.py:97")
     chime(vol)

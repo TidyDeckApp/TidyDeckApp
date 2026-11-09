@@ -5,7 +5,7 @@ from Shared.Utils.common import IS_WINDOWS
 from Shared.Utils import config, sound
 from Shared.Utils.lang import T
 from Shared.Utils import lang
-from UI.components import ScrollFrame, info_note, VolumeBar
+from UI.components import ScrollFrame, info_note, VolumeBar, RadiOpt
 from tkinter import filedialog
 
 
@@ -33,14 +33,14 @@ class _PrefsBase(ttk.Frame):
             grid = ttk.Frame(parent)
             grid.pack(anchor="w")
             for i, (text, val) in enumerate(options):
-                rb = ttk.Radiobutton(grid, text=T(text), value=val, variable=self.vars[key])
+                rb = RadiOpt(grid, text=T(text), value=val, variable=self.vars[key])
                 rb.grid(row=i // per_row, column=i % per_row, sticky="w", padx=(0, 28), pady=2)
                 self._key_widgets.setdefault(key, []).append(rb)
             return
         row = ttk.Frame(parent)
         row.pack(anchor="w")
         for text, val in options:
-            rb = ttk.Radiobutton(row, text=T(text), value=val, variable=self.vars[key])
+            rb = RadiOpt(row, text=T(text), value=val, variable=self.vars[key])
             rb.pack(side="left", padx=(0, 16))
             self._key_widgets.setdefault(key, []).append(rb)
 
@@ -161,9 +161,8 @@ class ConfigPage(_PrefsBase):
                           _close_opts, per_row=1)
         if IS_WINDOWS:
             ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
-                      text=T("Réduire à côté de l'horloge (zone de notification) : la croix cache la fenêtre "
-                             "et TidyDeck reste accessible via son icône près de l'horloge — double-clique "
-                             "dessus (ou clic droit > Ouvrir) pour le faire revenir.")).pack(anchor="w", pady=(2, 0))
+                      text=T("La croix cache la fenêtre. Double-clique sur l'icône près de "
+                             "l'horloge (ou clic droit > Ouvrir) pour la faire revenir.")).pack(anchor="w", pady=(2, 0))
 
         ttk.Label(f, text=T("Lancement automatique"), style="Sub.TLabel").pack(anchor="w", pady=(6, 2))
         self.auto = tk.BooleanVar(value=IS_WINDOWS and autostart.is_enabled())

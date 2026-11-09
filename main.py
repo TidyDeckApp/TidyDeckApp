@@ -35,7 +35,8 @@ def _avertir_deja_ouvert(minimized):
                            "continue.")
         r.destroy()
     except Exception:
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("main.py:37")
 
 
 if __name__ == "__main__":

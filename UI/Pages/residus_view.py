@@ -73,7 +73,9 @@ class ResidusView(ttk.Frame):
 
     def _set_intro(self, txt=None):
         if txt is None:
-            txt = T("Dossiers laissés par des logiciels qui ne semblent plus installés.")
+            txt = (T("Dossiers laissés par des logiciels qui ne semblent plus installés.")
+                   + " " + T("Si un jour un dossier est mis de côté, la quarantaine "
+                             "proposée sera de 30 jours (au lieu de 7), annulable depuis Journaux."))
         self.intro_lbl.configure(text=txt)
 
     def _kick(self):
@@ -88,12 +90,14 @@ class ResidusView(ttk.Frame):
         try:
             self.busy_bar.stop()
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/Pages/residus_view.py:92")
         if self._after is not None:
             try:
                 self.after_cancel(self._after)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/residus_view.py:97")
             self._after = None
 
     # ------------------------------------------------------------------ scan

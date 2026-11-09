@@ -39,6 +39,36 @@ def auto_wrap(label):
     return label
 
 
+class RadiOpt(ttk.Radiobutton):
+    """Bouton radio à indicateur unique : ● = choisi, ○ = autre choix.
+
+    L'indicateur natif ttk est supprimé par le style Opt.TRadiobutton : un seul
+    rond par ligne, jamais deux. La différence repose sur la FORME (plein/vide)
+    et la luminosité du texte, jamais sur la couleur seule ; en mode daltonien,
+    l'option choisie est en plus en gras.
+    """
+
+    def __init__(self, master, text="", variable=None, value=None, **kw):
+        self._texte = text
+        self._var = variable
+        self._val = value
+        kw.setdefault("style", "Opt.TRadiobutton")
+        super().__init__(master, text="○ " + text, variable=variable, value=value, **kw)
+        if variable is not None:
+            variable.trace_add("write", self._maj)
+        self._maj()
+
+    def _maj(self, *_):
+        try:
+            choisi = str(self._var.get()) == str(self._val)
+        except Exception:
+            choisi = False
+        from UI import theme
+        style = ("OptB.TRadiobutton" if (choisi and getattr(theme, "DALTONIEN", False))
+                 else "Opt.TRadiobutton")
+        self.configure(text=("● " if choisi else "○ ") + self._texte, style=style)
+
+
 def clamp_wrap(widget, avail):
     """Replie tous les libellés a `wraplength` fige qui depassent la largeur utile.
 
@@ -62,7 +92,8 @@ def clamp_wrap(widget, avail):
                 try:
                     c.configure(wraplength=limit)
                 except Exception:
-                    pass
+                    from Shared.Utils import depannage
+                    depannage.noter("UI/components.py:89")
 
 
 def run_bg(root, fn, done):
@@ -385,17 +416,21 @@ class Checklist(ttk.Frame):
                     if bb and bb[3] > 8:
                         rows_h = bb[3]
                 except Exception:
-                    pass
+                    from Shared.Utils import depannage
+                    depannage.noter("UI/components.py:412")
             entete = 30
             n = min(12, max(self.tree_min_rows, int((dispo - entete) / max(1, rows_h))))
             if n != int(self.tree.cget("height")):
                 self.tree.configure(height=n)
-            pos = max(entete + rows_h * self.tree_min_rows, h - bas)
+            # le panneau du bas garde toujours sa hauteur complète (jamais de
+            # ligne coupée à moitié) : c'est le tableau qui se comprime.
+            pos = max(60, h - bas)
             if self._sash_h is None or abs(pos - self._sash_h) >= 2:
                 self._sash_h = pos
                 self.pane.sashpos(0, pos)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/components.py:424")
 
     def _fit_cols(self, _e=None):
         try:
@@ -422,7 +457,8 @@ class Checklist(ttk.Frame):
                     nom = noms0.get(i, str(self.tree.set(i, "name")))
                     need = max(need, f.measure(nom))
                 except Exception:
-                    pass
+                    from Shared.Utils import depannage
+                    depannage.noter("UI/components.py:451")
             w = min(dispo, max(160, need + 18))
             if abs(w - int(self.tree.column("name", "width"))) > 2:
                 self.tree.column("name", width=w)
@@ -440,7 +476,8 @@ class Checklist(ttk.Frame):
             if abs(info - int(self.tree.column("info", "width"))) > 2:
                 self.tree.column("info", width=info)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/components.py:469")
 
     def _m(self, t):
         return self.ctx.mask(T(t))
@@ -672,7 +709,8 @@ class Sidebar(tk.Frame):
                 else:
                     total += 2 * int(pady)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/components.py:701")
         return total
 
     def _rogne(self, r):
@@ -717,7 +755,8 @@ class Sidebar(tk.Frame):
         try:
             self.fit_hauteur(dispo)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/components.py:746")
 
     def _track(self, text, font, extra=0):
         self._need = max(self._need, self._measure(text, font) + extra)
@@ -743,14 +782,16 @@ class Sidebar(tk.Frame):
                     w += sib.winfo_reqwidth() + self._pad(12)
                 need = max(need, 4 + w + self._pad(14))
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/components.py:772")
         for sec in self._sections.values():
             try:
                 h = sec["header"][2]
                 h.update_idletasks()
                 need = max(need, 4 + h.winfo_reqwidth() + self._pad(14))
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/components.py:779")
         self.configure(width=max(minimum, min(cap, need)))
 
     def _mk_row(self, parent, focusable=True):
@@ -1063,8 +1104,10 @@ class CleanCard(tk.Frame):
         top.pack(fill="x", padx=12, pady=(8, 1))
 
         self.var = tk.BooleanVar(value=False)
-        if result and not result.blocked and result.size > 0 and item.preselect:
-            self.var.set(True)
+        # Aucune case pré-cochée : « après analyse, rien n'est coché tout seul »
+        # (la page Nettoyage ne dévore pas le choix de l'utilisateur). L'accueil
+        # « Ranger mon PC en douceur » garde sa propre sélection, calculée par
+        # routine.gentle_clean, et ne passe pas par cette carte.
 
         cb = tk.Checkbutton(top, variable=self.var, bg=ctx.theme["card"],
                             activebackground=ctx.theme["card"],
@@ -1137,9 +1180,7 @@ class CleanCard(tk.Frame):
 
     def set_result(self, result):
         self.result = result
-        if result and not result.blocked and result.size > 0 and self.item.preselect:
-            self.var.set(True)
-        elif result and (result.blocked or result.size == 0):
+        if result and (result.blocked or result.size == 0):
             self.var.set(False)
         self._update_display()
 
@@ -1298,11 +1339,11 @@ def score_dialog(ctx, lines, title="Fiche de score du PC", serene_text=None, und
                 undo_btn.configure(text=txt)
             run_bg(win, lambda: quarantine.restore(undo_pairs), done)
 
-        undo_btn = ttk.Button(bar, text=T("Annuler ce rangement"), command=do_undo)
+        undo_btn = ttk.Button(bar, text=T("Remettre comme avant"), command=do_undo)
         undo_btn.pack(side="right", padx=8)
 
     if serene:
-        head_lbl.configure(text=T("Un bon rangement !"))
+        head_lbl.configure(text=T("C'est fait, doucement."))
         lbl.configure(text=serene_text or T("Rangement terminé en douceur. Ton PC respire mieux, et toi aussi."))
         det = ttk.Button(win, text=T("Voir les détails (chiffres)"), command=lambda: _reveal())
         det.pack(anchor="w", padx=24, pady=(0, 8))

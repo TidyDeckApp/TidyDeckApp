@@ -242,7 +242,8 @@ def main():
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     except Exception:  # noqa: BLE001
-        pass
+        from Shared.Utils import depannage
+        depannage.noter("verif_pages_windows.py:244")
     if sys.platform != "win32":
         print("reserve a Windows : ce script teste des URI ms-settings:.")
         return 2

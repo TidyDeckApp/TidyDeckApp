@@ -102,8 +102,8 @@ def disable(ids, states, journal):
             failed.append((i, _motif(i, T("désactiver"), code, sortie)))
     STATE.write_text(json.dumps(st), encoding="utf-8")
     if done:
-        journal.add("services", (T("{v0} service Windows désactivé") if len(done) == 1
-                                 else T("{v0} services Windows désactivés")).format(v0=len(done)),
+        journal.add("services", ("{v0} service Windows désactivé" if len(done) == 1
+                                 else "{v0} services Windows désactivés").format(v0=len(done)),
                     ", ".join(BY_ID[i]["name"] for i in done),
                     {"items": prev})
     return done, failed
@@ -126,8 +126,8 @@ def restore(ids, journal):
             failed.append((i, _motif(i, "remettre comme avant", code, sortie)))
     STATE.write_text(json.dumps(st), encoding="utf-8")
     if done:
-        journal.add("services", (T("{v0} service Windows remis comme avant") if len(done) == 1
-                                 else T("{v0} services Windows remis comme avant")).format(v0=len(done)),
+        journal.add("services", ("{v0} service Windows remis comme avant" if len(done) == 1
+                                 else "{v0} services Windows remis comme avant").format(v0=len(done)),
                     ", ".join(BY_ID[i]["name"] for i in done),
                     {"items": items})
     return done, failed

@@ -83,7 +83,8 @@ class _Tooltip:
             try:
                 self.w.after_cancel(self._after)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/largest_view.py:85")
             self._after = None
 
     def _show(self):
@@ -107,7 +108,8 @@ class _Tooltip:
             try:
                 self.tip.destroy()
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/largest_view.py:109")
             self.tip = None
 
 
@@ -150,12 +152,14 @@ class LargestView(ttk.Frame):
         try:
             self.busy_bar.stop()
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/Pages/largest_view.py:152")
         if self._after is not None:
             try:
                 self.after_cancel(self._after)
             except Exception:
-                pass
+                from Shared.Utils import depannage
+                depannage.noter("UI/Pages/largest_view.py:157")
             self._after = None
 
     # ------------------------------------------------------------------ build
@@ -449,7 +453,8 @@ class LargestView(ttk.Frame):
         try:
             sf.canvas.itemconfigure(sf._win, width=width)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/Pages/largest_view.py:451")
         for j in jobs:
             fixed = (j["sz"].winfo_reqwidth() + j["dl"].winfo_reqwidth()
                      + j["acts"].winfo_reqwidth() + 36)
@@ -474,7 +479,8 @@ class LargestView(ttk.Frame):
             self.clipboard_append(str(path))
             self._show_path(path, copied=True)
         except Exception:
-            pass
+            from Shared.Utils import depannage
+            depannage.noter("UI/Pages/largest_view.py:476")
 
     def open_loc(self, path):
         if self.ctx.cfg.get("stream_mode"):

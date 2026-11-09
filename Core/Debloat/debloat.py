@@ -43,7 +43,7 @@ THIRD_PARTY = [
     "bubble witch", "bubblewitch", "spotify", "netflix", "tiktok", "disney",
     "prime video", "primevideo", "facebook", "instagram", "linkedin",
     "word cookies", "wordcookies", "words of wonder", "match factory",
-    "marvel", "emol", "super.", "bubblew",
+    "marvel", "emol.", "super.", "bubblew",
 ]
 
 # Ce qu'on ne touche JAMAIS, même si un mot-clé correspondrait par accident.

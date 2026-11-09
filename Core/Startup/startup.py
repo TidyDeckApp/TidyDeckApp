@@ -2,6 +2,7 @@
 Même source que le Gestionnaire des tâches : clés Run (utilisateur, machine, 32 bits),
 dossiers Démarrage et tâches UWP ; état activé/désactivé lu dans StartupApproved (registre)."""
 import os
+import re
 import struct
 import time
 from Shared.Utils import registry
@@ -47,6 +48,8 @@ HINTS = [
     ("securityhealth", "Sécurité Windows (antivirus). À GARDER activé.", "keep"),
     ("windowsdefender", "Antivirus Microsoft Defender. À GARDER activé.", "keep"),
     ("realtek", "Pilote audio Realtek. À garder (sinon plus de panneau son).", "keep"),
+    ("rtkauduservice", "Service audio Realtek. À garder (sinon plus de panneau son).", "keep"),
+    ("rtk", "Service audio Realtek. À garder (sinon plus de panneau son).", "keep"),
     ("nvidia", "Outils de ta carte graphique NVIDIA. Désactivable si tu n'en as pas l'usage.", "maybe"),
     ("razer", "Périphériques Razer (souris, clavier). Désactivable si tu n'utilises pas Razer Synapse.", "safe"),
     ("logitech", "Périphériques Logitech (G Hub, Options). Désactivable si tu gères tes périphériques autrement.", "safe"),
@@ -76,6 +79,7 @@ HINTS = [
     ("cisco", "Cisco AnyConnect VPN. Désactivable, mais le VPN ne se lancera plus tout seul.", "maybe"),
     ("anyconnect", "Cisco AnyConnect VPN. Désactivable, mais le VPN ne se lancera plus tout seul.", "maybe"),
     ("mullvad", "Mullvad VPN. Désactivable, mais le VPN ne se lancera plus tout seul.", "maybe"),
+    ("windscribe", "Windscribe VPN. Désactivable, mais le VPN ne se lancera plus tout seul.", "maybe"),
     ("icloud", "Apple iCloud pour Windows. Désactivable si tu ne synchronises pas avec un appareil Apple.", "safe"),
     ("itunes", "Apple iTunes. Désactivable si tu ne synchronises pas d'iPod/iPhone.", "safe"),
     ("apple", "Services Apple (bonjour, etc.). Désactivable si tu n'as pas d'appareil Apple.", "safe"),
@@ -113,12 +117,18 @@ HINTS = [
     ("vscode", "Visual Studio Code. Désactivable si tu ne codes pas en continu.", "safe"),
     ("visualstudio", "Visual Studio. Désactivable si tu ne codes pas en continu.", "safe"),
     ("jetbrains", "JetBrains (IntelliJ, PyCharm, etc.). Désactivable si tu ne codes pas en continu.", "safe"),
+    ("phpstorm", "JetBrains PhpStorm (éditeur PHP). Désactivable si tu ne codes pas en continu.", "safe"),
+    ("motorola", "Motorola Device Manager (téléphones Motorola). Désactivable si tu ne branches pas de téléphone Motorola.", "safe"),
     ("android", "Android Studio / ADB. Désactivable si tu ne développes pas Android.", "safe"),
     ("unity", "Unity Editor. Désactivable si tu ne développes pas de jeux.", "safe"),
     ("unreal", "Unreal Engine. Désactivable si tu ne développes pas de jeux.", "safe"),
     ("xbox", "Xbox App / Game Bar. Désactivable si tu ne joues pas aux jeux Xbox.", "safe"),
     ("gamebar", "Xbox Game Bar. Désactivable si tu n'utilises pas les overlays Xbox.", "safe"),
     ("epicgameslauncher", "Epic Games Launcher. Désactivable, lance-le quand tu joues.", "safe"),
+    ("riotvanguard", "Riot Vanguard (anti-triche de Valorant et League of Legends). À garder si tu joues à Valorant ou LoL.", "keep"),
+    ("vgtray", "Riot Vanguard (anti-triche de Valorant et League of Legends). À garder si tu joues à Valorant ou LoL.", "keep"),
+    ("vgc", "Riot Vanguard (anti-triche de Valorant et League of Legends). À garder si tu joues à Valorant ou LoL.", "keep"),
+    ("riotclient", "Riot Client (lanceur de Valorant, LoL et des autres jeux Riot). Désactivable, lance-le quand tu joues.", "safe"),
     ("riot", "Riot Client (Valorant, LoL). Désactivable, lance-le quand tu joues.", "safe"),
     ("battlestate", "Battlestate Games (Escape from Tarkov). Désactivable, lance-le quand tu joues.", "safe"),
     ("rockstar", "Rockstar Games Launcher (GTA, RDR2). Désactivable, lance-le quand tu joues.", "safe"),
@@ -143,14 +153,12 @@ HINTS = [
     ("anydesk", "AnyDesk (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.", "safe"),
     ("splashtop", "Splashtop (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.", "safe"),
     ("logmein", "LogMeIn (contrôle à distance). Désactivable si tu n'en as pas besoin en continu.", "safe"),
-    ("goToMeeting", "GoToMeeting. Désactivable si tu n'as pas de réunion régulière.", "safe"),
     ("gotomeeting", "GoToMeeting. Désactivable si tu n'as pas de réunion régulière.", "safe"),
     ("citrix", "Citrix Workspace. Désactivable si tu n'utilises pas de bureau virtuel.", "safe"),
     ("vmwareview", "VMware Horizon. Désactivable si tu n'utilises pas de bureau virtuel.", "safe"),
     ("paragon", "Paragon Software (disques, VPN). Désactivable selon ton usage.", "safe"),
     ("acronis", "Acronis (sauvegarde). Désactivable si tu fais des sauvegardes manuelles.", "safe"),
     ("macrium", "Macrium Reflect (sauvegarde). Désactivable si tu fais des sauvegardes manuelles.", "safe"),
-    ("EaseUS", "EaseUS (récupération/sauvegarde). Désactivable selon ton usage.", "safe"),
     ("easeus", "EaseUS (récupération/sauvegarde). Désactivable selon ton usage.", "safe"),
     ("wondershare", "Wondershare (outils variés). Désactivable selon ton usage.", "safe"),
     ("iobit", "IObit (outils système). Désactivable selon ton usage.", "safe"),
@@ -212,6 +220,7 @@ HINTS = [
     ("bitfocus", "Bitfocus (Touch Portal). Désactivable si tu n'utilises pas de console tactile.", "safe"),
     ("midi", "Périphériques MIDI. Désactivable si tu ne produis pas de musique.", "safe"),
     ("loopback", "Audio Loopback. Désactivable si tu ne routes pas d'audio.", "safe"),
+    ("voicemod", "Voicemod (modulateur de voix en direct). Désactivable si tu ne changes pas de voix en stream ou en appel.", "safe"),
     ("voicemeeter", "VoiceMeeter (mixage audio). Désactivable si tu ne mixe pas d'audio.", "safe"),
     ("cheatengine", "Cheat Engine. Désactivable (outil de triche, pas de démarrage nécessaire).", "safe"),
     ("xboxgaming", "Xbox Gaming Services. Désactivable si tu ne joues pas aux jeux Xbox.", "safe"),
@@ -248,7 +257,6 @@ HINTS = [
     ("remoteassist", "Windows Remote Assistance. Désactivable si tu n'utilises pas l'assistance à distance.", "safe"),
     ("faststartup", "Démarrage rapide Windows. Désactivable si tu préfères un démarrage complet.", "safe"),
     ("startuprepairs", "Réparation du démarrage. À GARDER (composant système).", "keep"),
-    ("windowsdefender", "Windows Defender. À GARDER (antivirus).", "keep"),
     ("defender", "Windows Defender. À GARDER (antivirus).", "keep"),
     ("firewall", "Pare-feu Windows. À GARDER (sécurité).", "keep"),
     ("windowsfirewall", "Pare-feu Windows. À GARDER (sécurité).", "keep"),
@@ -414,7 +422,6 @@ HINTS = [
     ("spideroak", "SpiderOak (sauvegarde cloud). Désactivable si tu ne sauvegardes pas en continu.", "safe"),
     ("dropbox", "Dropbox. Désactivable si tu ne synchronises pas en continu.", "safe"),
     ("googledrive", "Google Drive. Désactivable si tu ne synchronises pas en continu.", "safe"),
-    ("onedrive", "OneDrive. Désactivable si tu ne synchronises pas en continu.", "safe"),
     ("box", "Box. Désactivable si tu ne synchronises pas en continu.", "safe"),
     ("megasync", "MEGA. Désactivable si tu ne synchronises pas en continu.", "safe"),
     ("mega", "MEGA. Désactivable si tu ne synchronises pas en continu.", "safe"),
@@ -466,11 +473,65 @@ def _uwp_entries():
     return out
 
 
+def _mots(texte):
+    """Mots d'un nom : coupé aux séparateurs, plus l'éclatement CamelCase
+    (« SecurityHealthSystray » -> security, health, systray)."""
+    out = []
+    for bloc in re.split(r"[^0-9A-Za-z]+", str(texte or "")):
+        if not bloc:
+            continue
+        camel = re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]+|[a-z]+|\d+", bloc)
+        out.extend(m.lower() for m in (camel if len(camel) > 1 else [bloc]))
+    return out
+
+
+def _exe_nom(command):
+    """Nom du programme visé par la commande : sans chemin, sans extension,
+    sans arguments (--runinbk ou un dossier du chemin ne déclenchent donc
+    JAMAIS une règle)."""
+    c = str(command or "").strip()
+    if c.startswith('"'):
+        morceaux = c.split('"')
+        c = morceaux[1] if len(morceaux) >= 2 else ""
+    else:
+        c = c.split(" ")[0] if c else ""
+    c = c.replace("\\", "/").rsplit("/", 1)[-1]
+    if c.lower().endswith(".exe") or "." in c:
+        c = os.path.splitext(c)[0]
+    return c
+
+
+_RULES = []
+for _cle, _texte, _niveau in HINTS:
+    _km = _mots(_cle)
+    if _km:
+        _RULES.append((_km, "".join(_km), _texte, _niveau))
+# Priorité : la règle la plus spécifique gagne (le plus de mots, puis la clé
+# la plus longue) : « riotvanguard » avant « riot », « streamdeck » garde la
+# main sur « stre-a-m-d » qui n'est plus jamais une sous-chaîne recherchée.
+_RULES.sort(key=lambda r: (len(r[0]), len(r[1])), reverse=True)
+
+
 def _hint(name, command):
-    low = f"{name} {command}".lower()
-    for key, text, level in HINTS:
-        if key in low:
-            return text, level
+    """Conseil sur une entrée de démarrage : uniquement sur le NOM de l'entrée
+    et le nom de l'exécutable, en mots entiers ou CamelCase complet
+    (« streamdeck » ne contient plus « amd », « motorola » plus « tor »).
+    Une clé matche si ses mots forment une tranche contiguë des mots du nom,
+    prononcés séparément ou collés. Dans le doute : « Programme non reconnu »."""
+    mots = _mots(name) + _mots(_exe_nom(command))
+    for km, cle_jointe, texte, niveau in _RULES:
+        n = len(km)
+        for i in range(len(mots) - n + 1):
+            if mots[i:i + n] == km:
+                return texte, niveau
+        for i in range(len(mots)):
+            colle = ""
+            for j in range(i, len(mots)):
+                colle += mots[j]
+                if colle == cle_jointe and j - i + 1 >= n:
+                    return texte, niveau
+                if len(colle) >= len(cle_jointe):
+                    break
     return UNKNOWN, "unknown"
 
 
