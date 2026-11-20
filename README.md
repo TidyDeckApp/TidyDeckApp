@@ -16,9 +16,16 @@ TidyDeck est un logiciel gratuit qui montre avant d'agir, range sans rien suppri
 
 ### Télécharger
 
-Version **0.6.1** pour Windows 10 et 11. Il n'y a rien à installer : décompresse le dossier où tu veux et lance `TidyDeck.exe`. Pour le retirer, supprime le dossier.
+Version **0.6.2** pour Windows 10 et 11. Il n'y a rien à installer : décompresse le dossier où tu veux et lance `TidyDeck.exe`. Pour le retirer, supprime le dossier.
 
 ➡️ [Page de téléchargement](https://github.com/TidyDeckApp/TidyDeckApp/releases/latest) · [Site](https://tidydeckapp.github.io)
+
+### Nouveautés de la 0.6.2
+
+- **Rappels** : chaque rappel (hydratation, repas, snacks, pause visuelle, étirements, créneaux personnalisés) règle son **Son**, son **Visuel**, les deux ou aucun. Un lien « Appliquer à tous les rappels » reprend un réglage pour toute la page.
+- **Mode Discret** : il masque ce que TidyDeck affiche (nom d'utilisateur, nom du PC, chemins personnels), pas les autres applications. Le nom du PC est aussi masqué dans `debug.log`.
+- **Fichiers et résidus** : protections renforcées (dossiers de sauvegardes et de données, fichiers `.bak`). Seul le premier niveau sous une zone est proposé. Rien n'est supprimé.
+- **Mise en page** : en fenêtre étroite, les textes et cases ne sont plus coupés.
 
 ### Ce qu'il fait
 
@@ -48,22 +55,22 @@ Tu choisis comment TidyDeck te parle et ce qu'il te montre. Tu peux en combiner 
 
 ### Vérifier le fichier
 
-Empreintes SHA-256 de la version 0.6.1 :
+Empreintes SHA-256 de la version 0.6.2 :
 
 | Fichier | SHA-256 |
 |---|---|
-| `TidyDeck-0.6.1-win64.zip` | `d53bd12accc0f8432fcfb9b099a5c8c1d0f1518db9a80fd22d402f67a56d41c6` |
-| `TidyDeck-0.6.1.zip` (code source) | `422ae870fe75fa116c04827a73c149405e31c7bef5cf6f252e8b8205714669b8` |
+| `TidyDeck-0.6.2-win64.zip` | `669cdf877344dc7724c133459bd054abab2df7939890a5c2da9c3b4ee4916cd0` |
+| `TidyDeck-0.6.2.zip` (code source) | `2feb56baa9bb84ae4316699ef03c3194c5df966f6d70c7eb94247e374195579e` |
 
 Sur ton PC, dans une invite de commandes :
 
 ```
-certutil -hashfile "TidyDeck-0.6.1-win64.zip" SHA256
+certutil -hashfile "TidyDeck-0.6.2-win64.zip" SHA256
 ```
 
 Si le résultat est différent, n'ouvre pas le fichier.
 
-Analyses VirusTotal du 7 novembre 2026 : [win64 : 0 / 44](https://www.virustotal.com/gui/file/d53bd12accc0f8432fcfb9b099a5c8c1d0f1518db9a80fd22d402f67a56d41c6/detection) · [source : 0 / 64](https://www.virustotal.com/gui/file/422ae870fe75fa116c04827a73c149405e31c7bef5cf6f252e8b8205714669b8/detection). Un score est une photo à un instant donné, pas une garantie : c'est pour cela que le code est ouvert. Détails sur la [page d'analyse](https://tidydeckapp.github.io/analyse-antivirus.html).
+Analyses VirusTotal du 20 novembre 2026 : [win64 : 0 / 63](https://www.virustotal.com/gui/file/669cdf877344dc7724c133459bd054abab2df7939890a5c2da9c3b4ee4916cd0/detection) · [source : 0 / 64](https://www.virustotal.com/gui/file/2feb56baa9bb84ae4316699ef03c3194c5df966f6d70c7eb94247e374195579e/detection). Un score est une photo à un instant donné, pas une garantie : c'est pour cela que le code est ouvert. Détails sur la [page d'analyse](https://tidydeckapp.github.io/analyse-antivirus.html).
 
 **Un avertissement de Windows ?** TidyDeck n'est pas encore signé numériquement. Windows (SmartScreen) peut afficher « Windows a protégé votre ordinateur ». Si tu as vérifié l'empreinte, choisis « Informations complémentaires », puis « Exécuter quand même ». Détails dans la [FAQ](https://tidydeckapp.github.io/faq.html#smartscreen).
 
@@ -92,9 +99,16 @@ TidyDeck is a free tool that shows you before taking action, tidies without dele
 
 ### Download
 
-Version **0.6.1** for Windows 10 and 11. There is nothing to install: unzip the folder anywhere and run `TidyDeck.exe`. To remove it, delete the folder.
+Version **0.6.2** for Windows 10 and 11. There is nothing to install: unzip the folder anywhere and run `TidyDeck.exe`. To remove it, delete the folder.
 
 ➡️ [Download page](https://github.com/TidyDeckApp/TidyDeckApp/releases/latest) · [Website](https://tidydeckapp.github.io/index-en.html)
+
+### What's new in 0.6.2
+
+- **Reminders**: each reminder (hydration, meals, snacks, eye break, stretching, custom slots) sets its own **Sound**, **Visual**, both, or neither. An "Apply to all reminders" link copies a setting across the page.
+- **Discreet mode** hides what TidyDeck displays (user name, PC name, personal paths), not other apps. The PC name is also masked in `debug.log`.
+- **Files and leftovers**: stronger protections (backup and data folders, `.bak` files). Only the first level under a zone is proposed. Nothing is deleted.
+- **Layout**: in narrow windows, text and checkboxes are no longer cut off.
 
 ### What it does
 
@@ -124,22 +138,22 @@ You choose how TidyDeck talks to you and what it shows. You can combine several.
 
 ### Verify the file
 
-SHA-256 hashes for version 0.6.1:
+SHA-256 hashes for version 0.6.2:
 
 | File | SHA-256 |
 |---|---|
-| `TidyDeck-0.6.1-win64.zip` | `d53bd12accc0f8432fcfb9b099a5c8c1d0f1518db9a80fd22d402f67a56d41c6` |
-| `TidyDeck-0.6.1.zip` (source code) | `422ae870fe75fa116c04827a73c149405e31c7bef5cf6f252e8b8205714669b8` |
+| `TidyDeck-0.6.2-win64.zip` | `669cdf877344dc7724c133459bd054abab2df7939890a5c2da9c3b4ee4916cd0` |
+| `TidyDeck-0.6.2.zip` (source code) | `2feb56baa9bb84ae4316699ef03c3194c5df966f6d70c7eb94247e374195579e` |
 
 On your PC, in a Command Prompt:
 
 ```
-certutil -hashfile "TidyDeck-0.6.1-win64.zip" SHA256
+certutil -hashfile "TidyDeck-0.6.2-win64.zip" SHA256
 ```
 
 If the result is different, do not open the file.
 
-VirusTotal scans of 7 November 2026: [win64: 0 / 44](https://www.virustotal.com/gui/file/d53bd12accc0f8432fcfb9b099a5c8c1d0f1518db9a80fd22d402f67a56d41c6/detection) · [source: 0 / 64](https://www.virustotal.com/gui/file/422ae870fe75fa116c04827a73c149405e31c7bef5cf6f252e8b8205714669b8/detection). A score is a snapshot in time, not a guarantee, which is why the code is open. Details on the [analysis page](https://tidydeckapp.github.io/analyse-antivirus-en.html).
+VirusTotal scans of 20 November 2026: [win64: 0 / 63](https://www.virustotal.com/gui/file/669cdf877344dc7724c133459bd054abab2df7939890a5c2da9c3b4ee4916cd0/detection) · [source: 0 / 64](https://www.virustotal.com/gui/file/2feb56baa9bb84ae4316699ef03c3194c5df966f6d70c7eb94247e374195579e/detection). A score is a snapshot in time, not a guarantee, which is why the code is open. Details on the [analysis page](https://tidydeckapp.github.io/analyse-antivirus-en.html).
 
 **A Windows warning?** TidyDeck is not digitally signed yet. Windows SmartScreen may show "Windows protected your PC". If you have checked the hash, click "More info", then "Run anyway". Details in the [FAQ](https://tidydeckapp.github.io/faq-en.html#smartscreen).
 
