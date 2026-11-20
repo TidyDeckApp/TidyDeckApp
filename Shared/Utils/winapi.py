@@ -43,9 +43,13 @@ def _fixed_drives():
 
 
 def _debug_note(msg):
-    """Ligne de debug dans %LOCALAPPDATA%\\TidyDeck\\debug.log ; jamais bloquant."""
+    """Ligne de debug dans %LOCALAPPDATA%\\TidyDeck\\debug.log ; jamais bloquant.
+    Masque le chemin du profil et le nom du PC avant ecriture (comme
+    depannage.noter : le journal ne doit jamais les porter)."""
     try:
         from Shared.Utils.common import data_dir
+        from Shared.Utils import depannage
+        msg = depannage._anonymise(str(msg))
         with open(data_dir() / "debug.log", "a", encoding="utf-8") as fh:
             fh.write(f"{datetime.datetime.now():%Y-%m-%d %H:%M:%S} {msg}\n")
     except Exception:

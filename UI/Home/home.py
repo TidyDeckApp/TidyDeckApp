@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from Shared.Utils.common import IS_WINDOWS, is_admin
+from Shared.Utils.common import is_admin
 from UI.components import ScrollFrame, auto_wrap, run_bg, Collapsible
 from UI.Pages.base import Page
 from UI import routine

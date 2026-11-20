@@ -116,10 +116,11 @@ class _Tooltip:
 class LargestView(ttk.Frame):
     """Les 20 plus gros fichiers et les 20 plus gros dossiers directs d'une zone."""
 
-    def __init__(self, master, ctx, on_close=None):
+    def __init__(self, master, ctx, on_close=None, bar=None):
         super().__init__(master, padding=0)
         self.ctx = ctx
         self.on_close_cb = on_close
+        self._bar = bar
         th = ctx.theme
         self.serene = bool(ctx.cfg.get("serenity"))
         self.adv = bool(ctx.cfg.get("advanced"))
@@ -171,11 +172,15 @@ class LargestView(ttk.Frame):
         self.up_btn = ttk.Button(top, text=T("↑ Remonter"), style="Flat.TButton", command=self.go_up)
         # Volontairement pas pack ici : le bouton n'apparaît qu'après un
         # double-clic dans un dossier (voir _update_up).
-        self.re_btn = ttk.Button(top, text=T("🔄 Relancer l'analyse"), style="Flat.TButton",
+        # Avec une page hôte (bar != None), « Relancer » et « Arrêter » vivent
+        # directement dans la rangée des boutons de la page : pas de ligne vide.
+        mb = self._bar if self._bar is not None else top
+        self.re_btn = ttk.Button(mb, text=T("🔄 Relancer l'analyse"), style="Flat.TButton",
                                  command=lambda: self.start_scan(self.zone))
-        self.re_btn.pack(side="right")
-        self.stop_btn = ttk.Button(top, text=(T("Ça suffit") if self.serene else "Arrêter"),
+        self.stop_btn = ttk.Button(mb, text=(T("Ça suffit") if self.serene else "Arrêter"),
                                   style="Flat.TButton", command=self.stop_scan)
+        if self._bar is None:
+            self.re_btn.pack(side="right")
 
         self.intro_lbl = auto_wrap(ttk.Label(self, style="Muted.TLabel", justify="left"))
         self.intro_lbl.pack(anchor="w", fill="x", pady=(6, 0))
@@ -229,10 +234,11 @@ class LargestView(ttk.Frame):
             self.opts = None
         row2 = ttk.Frame(body)
         row2.pack(anchor="w", fill="x", pady=(4, 0))
+        from UI.components import RadiOpt
         ttk.Label(row2, text=T("Nombre de lignes :"), style="Muted.TLabel").pack(side="left")
         for v in (20, 50, 100):
-            ttk.Radiobutton(row2, text=str(v), value=v, variable=self.limit,
-                            command=self._limit_changed).pack(side="left", padx=(6, 0))
+            RadiOpt(row2, text=str(v), value=v, variable=self.limit,
+                    command=self._limit_changed).pack(side="left", padx=(6, 0))
 
     def _limit_changed(self):
         self.shown = self._cap()
@@ -252,7 +258,7 @@ class LargestView(ttk.Frame):
             self.zone = [str(z) for z in zones if z]
         self.cancel.clear()
         self.busy = True
-        self.stop_btn.pack(side="right", padx=(8, 0))
+        self._show_stop()
         self.re_btn.state(["disabled"])
         self.busy_bar.pack(after=self.intro_lbl, anchor="w", pady=(6, 0))
         self.busy_bar.start(12)
@@ -264,12 +270,26 @@ class LargestView(ttk.Frame):
     def stop_scan(self):
         self.cancel.set()
 
+    def _show_stop(self):
+        """« Arrêter » pendant le scan : rangée des boutons de la page (bouton
+        droit, avant « Relancer ») ; en vue isolée (tests), pack classique."""
+        if getattr(self, "_bar", None) is not None:
+            self._bar.add(self.stop_btn, right=True, before=self.re_btn)
+        else:
+            self.stop_btn.pack(side="right", padx=(8, 0))
+
+    def _hide_stop(self):
+        if getattr(self, "_bar", None) is not None:
+            self._bar.remove(self.stop_btn)
+        else:
+            self.stop_btn.pack_forget()
+
     def _scanned(self, res, err):
         self.busy = False
         try:
             self.busy_bar.stop()
             self.busy_bar.pack_forget()
-            self.stop_btn.pack_forget()
+            self._hide_stop()
             self.re_btn.state(["!disabled"])
         except tk.TclError:
             return

@@ -1,7 +1,7 @@
 import tkinter as tk
 import webbrowser
 from tkinter import ttk, messagebox
-from Shared.Utils.common import APP_VERSION, DONATION_URL, IS_WINDOWS, is_admin, SITE_TELECHARGEMENT
+from Shared.Utils.common import APP_VERSION, DONATION_URL, is_admin, SITE_TELECHARGEMENT
 from UI.components import ScrollFrame, Collapsible, preview_dialog, run_bg
 from Services.UpdateChecker import checker
 from Shared.Utils.lang import T

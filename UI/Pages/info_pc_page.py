@@ -1,7 +1,5 @@
-import tkinter as tk
 from tkinter import ttk
 from Core.SystemInfo import hardware
-from Shared.Utils.common import IS_WINDOWS, is_admin, APP_VERSION
 from UI.components import ScrollFrame, Collapsible, disk_bar, info_note
 from UI.Pages.base import Page
 from Shared.Utils.lang import T, get_lang

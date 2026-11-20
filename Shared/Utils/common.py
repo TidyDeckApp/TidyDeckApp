@@ -7,7 +7,7 @@ from pathlib import Path
 
 IS_WINDOWS = sys.platform == "win32"
 APP_NAME = "TidyDeck"
-APP_VERSION = "0.6.1"
+APP_VERSION = "0.6.2"
 NO_WINDOW = 0x08000000  # évite les fenêtres noires de console
 
 # CANAL DE DON UNIQUE. Laisse vide = aucun don demande nulle part.

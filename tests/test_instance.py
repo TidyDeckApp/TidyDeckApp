@@ -7,10 +7,7 @@ Deux accidents reels evites ici :
   * un portable regle a 125 % qui rend TidyDeck tout flou parce que le
     processus n'a jamais declare qu'il sait lire le DPI.
 """
-import ctypes
 import os
-import shutil
-import tempfile
 import unittest
 
 from tests import ROOT  # noqa: F401

@@ -19,9 +19,8 @@ import os
 import re
 import time
 from collections import deque
-from datetime import datetime
 
-from Shared.Utils.common import human_size, IS_WINDOWS
+from Shared.Utils.common import IS_WINDOWS
 from Shared.Utils.lang import T
 
 RESIDUS_VERSION = "0.6.0"
@@ -348,7 +347,7 @@ def cles_connues(installs):
     return cles
 
 
-def appartient_a_un_logiciel(nom, installs):
+def appartient_a_un_logiciel(nom, installs, connues=None):
     """Le dossier appartient-il à un logiciel installé ? Dans le doute, OUI
     (on ne propose pas). Noms identiques, l'un contenu dans l'autre (>= 4
     caractères normalisés), ou très proche (Levenshtein <= 2).
@@ -356,7 +355,8 @@ def appartient_a_un_logiciel(nom, installs):
     cle = normalise(nom)
     if not cle:
         return True
-    connues = cles_connues(installs)
+    if connues is None:
+        connues = cles_connues(installs)
     if cle in connues:
         return True
     if len(cle) >= 4:
@@ -378,7 +378,22 @@ JOURS_QUARANTAINE_RESIDUS = 30
 
 MARQUEURS_DONNEES = ("saved", "savegames", "saves", "save", "profile", "profiles",
                      "userdata", "characters", "config", "backup")
-EXTENSIONS_DONNEES = (".sav", ".save", ".sl2", ".dat", ".db", ".sqlite")
+EXTENSIONS_DONNEES = (".sav", ".save", ".bak", ".sl2", ".dat", ".db", ".sqlite")
+
+# Sauvegardes et données personnelles : un élément dont le NOM figure ici n'est
+# jamais proposé, quelle que soit la casse (comparaison normalisée), et on ne
+# descend jamais dedans — tout ce qu'il contient est donc protégé à jamais
+# profondeur. La règle est volontairement plus large que nécessaire :
+# « Sauvegardes de Jean », « My Games Old » sont captés par simple inclusion.
+PROTEGES_RESIDUS = frozenset({
+    "save", "saves", "savegame", "savegames", "sauvegarde", "sauvegardes",
+    "backup", "backups", "my games", "profile", "profiles", "userdata",
+    "user data",
+})
+# Extensions de sauvegarde de jeu : un fichier qui se termine par l'une
+# d'elles n'est jamais proposé (il ne l'était de toute façon jamais, mais
+# c'est désormais écrit), et un dossier qui porte l'une d'elles est protégé.
+EXTENSIONS_SAUVEGARDE = (".sav", ".save", ".bak", ".sl2", ".dat")
 # Segments de chemin interdits (comparés en minuscules, segment par segment) :
 # dossiers personnels ou territoires de jeux / lanceurs connus.
 SEGMENTS_INTERDITS = ("documents", "saved games", "onedrive", "desktop", "pictures",
@@ -389,6 +404,36 @@ SEGMENTS_INTERDITS = ("documents", "saved games", "onedrive", "desktop", "pictur
 
 LIMIT_ENTREES_RESIDUS = 5000
 PROFONDEUR_MAX_RESIDUS = 4
+# Règle de profondeur (lot Sécurité, corrigé en C2) : seul le niveau
+# directement sous la zone est proposé (zone/X = niveau 1), comme en 0.6.1.
+# Tout ce qui est plus profond n'est jamais proposé, jamais coché, jamais mis
+# en quarantaine — et n'est même pas visité. La recherche de marqueurs de
+# données DANS un candidat reste bornée à PROFONDEUR_MAX_RESIDUS (4) niveaux.
+PROFONDEUR_PROPOSITION_MAX = 1
+
+_PROTEGES_NORM = frozenset(normalise(s) for s in PROTEGES_RESIDUS)
+# Noms qui arrêtent net la descente : protections + marqueurs de données.
+_MARQUEURS_NORM = _PROTEGES_NORM | frozenset(m.lower() for m in MARQUEURS_DONNEES)
+# Inclusions protectrices (>= 4 caractères normalisés) : « Mes Sauvegardes »,
+# « Game Backup X », « My Games Old » sont protégés comme les noms exacts.
+_PROTEGES_SUBSTR = frozenset(x for x in _PROTEGES_NORM if len(x) >= 4)
+
+
+def est_protege(nom):
+    """Vrai si le nom évoque une sauvegarde ou des données personnelles :
+    nom protégé exact (casse et accents neutralisés par casefold + normalise),
+    extension de sauvegarde, nom contenant un nom protégé, ou nom égal à un
+    marqueur de données (« config », « characters »…). Le doute protège :
+    cette fonction ne sert qu'à NE PAS proposer, jamais l'inverse."""
+    brut = str(nom).casefold().strip()
+    if brut.endswith(EXTENSIONS_SAUVEGARDE):
+        return True
+    k = normalise(brut)
+    if not k:
+        return False
+    if k in _MARQUEURS_NORM:
+        return True
+    return any(p in k for p in _PROTEGES_SUBSTR)
 
 
 def contient_donnees_utilisateur(chemin):
@@ -462,6 +507,23 @@ def criteres(nom, taille, age_jours, installs, jours=90):
 
 
 # -------------------------------------------------------------------__ analyse
+def _passe_gardes(nom, chemin, installs, processus, connues):
+    """Élagage commun à TOUS les niveaux de profondeur. Vrai = dossier qu'on ne
+    propose jamais et dans lequel on ne descend jamais : tout ce qu'il contient
+    est donc écarté à la même occasion. Dans le doute : vrai (on ne propose pas)."""
+    if motif_exclusion(nom) or motif_telechargement(nom):
+        return True
+    if est_protege(nom):
+        return True
+    if normalise(nom) in processus:
+        return True  # règle 4 : MOTIF_PROCESSUS
+    if est_nuage(chemin):
+        return True  # la règle nuage de TidyDeck passe avant toute autre
+    if sur_zone_interdite(chemin):
+        return True
+    return bool(appartient_a_un_logiciel(nom, installs, connues))
+
+
 def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers=400,
             budget_s=60, cancel=None, now=None):
     """Analyse complète (lecture seule). Retourne un dictionnaire :
@@ -481,6 +543,7 @@ def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers
                 "non_lus": [], "dossiers_vus": 0, "budget_s": 0, "jours": int(jours),
                 "installs_illisibles": True}
     processus = {normalise(p) for p in (processus or ())}
+    connues = cles_connues(installs)
     lignes, non_lus = [], []
     partiel, dossiers_vus = False, 0
     for racine in racines:
@@ -492,13 +555,19 @@ def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers
         except OSError:
             non_lus.append(racine)
             continue
-        for e in entrees:
+        # Profondeur (corrigé C2) : seul le niveau 1 sous la zone est proposé,
+        # comme en 0.6.1. La file reste mais ne s'agrandit jamais,
+        # PROFONDEUR_PROPOSITION_MAX valant 1 : aucune descente, les
+        # sous-dossiers ne sont même pas visités.
+        file = deque((e, 1) for e in entrees)
+        while file:
             if (cancel and cancel()) or time.time() > deadline:
                 partiel = True
                 break
+            e, profondeur = file.popleft()
             try:
                 if not e.is_dir(follow_symlinks=False) or est_lien(e.path):
-                    continue
+                    continue  # règle 3 : jamais proposé, jamais compté, jamais suivi
             except OSError:
                 non_lus.append(e.path)
                 continue
@@ -506,14 +575,8 @@ def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers
             if dossiers_vus > limite_dossiers:
                 partiel = True
                 break
-            if motif_exclusion(e.name):
+            if _passe_gardes(e.name, e.path, installs, processus, connues):
                 continue
-            if motif_telechargement(e.name):
-                continue
-            if normalise(e.name) in processus:
-                continue  # règle 4 : MOTIF_PROCESSUS
-            if est_nuage(e.path):
-                continue  # la règle nuage de TidyDeck passe avant toute autre
             try:
                 age_dir = (now - os.stat(e.path, follow_symlinks=False).st_mtime) / 86400.0
             except OSError:
@@ -537,8 +600,16 @@ def analyse(racines=None, installs=None, jours=90, processus=(), limite_dossiers
                 "age_jours": int(round(age)), "motif": motif,
                 "confiance": confiance, "preuve_install": preuve,
                 "selectable": confiance in (T("Élevée"), T("Moyenne")),
-                "selecte": False, "enfant": False,
+                "selecte": False, "enfant": False, "profondeur": profondeur,
             })
+            if profondeur < PROFONDEUR_PROPOSITION_MAX:  # MAX=1 : jamais déclenché
+                try:
+                    sous = sorted(os.scandir(e.path), key=lambda x: x.name.lower())
+                except OSError:
+                    sous = []  # sous-dossier illisible : on n'y entre pas (doute)
+                file.extend((k, profondeur + 1) for k in sous)
+        if partiel:
+            break
     lignes.sort(key=lambda r: (-r["taille"], -r["age_jours"]))
     for i, r in enumerate(lignes):
         r["id"] = i + 1

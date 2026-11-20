@@ -24,6 +24,26 @@ MESSAGES = {
 MISSED_WINDOW_S = 12 * 3600
 
 
+def notif_for(cfg, kind):
+    """Choix « Visuel / Son » propre à un rappel : visual, sound, both ou none."""
+    r = cfg.get("reminders", {})
+    if kind in INTERVAL_KINDS:
+        return r.get(kind, {}).get("notif", "visual")
+    m = r.get("meals", {})
+    if kind in ("meal_lunch", "meal_dinner"):
+        return m.get("notif", "visual")
+    if kind == "meal_snack_am":
+        return m.get("snack_am_notif", "visual")
+    if kind == "meal_snack_pm":
+        return m.get("snack_pm_notif", "visual")
+    if kind.startswith("meal_custom_"):
+        slot_id = kind[len("meal_"):]
+        for extra in m.get("extra_slots", []):
+            if isinstance(extra, dict) and extra.get("id") == slot_id:
+                return extra.get("notif", "visual")
+    return "visual"
+
+
 class Scheduler:
     def __init__(self, ctx, notify, flash):
         self.ctx, self.notify, self.flash = ctx, notify, flash
@@ -82,6 +102,7 @@ class Scheduler:
         self.ctx.cfg["rdv_at"] = ""
         self.ctx.save()
         self._rdv_active = False
+        self._rafraichir_bandeau_rappels()
 
     def _missed_rdv(self, rdv_time):
         if not self._rdv_active:
@@ -99,6 +120,21 @@ class Scheduler:
             except (TypeError, ValueError):
                 v = 0.7
             sound.chime(v)
+        self._rafraichir_bandeau_rappels()
+
+    def _rafraichir_bandeau_rappels(self):
+        """Le minuteur RDV vient de s'eteindre tout seul (alerte partie, ou RDV
+        passe/manque) : si la page Rappels est deja ouverte, son bandeau doit
+        suivre le nouvel etat. dict.get = la page n'est pas construite si elle
+        ne l'est pas encore."""
+        try:
+            page = getattr(self.ctx, "app", None)
+            page = getattr(page, "pages", {}).get("Rappels bien-être")
+            if page is not None:
+                page._refresh_banner()
+        except Exception:
+            from Shared.Utils import depannage
+            depannage.noter("Services/Reminders/scheduler.py:rdv-bandeau")
 
     @property
     def cfg(self):

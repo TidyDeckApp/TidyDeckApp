@@ -2,11 +2,9 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 from Shared.Constants.catalog import build_catalog
 from Shared.Utils.common import human_size
-from Shared.Utils import quarantine
 from Core.Health import cleaner
 from UI.components import CleanCard, run_bg, preview_dialog, score_dialog, ScrollFrame
 from UI.Pages.base import Page
-from UI import routine
 from Shared.Utils.lang import T
 
 

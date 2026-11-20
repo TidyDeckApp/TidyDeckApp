@@ -5,7 +5,7 @@ from Shared.Utils.common import IS_WINDOWS
 from Shared.Utils import config, sound
 from Shared.Utils.lang import T
 from Shared.Utils import lang
-from UI.components import ScrollFrame, info_note, VolumeBar, RadiOpt
+from UI.components import ScrollFrame, info_note, VolumeBar, RadiOpt, auto_wrap, FlowFrame
 from tkinter import filedialog
 
 
@@ -51,7 +51,11 @@ class _PrefsBase(ttk.Frame):
                        bg=bg, fg=fg, activebackground=bg, activeforeground=fg,
                        selectcolor=st.lookup("TEntry", "fieldbackground"),
                        highlightthickness=0, bd=0)
-        cb.pack(anchor="w", pady=(7, 3))
+        cb.pack(fill="x", pady=(7, 3))
+        # marge 28 : l'indicateur + le padding interne du Checkbutton consomment
+        # de la largeur que le texte n'a pas — sans cette marge, wraplength ≈
+        # largeur du texte et la ligne est coupée au bord au lieu de replier.
+        auto_wrap(cb, marge=28, maxi=820)
         self._key_widgets.setdefault(key, []).append(cb)
         return cb
 
@@ -62,7 +66,8 @@ class _PrefsBase(ttk.Frame):
                        bg=bg, fg=fg, activebackground=bg, activeforeground=fg,
                        selectcolor=st.lookup("TEntry", "fieldbackground"),
                        highlightthickness=0, bd=0)
-        cb.pack(anchor="w", padx=padx, pady=(4, 3))
+        cb.pack(fill="x", padx=padx, pady=(4, 3))
+        auto_wrap(cb, marge=28, maxi=820)
         return cb
 
     def _apply_common(self, on_apply):
@@ -101,10 +106,10 @@ class SettingsPage(_PrefsBase):
         self._radio_group(f, "Thème", "theme",
                          [("Clair", "clair"), ("Sombre", "sombre"),
                           ("Chaleureux (confort visuel)", "tdah")])
-        ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
+        auto_wrap(ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
                   text=T("Le thème choisit les couleurs. Les modes en dessous changent le comportement : "
                        "Sérénité = ton rassurant, avancé = plus de détails, daltonien = couleurs adaptées. "
-                       "« Chaleureux » : contrastes doux, couleurs chaudes, rien d'agressif pour les yeux.")).pack(anchor="w", pady=(6, 6))
+                       "« Chaleureux » : contrastes doux, couleurs chaudes, rien d'agressif pour les yeux."))).pack(fill="x", pady=(6, 6))
         self._radio_group(f, "Taille du texte", "text_size",
                          [("Normale", "normale"), ("Grande", "grande")])
         self._radio_group(f, "Langue", "lang",
@@ -160,25 +165,25 @@ class ConfigPage(_PrefsBase):
         self._radio_group(f, "Comportement de la fenêtre — quand je clique sur la croix", "close_action",
                           _close_opts, per_row=1)
         if IS_WINDOWS:
-            ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
+            auto_wrap(ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
                       text=T("La croix cache la fenêtre. Double-clique sur l'icône près de "
-                             "l'horloge (ou clic droit > Ouvrir) pour la faire revenir.")).pack(anchor="w", pady=(2, 0))
+                             "l'horloge (ou clic droit > Ouvrir) pour la faire revenir."))).pack(fill="x", pady=(2, 0))
 
         ttk.Label(f, text=T("Lancement automatique"), style="Sub.TLabel").pack(anchor="w", pady=(6, 2))
         self.auto = tk.BooleanVar(value=IS_WINDOWS and autostart.is_enabled())
         ttk.Checkbutton(f, text=T("Lancer TidyDeck avec Windows, réduit dans la barre des tâches"),
                         variable=self.auto).pack(anchor="w")
-        ttk.Label(f, style="Muted.TLabel", text=T("Ajoute une simple entrée dans les programmes de démarrage de ton compte "
-                  "(visible et annulable : onglet Démarrage, ou Journaux).")).pack(anchor="w", padx=22)
+        auto_wrap(ttk.Label(f, style="Muted.TLabel", justify="left", text=T("Ajoute une simple entrée dans les programmes de démarrage de ton compte "
+                  "(visible et annulable : onglet Démarrage, ou Journaux)."))).pack(fill="x", padx=22)
 
         ttk.Label(f, text=T("Vie privée"), style="Sub.TLabel").pack(anchor="w", pady=(6, 2))
-        self._check(f, "stream_mode", "🕶️ Mode Discret : masque ton nom d'utilisateur, le nom du PC et tes chemins "
+        self._check(f, "stream_mode", "\U0001F576 Mode Discret : masque ton nom d'utilisateur, le nom du PC et tes chemins "
                                      "personnels à l'écran. Ne masque que ce que TidyDeck affiche — pas les autres "
                                      "applications. Sortie en un clic depuis la bannière.")
         ttk.Label(f, text=T("Notifications"), style="Sub.TLabel").pack(anchor="w", pady=(6, 2))
         self._check(f, "reminder", "Rappel doux, une fois par mois au maximum, pour penser à un petit nettoyage.")
-        ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
-                  text=T("La position des pop-ups de rappel se règle sur la page Rappels.")).pack(anchor="w", pady=(0, 0))
+        auto_wrap(ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left",
+                  text=T("La position des pop-ups de rappel se règle sur la page Rappels."))).pack(fill="x", pady=(0, 0))
 
         ttk.Label(f, text=T("🎮 Pendant un jeu"), style="Sub.TLabel").pack(anchor="w", pady=(6, 2))
         self.dnd_var = tk.BooleanVar(value=bool(ctx.cfg["reminders"].get("dnd_enabled", False)))
@@ -191,20 +196,22 @@ class ConfigPage(_PrefsBase):
         self._dnd_slot = ttk.Frame(f)
         self._dnd_slot.pack(anchor="w", fill="x")
         self._dnd_box = ttk.Frame(self._dnd_slot)
-        dnd_row = ttk.Frame(self._dnd_box)
-        dnd_row.pack(anchor="w", padx=24, pady=(2, 0))
-        ttk.Label(dnd_row, text=T("Pendant un jeu :"), style="Muted.TLabel").pack(side="left", padx=(0, 8))
+        # FlowFrame : si la place manque, « Détecter le jeu / plein écran
+        # automatiquement » passe à la ligne au lieu d'être coupé à droite.
+        dnd_row = FlowFrame(self._dnd_box)
+        dnd_row.pack(anchor="w", fill="x", padx=24, pady=(2, 0))
+        dnd_row.add(ttk.Label(dnd_row, text=T("Pendant un jeu :"), style="Muted.TLabel"))
         self.defer_var = tk.StringVar(value=ctx.cfg["reminders"]["defer"])
-        ttk.Radiobutton(dnd_row, text=T("Attendre la fin, puis me rappeler"),
-                        value="wait", variable=self.defer_var).pack(side="left", padx=(0, 14))
-        ttk.Radiobutton(dnd_row, text=T("Rien afficher, juste faire clignoter TidyDeck"),
-                        value="flash", variable=self.defer_var).pack(side="left")
+        dnd_row.add(RadiOpt(dnd_row, text=T("Attendre la fin, puis me rappeler"),
+                            value="wait", variable=self.defer_var))
+        dnd_row.add(RadiOpt(dnd_row, text=T("Rien afficher, juste faire clignoter TidyDeck"),
+                            value="flash", variable=self.defer_var))
         self.auto_detect_var = tk.BooleanVar(value=bool(ctx.cfg["reminders"].get("auto_detect", False)))
-        ttk.Checkbutton(dnd_row, text=T("Détecter le jeu / plein écran automatiquement"),
-                        variable=self.auto_detect_var).pack(side="left", padx=(16, 0))
-        ttk.Label(self._dnd_box, style="Muted.TLabel", wraplength=900, justify="left",
+        dnd_row.add(ttk.Checkbutton(dnd_row, text=T("Détecter le jeu / plein écran automatiquement"),
+                                    variable=self.auto_detect_var))
+        auto_wrap(ttk.Label(self._dnd_box, style="Muted.TLabel", wraplength=900, justify="left",
                   text=T("Sans détection auto, seul le Mode Jeu (page Jeu) compte ; un plein écran exclusif "
-                       "peut masquer le clignotement.")).pack(anchor="w", padx=24, pady=(2, 0))
+                       "peut masquer le clignotement."))).pack(fill="x", padx=24, pady=(2, 0))
         self.dnd_var.trace_add("write", lambda *a: self._dnd_state())
         self._dnd_state()
 
@@ -215,15 +222,18 @@ class ConfigPage(_PrefsBase):
         ttk.Button(snd_row, text=T("🔊 Tester le son"), command=self._test_sound).pack(side="left")
         ttk.Button(snd_row, text=T("🎵 Choisir un son perso…"), command=self._pick_sound).pack(side="left", padx=8)
         vol_row = ttk.Frame(f)
-        vol_row.pack(anchor="w", padx=24, pady=(4, 0))
+        vol_row.pack(fill="x", padx=24, pady=(4, 0))
         ttk.Label(vol_row, text=T("Volume du carillon :")).pack(side="left")
         self.vol_var = tk.IntVar(value=int(ctx.cfg.get("sound_volume", 70)))
         VolumeBar(vol_row, ctx.theme, self.vol_var, ctx.theme["volume"],
                   on_release=self._vol_saved).pack(side="left", padx=(10, 0))
-        ttk.Label(vol_row, style="Muted.TLabel",
-                  text=T("0 = aucun son · lâche le curseur pour entendre le résultat")).pack(side="left", padx=(12, 0))
-        self.sound_lbl = ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left")
-        self.sound_lbl.pack(anchor="w", padx=24, pady=(2, 0))
+        # Note sur sa propre ligne (lot D) : collée à droite du curseur elle
+        # s'écrasait en colonne illisible en fenêtre étroite ; ici elle prend la
+        # largeur de la page, comme les autres explications.
+        auto_wrap(ttk.Label(f, style="Muted.TLabel", justify="left",
+                  text=T("0 = aucun son · lâche le curseur pour entendre le résultat"))).pack(fill="x", padx=24)
+        self.sound_lbl = auto_wrap(ttk.Label(f, style="Muted.TLabel", wraplength=900, justify="left"), maxi=900)
+        self.sound_lbl.pack(fill="x", padx=24, pady=(2, 0))
         self._refresh_sound_lbl()
 
         ttk.Label(f, style="Muted.TLabel", justify="left",

@@ -27,15 +27,65 @@ def info_note(parent, theme, info_color, text, wraplength=900, bold=False, bg=No
     bg = bg or theme["bg"]
     fr = tk.Frame(parent, bg=bg)
     info_badge(fr, info_color, bg).pack(side="left", anchor="n", padx=(0, 8))
-    tk.Label(fr, text=text, bg=bg, fg=theme["fg"], wraplength=wraplength, justify="left",
-             font=("Segoe UI", 10, "bold") if bold else ("Segoe UI", 10)).pack(side="left", fill="x", expand=True)
+    lbl = tk.Label(fr, text=text, bg=bg, fg=theme["fg"], wraplength=wraplength, justify="left",
+                   font=("Segoe UI", 10, "bold") if bold else ("Segoe UI", 10))
+    lbl.pack(side="left", fill="x", expand=True)
+    auto_wrap(lbl, maxi=wraplength)
     return fr
 
 
-def auto_wrap(label):
+def auto_wrap(label, marge=4, delai=120, maxi=None):
+    """Le texte se replie selon la largeur réelle du widget (lié au panneau).
+
+    maxi : plafond de wraplength — la mise en page d'origine (grande fenêtre)
+    reste identique ; sous cette largeur, le texte suit le bord droit.
+    delai : recalcul tamponné (les salves de <Configure> d'un redimensionnement
+    ne déclenchent qu'une mesure, pas de scintillement). Le premier placement
+    est appliqué immédiatement : la page est correcte dès l'affichage.
+    """
+    etat = {"apres": None, "largeur": None, "premier": True}
+
+    def _calculer():
+        w = etat["largeur"] - marge
+        if maxi:
+            w = min(w, maxi)
+        return max(int(w), 40)
+
+    def _appliquer():
+        etat["apres"] = None
+        try:
+            if etat["largeur"] is not None and label.winfo_exists():
+                label.configure(wraplength=_calculer())
+        except tk.TclError:
+            pass
+
     def _w(e):
-        label.configure(wraplength=max(e.width - 4, 40))
+        etat["largeur"] = e.width
+        if etat["premier"]:
+            etat["premier"] = False
+            try:
+                if label.winfo_exists():
+                    label.configure(wraplength=_calculer())
+            except tk.TclError:
+                pass
+            return
+        if etat["apres"] is None:
+            try:
+                etat["apres"] = label.after(delai, _appliquer)
+            except tk.TclError:
+                pass
+
+    def _out(e):
+        if e.widget is not label:
+            return
+        if etat["apres"] is not None:
+            try:
+                label.after_cancel(etat["apres"])
+            except ValueError:
+                pass
+            etat["apres"] = None
     label.bind("<Configure>", _w)
+    label.bind("<Destroy>", _out, add="+")
     return label
 
 
@@ -138,8 +188,29 @@ class FlowFrame(ttk.Frame):
         self._kids, self._h = [], 1
         self.bind("<Configure>", self._relayout)
 
-    def add(self, w):
-        self._kids.append(w)
+    def add(self, w, right=False, before=None):
+        """right=True : le widget se cale tout à droite de la dernière rangée
+        (nouvelle rangée à droite s'il n'y a pas de place — jamais de débordement).
+        before=autre_widget : l'insère juste avant lui dans le groupe de droite."""
+        for k in self._kids:
+            if k[0] is w:
+                return
+        entree = (w, bool(right))
+        if before is not None:
+            for i, k in enumerate(self._kids):
+                if k[0] is before:
+                    self._kids.insert(i, entree)
+                    self.after_idle(self._relayout)
+                    return
+        self._kids.append(entree)
+        self.after_idle(self._relayout)
+
+    def remove(self, w):
+        self._kids = [k for k in self._kids if k[0] is not w]
+        try:
+            w.place_forget()
+        except tk.TclError:
+            pass
         self.after_idle(self._relayout)
 
     def _relayout(self, _e=None):
@@ -147,14 +218,34 @@ class FlowFrame(ttk.Frame):
         if width <= 1:
             width = 1000
         x = y = rowh = 0
-        for w in self._kids:
+        for w, droit in self._kids:
+            if droit:
+                continue
             ww, wh = w.winfo_reqwidth(), w.winfo_reqheight()
             if x + ww > width and x > 0:
                 x, y, rowh = 0, y + rowh + 6, 0
             w.place(x=x, y=y)
             x += ww + 8
             rowh = max(rowh, wh)
-        h = y + rowh
+        bas = y + rowh
+        droits = [w for w, d in self._kids if d]
+        if droits:
+            try:
+                largeur_groupe = sum(w.winfo_reqwidth() for w in droits) + 8 * (len(droits) - 1)
+                hauteur_groupe = max(w.winfo_reqheight() for w in droits)
+            except tk.TclError:
+                droits = []
+        if droits:
+            if x + largeur_groupe <= width:
+                yg = y
+            else:
+                yg = bas + 6
+                bas = yg + hauteur_groupe
+            xg = max(width - largeur_groupe, 0)
+            for w in droits:
+                w.place(x=xg, y=yg)
+                xg += w.winfo_reqwidth() + 8
+        h = bas
         if h != self._h and h > 0:
             self._h = h
             self.configure(height=h)

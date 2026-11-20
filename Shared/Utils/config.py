@@ -14,13 +14,15 @@ DEFAULTS = {"first_run": True, "theme": "clair", "text_size": "normale",
             "sound_volume": 70,
             "rdv_volume": 70,
             "toast_position": "bottom-right",
-            "reminders": {"hydration": {"on": False, "every": 60},
+            "reminders": {"hydration": {"on": False, "every": 60, "notif": "visual"},
                           "meals": {"on": False, "lunch": "12:30", "dinner": "19:30",
                                      "snack_am_on": False, "snack_am": "10:30",
                                      "snack_pm_on": False, "snack_pm": "16:00",
+                                     "notif": "visual", "snack_am_notif": "visual",
+                                     "snack_pm_notif": "visual",
                                      "extra_slots": []},
-                          "eyes": {"on": False, "every": 20},
-                          "stretch": {"on": False, "every": 90},
+                          "eyes": {"on": False, "every": 20, "notif": "visual"},
+                          "stretch": {"on": False, "every": 90, "notif": "visual"},
                           "defer": "wait", "auto_detect": False, "dnd_enabled": False, "sound": False}}
 
 
@@ -32,6 +34,27 @@ def migrate(cfg):
     return cfg
 
 
+def _mig_notif(cfg):
+    """Ancienne version : un seul carillon global pour tous les rappels.
+    Quand il était activé, chaque rappel devient « visuel + son » ; sinon le
+    défaut « visuel » des nouvelles clés suffit. À appeler AVANT la fusion des
+    valeurs par défaut (sinon les clés notif existent déjà partout)."""
+    r = cfg.get("reminders")
+    if not isinstance(r, dict) or not r.get("sound"):
+        return cfg
+    for k in ("hydration", "meals", "eyes", "stretch"):
+        if isinstance(r.get(k), dict) and "notif" not in r[k]:
+            r[k]["notif"] = "both"
+    m = r.get("meals")
+    if isinstance(m, dict):
+        for k in ("snack_am_notif", "snack_pm_notif"):
+            m.setdefault(k, "both")
+    for extra in (m or {}).get("extra_slots", []):
+        if isinstance(extra, dict):
+            extra.setdefault("notif", "both")
+    return cfg
+
+
 def load():
     cfg = copy.deepcopy(DEFAULTS)
     try:
@@ -39,6 +62,7 @@ def load():
     except Exception:
         from Shared.Utils import depannage
         depannage.noter("Shared/Utils/config.py:39")
+    _mig_notif(cfg)
     for k, v in DEFAULTS["reminders"].items():          # nouvelles clés ajoutées après coup
         if isinstance(v, dict):
             cfg["reminders"].setdefault(k, {})

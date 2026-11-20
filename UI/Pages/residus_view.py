@@ -24,10 +24,11 @@ DUREES = (30, 90, 180)
 class ResidusView(ttk.Frame):
     """Résidus probables d'applications désinstallées (lecture seule)."""
 
-    def __init__(self, master, ctx, on_close=None, loader=None):
+    def __init__(self, master, ctx, on_close=None, loader=None, bar=None):
         super().__init__(master, padding=0)
         self.ctx = ctx
         self.on_close_cb = on_close
+        self._bar = bar
         self.charger = loader or self._charger
         self.cancel = threading.Event()
         self.busy = False
@@ -43,10 +44,14 @@ class ResidusView(ttk.Frame):
         top = ttk.Frame(self)
         top.pack(fill="x")
         # Pas de bouton « Retour » : on change d'onglet avec les boutons du haut.
-        self.re_btn = ttk.Button(top, text=T("🔄 Relancer la recherche"), style="Flat.TButton",
+        # Avec une page hôte (bar != None), « Relancer » et « Arrêter » vivent
+        # directement dans la rangée des boutons de la page : pas de ligne vide.
+        mb = self._bar if self._bar is not None else top
+        self.re_btn = ttk.Button(mb, text=T("🔄 Relancer la recherche"), style="Flat.TButton",
                                  command=self.start)
-        self.re_btn.pack(side="right")
-        self.stop_btn = ttk.Button(top, text=T("Arrêter"), style="Flat.TButton", command=self.cancel.set)
+        self.stop_btn = ttk.Button(mb, text=T("Arrêter"), style="Flat.TButton", command=self.cancel.set)
+        if self._bar is None:
+            self.re_btn.pack(side="right")
 
         self.intro_lbl = auto_wrap(ttk.Label(self, style="Muted.TLabel", justify="left"))
         self.intro_lbl.pack(anchor="w", fill="x", pady=(4, 0))
@@ -57,10 +62,11 @@ class ResidusView(ttk.Frame):
 
         opts = ttk.Frame(self)
         opts.pack(anchor="w", fill="x", pady=(2, 0))
+        from UI.components import RadiOpt
         ttk.Label(opts, text=T("Dossiers sans activité depuis :"), style="Muted.TLabel").pack(side="left")
         for v in DUREES:
-            ttk.Radiobutton(opts, text=T("{v0} jours").format(v0=v), value=v, variable=self.jours,
-                            command=self.start).pack(side="left", padx=(6, 0))
+            RadiOpt(opts, text=T("{v0} jours").format(v0=v), value=v, variable=self.jours,
+                    command=self.start).pack(side="left", padx=(6, 0))
 
         # Même design que « Fichiers oubliés » : tableau + panneau de détail.
         self.list = Checklist(self, self.ctx, (T("Dossier"), T("Taille · Confiance")),
@@ -110,7 +116,7 @@ class ResidusView(ttk.Frame):
             return
         self.busy = True
         self.cancel.clear()
-        self.stop_btn.pack(side="right", padx=(8, 0))
+        self._show_stop()
         self.re_btn.state(["disabled"])
         self.busy_bar.pack(after=self.intro_lbl, anchor="w", pady=(6, 0))
         self.busy_bar.start(12)
@@ -122,7 +128,7 @@ class ResidusView(ttk.Frame):
         try:
             self.busy_bar.stop()
             self.busy_bar.pack_forget()
-            self.stop_btn.pack_forget()
+            self._hide_stop()
             self.re_btn.state(["!disabled"])
         except tk.TclError:
             return
@@ -137,6 +143,20 @@ class ResidusView(ttk.Frame):
         self.cancel.set()
         if self.on_close_cb:
             self.on_close_cb()
+
+    def _show_stop(self):
+        """« Arrêter » pendant la recherche : rangée des boutons de la page
+        (à droite, avant « Relancer ») ; en vue isolée, pack classique."""
+        if getattr(self, "_bar", None) is not None:
+            self._bar.add(self.stop_btn, right=True, before=self.re_btn)
+        else:
+            self.stop_btn.pack(side="right", padx=(8, 0))
+
+    def _hide_stop(self):
+        if getattr(self, "_bar", None) is not None:
+            self._bar.remove(self.stop_btn)
+        else:
+            self.stop_btn.pack_forget()
 
     # ---------------------------------------------------------------- render
     def _render(self):

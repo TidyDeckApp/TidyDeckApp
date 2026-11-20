@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 from Core.Health import services
 from Shared.Utils.common import IS_WINDOWS, is_admin
 from UI.components import Checklist, RadiOpt, preview_dialog

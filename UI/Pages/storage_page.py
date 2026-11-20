@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import messagebox
 from Core.Storage import storage
 from Shared.Utils import cloud
-from Shared.Utils.common import human_size, run_cmd
+from Shared.Utils.common import human_size
 from UI.components import Checklist, run_bg, preview_dialog
 from UI.Pages.base import Page
 from Shared.Utils.lang import T
@@ -154,6 +154,21 @@ class StoragePage(Page):
         self._show_rows(rows, "dupes", T("{v0} de plus de 100 Mo, soit {v1}. Coche ceux dont tu n'as plus besoin.").format(v0=_p(len(rows), T('clip'), T('clips')), v1=human_size(total))
                         if rows else T("Aucun gros clip trouvé dans Vidéos. 🎬"))
 
+    def _vue_barre_installe(self, v):
+        """« Relancer » (et « Arrêter » pendant le scan) vivent dans la rangée
+        des boutons de la page, calés à droite : plus de ligne vide sous la
+        barre. La vue isolée (tests) garde son pack d'origine."""
+        try:
+            self.bar.add(v.re_btn, right=True)
+        except tk.TclError:
+            pass
+
+    def _vue_barre_retire(self, v):
+        for nom in ("stop_btn", "re_btn"):
+            b = getattr(v, nom, None)
+            if b is not None:
+                self.bar.remove(b)
+
     def _fermer_vues(self):
         """Ferme les vues plein-page (plus gros, résidus) et rend la liste.
         Une seule vue à la fois : cliquer sur un bouton du dessus bascule
@@ -167,6 +182,7 @@ class StoragePage(Page):
             except Exception:
                 from Shared.Utils import depannage
                 depannage.noter("UI/Pages/storage_page.py:165")
+            self._vue_barre_retire(v)
             try:
                 v.destroy()
             except tk.TclError:
@@ -193,8 +209,9 @@ class StoragePage(Page):
         self.say("")
         self.list.pack_forget()
         from UI.Pages.largest_view import LargestView
-        self.largest = LargestView(self, self.ctx, on_close=self.hide_largest)
+        self.largest = LargestView(self, self.ctx, on_close=self.hide_largest, bar=self.bar)
         self.largest.pack(fill="both", expand=True)
+        self._vue_barre_installe(self.largest)
 
     def hide_largest(self):
         cur = getattr(self, "largest", None)
@@ -204,6 +221,7 @@ class StoragePage(Page):
             except Exception:
                 from Shared.Utils import depannage
                 depannage.noter("UI/Pages/storage_page.py:201")
+            self._vue_barre_retire(cur)
             cur.destroy()
         self.largest = None
         self.list.pack(fill="both", expand=True)
@@ -222,8 +240,9 @@ class StoragePage(Page):
         self.say("")
         self.list.pack_forget()
         from UI.Pages.residus_view import ResidusView
-        self.residus = ResidusView(self, self.ctx, on_close=self.hide_residus)
+        self.residus = ResidusView(self, self.ctx, on_close=self.hide_residus, bar=self.bar)
         self.residus.pack(fill="both", expand=True)
+        self._vue_barre_installe(self.residus)
 
     def hide_residus(self):
         cur = getattr(self, "residus", None)
@@ -233,6 +252,7 @@ class StoragePage(Page):
             except Exception:
                 from Shared.Utils import depannage
                 depannage.noter("UI/Pages/storage_page.py:229")
+            self._vue_barre_retire(cur)
             cur.destroy()
         self.residus = None
         self.list.pack(fill="both", expand=True)

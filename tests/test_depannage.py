@@ -1,5 +1,6 @@
 import ast
 import os
+import platform
 import tempfile
 import unittest
 
@@ -92,6 +93,19 @@ class AnonymisationTest(unittest.TestCase):
             self.assertNotIn(self.maison, journal)
             self.assertNotIn(self.maison.replace("\\", "\\\\"), journal)
 
+    def test_anonymisation_nom_du_pc(self):
+        machine = os.environ.get("COMPUTERNAME") or platform.node()
+        if not machine or len(machine) < 4:
+            self.skipTest("nom de machine absent ou trop court")
+        with tempfile.TemporaryDirectory() as d:
+            os.environ["LOCALAPPDATA"] = d
+            exc = OSError("lecture impossible sur \\\\" + machine + "\\partage\\note.txt")
+            depannage.noter("reseau", exc)
+            journal = self._journal(d)
+            self.assertIn("%COMPUTERNAME%", journal)
+            self.assertIn("note.txt", journal)
+            self.assertNotIn(machine.lower(), journal.lower())
+
 
 class CablageSilencieuxTest(unittest.TestCase):
     def test_sites_muets_cables(self):
@@ -115,6 +129,37 @@ class CablageSilencieuxTest(unittest.TestCase):
                                                     and n.type.id == "Exception")):
                         restes.append(rel + ":" + str(n.lineno))
         self.assertEqual([], restes)
+
+
+class DebugNoteWinapiTest(unittest.TestCase):
+    """winapi._debug_note doit masquer profil et nom du PC avant écriture
+    dans debug.log, comme le fait déjà depannage.noter."""
+
+    def setUp(self):
+        self._ancien = os.environ.get("LOCALAPPDATA")
+
+    def tearDown(self):
+        if self._ancien is None:
+            os.environ.pop("LOCALAPPDATA", None)
+        else:
+            os.environ["LOCALAPPDATA"] = self._ancien
+
+    def test_debug_note_anonymise_profil_et_machine(self):
+        from Shared.Utils import winapi
+        maison = os.path.expanduser("~")
+        machine = os.environ.get("COMPUTERNAME") or platform.node()
+        if len(maison) < 4 or not machine or len(machine) < 4:
+            self.skipTest("profil ou nom de machine trop courts")
+        with tempfile.TemporaryDirectory() as d:
+            os.environ["LOCALAPPDATA"] = d
+            winapi._debug_note("sonde %s et \\\\%s\\partage" % (maison, machine))
+            with open(os.path.join(d, "TidyDeck", "debug.log"), encoding="utf-8") as fh:
+                journal = fh.read()
+            self.assertIn("%USERPROFILE%", journal)
+            self.assertIn("%COMPUTERNAME%", journal)
+            self.assertIn("sonde", journal)
+            self.assertNotIn(maison, journal)
+            self.assertNotIn(machine.lower(), journal.lower())
 
 
 if __name__ == "__main__":

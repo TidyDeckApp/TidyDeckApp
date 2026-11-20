@@ -1,7 +1,6 @@
 """Petite bulle de rappel : en bas à droite, sans voler le focus clavier, se ferme toute seule."""
 import tkinter as tk
 from tkinter import ttk
-from Shared.Utils import sound
 from Shared.Utils.lang import T
 
 
@@ -43,8 +42,8 @@ def show_toast(ctx, title, text, countdown=0, on_snooze=None, auto_close=30):
     else:
         x, y = sw - w - 24, sh - h - 80
     win.geometry(f"+{x}+{y}")
-    if ctx.cfg["reminders"].get("sound", True):
-        sound.chime()
+    # Le son n'est plus décidé ici : chaque rappel porte son propre choix
+    # « Visuel / Son », appliqué par App.show_reminder avant d'afficher la bulle.
 
     def tick(n):
         if not win.winfo_exists():

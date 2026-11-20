@@ -1,4 +1,3 @@
-import tkinter as tk
 from tkinter import ttk
 from UI.components import ScrollFrame
 from UI.Pages.base import Page

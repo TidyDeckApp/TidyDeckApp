@@ -5,7 +5,6 @@ import re
 import sys
 from Shared.Utils import registry
 from Services.Logger.journal import register_undo
-from Shared.Utils.lang import T
 
 RUN = r"Software\Microsoft\Windows\CurrentVersion\Run"
 NAME = "TidyDeck"

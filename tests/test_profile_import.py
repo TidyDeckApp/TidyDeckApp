@@ -2,7 +2,7 @@
 import unittest
 
 from tests import ROOT  # noqa: F401
-from UI.Profile.profile import sanitize, _valid_tweaks, BOOL_KEYS, CHOICES, RANGES
+from UI.Profile.profile import sanitize, _valid_tweaks, BOOL_KEYS, CHOICES
 
 
 class SanitizeTest(unittest.TestCase):

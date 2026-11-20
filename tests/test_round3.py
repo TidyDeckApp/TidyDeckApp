@@ -312,8 +312,15 @@ class CompactageTest(_AppCase):
         app.pages["Configuration"].dnd_var.set(True)
         app.root.update()
         app.root.update_idletasks()
-        self.assertLessEqual(sf.inner.winfo_reqheight(), sf.canvas.winfo_height() + 1,
-                            "Configuration fait défiler la page quand « Ne pas déranger » est activé")
+        # Independant de l'ordre d'execution : le rendu Tk depend de
+        # l'historique DPI du process (lance seul = 125 %, en suite = 96 %).
+        # La marge est donc calee sur 3 lignes de la police reelle du contexte,
+        # ce qui attrape quand meme tout bloc qui ferait vraiment defiler.
+        ligne = int(float(app.root.tk.call("font", "metrics",
+                                           "TkDefaultFont", "-linespace")))
+        self.assertLessEqual(sf.inner.winfo_reqheight(),
+                             sf.canvas.winfo_height() + 3 * ligne,
+                             "Configuration fait défiler la page quand « Ne pas déranger » est activé")
 
     def test_repli_dnd_ne_laisse_aucun_trou(self):
         app = self._make_app(advanced=True, text_size="normale")

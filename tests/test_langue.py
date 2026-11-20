@@ -1,5 +1,4 @@
 """Langue FR/EN : dictionnaire sain, T passe-partout, persistance, sélecteur."""
-import json
 import os
 import re
 import shutil

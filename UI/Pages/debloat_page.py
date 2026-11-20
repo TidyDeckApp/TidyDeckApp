@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
 from Core.Debloat import debloat
-from Shared.Utils.common import IS_WINDOWS, is_admin
+from Shared.Utils.common import IS_WINDOWS
 from UI.components import Checklist, FlowFrame, preview_dialog, info_note, auto_wrap
 from Core.Tweaks import tweaks
 from UI.restore_flow import with_restore_point

@@ -103,6 +103,8 @@ def apply(root, cfg):
     s.configure("Title.TLabel", font=("Segoe UI", int(size * 1.7), "bold"))
     s.configure("Sub.TLabel", font=("Segoe UI", int(size * 1.2), "bold"))
     s.configure("Muted.TLabel", foreground=p["muted"])
+    # Petit lien discret (ex. « Appliquer à tous les rappels ») : couleur d'accent, sans cadre.
+    s.configure("Link.TLabel", foreground=p["accent"])
     s.configure("TButton", padding=(12, 7), background=p["card"], foreground=p["fg"], borderwidth=1,
                 focuscolor=p["accent"], lightcolor=p["line"], darkcolor=p["line"],
                 activebackground=p["line"], activeforeground=p["fg"])

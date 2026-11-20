@@ -4,26 +4,40 @@
 
 | | Source | Exécutable Windows |
 |---|---|---|
-| Fichier | `TidyDeck-0.6.1.zip` | `TidyDeck-0.6.1-win64.zip` |
+| Fichier | `TidyDeck-0.6.2.zip` | `TidyDeck-0.6.2-win64.zip` |
 | Contenu | dossier unique `TidyDeck/` (source Python, aucun binaire, aucun `__pycache__`) | `TidyDeck/TidyDeck.exe` + `TidyDeck/_internal/` (Python 3.12 + Tcl/Tk embarqués) |
 | Prérequis | Python **3.10+** sur Windows · **aucune dépendance pip** | **Rien à installer** · Windows 10 ou 11 64 bits · pas de droit administrateur au démarrage |
 | Lancement | `python main.py` | double-clic sur `TidyDeck.exe` |
-| Empreinte | **`TidyDeck-0.6.1.zip.sha256`** (à côté du zip) | **`TidyDeck-0.6.1-win64.zip.sha256`** |
+| Empreinte | **`TidyDeck-0.6.2.zip.sha256`** (à côté du zip) | **`TidyDeck-0.6.2-win64.zip.sha256`** |
 
 L'empreinte **ne peut pas** être écrite dans un fichier contenu dans l'archive qu'elle
 authentifie (elle changerait en l'écrivant). Elle est publiée **à côté** de chaque zip,
-jamais à l'intérieur, et le nom du livrable porte la version (`0.6.1`) et non un petit
+jamais à l'intérieur, et le nom du livrable porte la version (`0.6.2`) et non un petit
 nom de dossier.
 
 Vérifier après téléchargement :
 
 ```bat
-certutil -hashfile TidyDeck-0.6.1.zip SHA256
-certutil -hashfile TidyDeck-0.6.1-win64.zip SHA256
+certutil -hashfile TidyDeck-0.6.2.zip SHA256
+certutil -hashfile TidyDeck-0.6.2-win64.zip SHA256
 ```
 
 Publier l'empreinte **avec** le téléchargement. **Un fichier dont le SHA-256 ne
 correspond pas ne doit pas être exécuté.**
+
+Format d'un fichier `.sha256` publié (tel que livré en 0.6.1) : le hash hexadécimal en
+minuscules, **seul sur la ligne**, terminateur Windows `\r\n`, sans nom de fichier ni
+chemin. C'est le hash brut de `certutil -hashfile <fichier> SHA256` (dont on retire les
+lignes de titre). Le format alternatif `hash␣␣nom-du-fichier` (deux espaces, compatible
+`sha256sum --check`) n'est **pas** celui utilisé ici — à ne pas confondre.
+
+Archivage de la source : le zip contient un dossier unique `TidyDeck/` construit en
+excluant **uniquement** les dossiers `.git/`, `.ruff_cache/` et `__pycache__/`, plus le
+fichier `debug.log` (artefact d'exécution local, jamais livré). Le fichier `.gitignore`
+**reste dans le zip** : il fait partie de la source livrée, lui retirer serait une erreur.
+
+Synchro du dépôt avec robocopy /MIR : ajouter /XF .gitignore README.md pour ne pas les
+supprimer.
 
 Les tailles ne sont pas recopiées ici : elles bougent à chaque build, la valeur exacte
 est celle du fichier livré avec son empreinte.
@@ -72,28 +86,6 @@ l'usage ; un harcèlement de don casse la promesse du logiciel.
 
 ### Ce qui a été vérifié (31 octobre 2026)
 
-- **Un dépôt homonyme existe bel et bien** : `github.com/wenhuiwu/tidydeck`, décrit comme
-  « *Electron desktop cleaner for AI skills, Maven caches, and node_modules* »
-  (TypeScript, licence MIT, créé le 12 août 2026, 0 étoile, aucune release). Vérifié via
-  l'API GitHub le 31/10/2026. **L'ancienne mention « aucun logiciel nommé TidyDeck trouvé
-  était donc fausse** — elle est corrigée ici.
-  Distance avec notre produit : même nom, autre public (caches de développement, pile
-  Electron), aucune notoriété, aucune marque identifiée. Le risque de confusion reste
-  faible mais il n'est plus nul : ce sont deux logiciels de nettoyage, donc potentiellement
-  les mêmes classes 9 et 42.
-- **Domaines (RDAP, protocoles publics des registres, 31/10/2026)** :
-
-  | Domaine | État RDAP | Détail |
-  |---|---|---|
-  | `tidydeck.com` | **pris** | GoDaddy, enregistré le 20/01/2009, expire le 20/01/2027, verrouillé (ni suppression, ni transfert, ni modification) |
-  | `tidydeck.fr` | **libre** | 404 dans le registre |
-  | `tidydeck.io` | **libre** | 404 dans le registre |
-  | `tidydeck.app` | **libre** | 404 dans le registre |
-  | **`tidydeckapp.app`** | **libre** | 404 dans le registre — **domaine choisi** |
-
-  Observation DNS annexe : `tidydeck.net` et `tidydeck.org` résolvent vers les mêmes
-  hôtes Wix que `tidydeck.com` (185.230.63.107 / .171 / .186) ; leur état au registre
-  n'a pas été interrogé.
 - **Registres de marques : INACCESSIBLES depuis cet environnement, le 31/10/2026.**
   Les tentatives ont été faites et ont échoué pour des raisons techniques, pas par oubli :
 
@@ -117,24 +109,12 @@ l'usage ; un harcèlement de don casse la promesse du logiciel.
 | Europe | `euipo.europa.eu` · **TMview** `tmdn.org/tmview` | idem, classes 9 et 42 |
 | USA | `tmsearch.uspto.gov` | « TidyDeck » / « TIDY DECK », classes 9 et 42 |
 | Microsoft Store | Partner Center → ajout d'app | disponibilité du nom d'affichage |
-| Domaine | registrar | réserver `tidydeckapp.app` tant qu'il est libre (l'état ci-dessus date, il ne vaut pas réservation) |
 
 ### Risque analysé
 
-Le titulaire de `tidydeck.com` opère dans le **nettoyage de surfaces extérieures**
-(classe 37), pas dans les logiciels : en droit français comme en droit de l'UE, le
-conflit suppose un **risque de confusion dans l'esprit du public** pour des produits ou
-services identiques ou similaires, et sur des classes distinctes sans notoriété établie le
-risque direct est **faible**.
-
-Le dépôt `wenhuiwu/tidydeck`, lui, est **dans la même classe d'usage** (nettoyeur de
-fichiers pour développeurs). Son ancienneté (août 2026), sa licence MIT et son absence
-totale de notoriété le rendent peu dangereux en pratique, mais c'est le point à regarder
-en premier dans la recherche de marques.
-
 **Recommandation** : avant de diffuser publiquement, faire la recherche INPI/TMview dans
 un navigateur ; si les classes 9 et 42 sont libres, déposer la marque verbale
-« TidyDeck » en 9 et 42, et réserver `tidydeckapp.app`. Ne pas se présenter comme
+« TidyDeck » en 9 et 42. Ne pas se présenter comme
 « officiel » sans cette étape.
 
 ## 5. Conditions d'utilisation
@@ -208,13 +188,13 @@ La recette de build est **livrée avec le code** : `packaging\TidyDeck.spec` con
 py -3.12 -m venv build_env
 build_env\Scripts\python -m pip install --upgrade pip pyinstaller
 build_env\Scripts\pyinstaller --noconfirm --clean ^
-  "TidyDeck_v2\TidyDeck\packaging\TidyDeck.spec" --distpath dist --workpath work
+  "packaging\TidyDeck.spec" --distpath dist --workpath work
 ```
 
 Résultat : `dist\TidyDeck\TidyDeck.exe` + `dist\TidyDeck\_internal\` (dont
 `_internal\vendor\qrcode`, licence comprise). La spec pose `console=False` : pas de
 console noire derrière l'interface. Le dossier `dist\TidyDeck` est ensuite compressé en
-`TidyDeck-0.6.1-win64.zip`.
+`TidyDeck-0.6.2-win64.zip`.
 
 **UPX est désactivé (`upx=False`, dans `EXE` comme dans `COLLECT`).** UPX est un emballeur :
 il recolle les DLL et l'exe pour gagner quelques méga-octets, et c'est très exactement le
@@ -252,8 +232,10 @@ programme. Un test le vérifie (`tests/test_burn_capteur.py`).
 
 ## 7. Checklist de publication
 
-- [ ] Build régénéré **nommé avec la version** : `TidyDeck-0.6.1.zip` + `.sha256`
-      (et `TidyDeck-0.6.1-win64.zip` + `.sha256` pour l'exécutable)
+- [ ] Build régénéré **nommé avec la version** : `TidyDeck-0.6.2.zip` + `.sha256`
+      (et `TidyDeck-0.6.2-win64.zip` + `.sha256` pour l'exécutable)
+- [ ] Zip source **filtré** : exclusion uniquement `.git/`, `.ruff_cache/`, `__pycache__/`
+      et `debug.log` ; `.gitignore` **inclus** (voir §1, « Archivage de la source »)
 - [ ] **Ré-analyse VirusTotal après chaque rebuild** : l'ancien signal venait de la
       compilation de C# à la volée, supprimée (voir §6). La ré-analyse demande une clé API
       VirusTotal, donc une action humaine.
@@ -281,7 +263,6 @@ programme. Un test le vérifie (`tests/test_burn_capteur.py`).
       téléchargement
 - [ ] Recherche INPI / TMview / EUIPO / USPTO faite **à la main** (classes 9 et 42) —
       impossible depuis cet environnement, voir §4
-- [ ] `tidydeckapp.app` réservé
 - [ ] Nom vérifié dans le Microsoft Store Partner Center
 - [x] Canal de don unique choisi et écrit uniquement dans `DONATION_URL` (Ko-fi,
       verrouillé par `tests/test_don.py`)

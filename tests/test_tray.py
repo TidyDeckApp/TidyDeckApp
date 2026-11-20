@@ -10,7 +10,6 @@ import unittest
 
 from tests import ROOT  # noqa: F401
 
-from Shared.Utils import config
 from UI.Profile import profile
 
 

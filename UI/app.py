@@ -1,13 +1,13 @@
 import time
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 from Services.Logger.journal import Journal
 from Shared.Utils import config, quarantine, privacy, registry
 from Shared.Utils.common import IS_WINDOWS, APP_NAME, relaunch_as_admin, appliquer_icone, identifier_processus_tache
 from Shared.Utils import instance
 from UI import theme
 from UI import tray
-from UI.components import ScrollFrame, Sidebar, ModeBanner
+from UI.components import Sidebar, ModeBanner
 from UI.Home.home import HomePage
 from UI.Pages.check_page import ChecksPage
 from UI.Pages.services_page import ServicesPage
@@ -26,7 +26,7 @@ from UI.Pages.info_pc_page import InfoPCPage
 from UI.PreInstall.welcome import show_welcome
 from UI import routine
 from UI.toast import show_toast
-from Services.Reminders.scheduler import Scheduler, MESSAGES
+from Services.Reminders.scheduler import Scheduler, MESSAGES, notif_for
 from Services.Reminders import autostart
 from Shared.Utils import winui
 from Shared.Utils import lang, tkmsg
@@ -382,8 +382,21 @@ class App:
                 routine.gentle_clean(self.ctx, self.pages["Accueil"], self.pages["Accueil"].on_show)
 
     def show_reminder(self, kind, test=False):
+        notif = notif_for(self.ctx.cfg, kind)
+        if test and notif == "none":
+            notif = "visual"   # « Tester » montre toujours quelque chose
+        if notif == "none":
+            return
         title, text, countdown = MESSAGES[kind]
-        show_toast(self.ctx, title, text, countdown, on_snooze=None if test else (lambda: self.scheduler.snooze(kind)))
+        if notif in ("visual", "both"):
+            show_toast(self.ctx, title, text, countdown, on_snooze=None if test else (lambda: self.scheduler.snooze(kind)))
+        if notif in ("sound", "both"):
+            from Shared.Utils import sound
+            try:
+                v = float(self.ctx.cfg.get("sound_volume", 70)) / 100.0
+            except (TypeError, ValueError):
+                v = 0.7
+            sound.play(self.ctx.cfg.get("custom_sound") or None, v)
 
     def flash_reminder(self, kind):
         winui.flash_taskbar(self.root)

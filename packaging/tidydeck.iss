@@ -8,18 +8,19 @@
 ;
 ; Construire :
 ;   1) build_env\Scripts\pyinstaller --noconfirm --clean ^
-;        "TidyDeck_v2\TidyDeck\packaging\TidyDeck.spec" --distpath dist --workpath work
+;        "packaging\TidyDeck.spec" --distpath dist --workpath work   (depuis la racine du projet)
 ;   2) ISCC.exe packaging\tidydeck.iss          (Inno Setup 6)
 ;
 ; Installation par utilisateur (pas d'admin) : TidyDeck ne reclame les droits
 ; administrateur qu'au cas par cas, via l'invite UAC du logiciel lui-meme.
 
 #define MyAppName "TidyDeck"
-#define MyAppVersion "0.6.1"
+#define MyAppVersion "0.6.2"
 ; Nom de l'editeur tel qu'il s'affiche dans « Applications installees » :
 ; c'est le signataire de la licence (voir LICENSE), pas le nom du logiciel.
 #define MyAppPublisher "Florius"
-#define MyAppURL "https://tidydeckapp.app"
+; Site officiel (GitHub Pages) : l'URL publique de référence du projet.
+#define MyAppURL "https://tidydeckapp.github.io"
 #define MySource "..\..\..\dist\TidyDeck"
 
 [Setup]

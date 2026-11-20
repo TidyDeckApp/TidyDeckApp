@@ -172,12 +172,10 @@ class AnalyseSansCocheTest(unittest.TestCase):
 
     @unittest.skipUnless(HAS_DISPLAY, "pas d'affichage")
     def test_selection_vide_apres_analyse(self):
-        import tkinter as tk
         self._saved = os.environ.get("LOCALAPPDATA")
         self.tmp = tempfile.mkdtemp(prefix="td_ana_")
         os.environ["LOCALAPPDATA"] = self.tmp
         try:
-            from Shared.Utils import config
             from Shared.Utils import lang
             from UI.app import App
             lang.set_lang("fr")

@@ -1,4 +1,3 @@
-import os
 import time
 from tkinter import messagebox, ttk
 from Core.Startup import startup

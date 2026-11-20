@@ -2,7 +2,6 @@
 programmes inutiles » propose doit être vraiment inutile — jamais un
 antivirus, jamais un logiciel dont le lancement automatique protège l'utilisateur.
 """
-import os
 import unittest
 
 from Core.Startup import startup

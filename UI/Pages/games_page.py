@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, ttk
+from tkinter import messagebox
 from Core.Games import games, power
 from Shared.Utils.common import IS_WINDOWS, run_cmd
 from UI.components import Checklist, preview_dialog, run_bg, info_note

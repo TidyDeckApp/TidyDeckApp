@@ -2,7 +2,7 @@ import time
 import tkinter as tk
 from tkinter import messagebox, ttk
 from Core.Tweaks import tweaks
-from Shared.Utils.common import IS_WINDOWS, open_windows_settings
+from Shared.Utils.common import open_windows_settings
 from UI.components import Checklist, FlowFrame, preview_dialog, info_note, auto_wrap
 from UI.restore_flow import with_restore_point
 from UI.Pages.base import Page

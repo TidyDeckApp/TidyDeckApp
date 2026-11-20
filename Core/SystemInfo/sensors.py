@@ -9,7 +9,6 @@ et les puces de capteurs grâce à un PILOTE NOYAU qu'ils installent. TidyDeck s
 import json
 import os
 import subprocess
-import sys
 from Shared.Utils.common import IS_WINDOWS, NO_WINDOW, run_ps
 from Shared.Utils.lang import T
 

@@ -212,9 +212,10 @@ class ClicMajTest(unittest.TestCase):
         return wb, info
 
     def test_a_jour_le_message(self):
+        from Shared.Utils.common import APP_VERSION
         p, ap = self._page()
-        wb, info = self._clic(p, ap, {"statut": "jour", "tag": "0.6.1"})
-        p.maj_lbl.configure.assert_called_with(text="Tu as la dernière version (0.6.1).")
+        wb, info = self._clic(p, ap, {"statut": "jour", "tag": APP_VERSION})
+        p.maj_lbl.configure.assert_called_with(text=f"Tu as la dernière version ({APP_VERSION}).")
         info.assert_not_called()
         wb.open.assert_not_called()
 

@@ -11,7 +11,6 @@ Ce fichier verrouille les corrections trouvees a l'audit complet du code :
 """
 import ast
 import inspect
-import json
 import os
 import shutil
 import sys

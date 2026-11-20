@@ -8,7 +8,6 @@ import time
 from Shared.Utils import registry
 from Shared.Utils import refus
 from Shared.Utils import dossiers
-from Shared.Utils.common import IS_WINDOWS
 from Services.Logger.journal import register_undo
 from Shared.Utils.lang import T
 

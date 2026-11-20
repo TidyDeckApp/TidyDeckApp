@@ -5,6 +5,7 @@ reste de l'application, et il ne remonte JAMAIS d'exception lui-même.
 Le fichier reste sur le PC (aucun envoi), et sa taille est plafonnée.
 """
 import os
+import platform
 import sys
 import time
 import traceback
@@ -35,9 +36,8 @@ def _tronquer(chemin):
         pass
 
 
-def _masque(texte, aguiche):
-    """Remplace chaque occurrence (insensible à la casse) de aguiche par
-    %USERPROFILE%."""
+def _masque(texte, aguiche, par):
+    """Remplace chaque occurrence (insensible à la casse) de aguiche par par."""
     sortie = ""
     bas = texte.lower()
     cle = aguiche.lower()
@@ -46,23 +46,27 @@ def _masque(texte, aguiche):
         j = bas.find(cle, i)
         if j < 0:
             return sortie + texte[i:]
-        sortie += texte[i:j] + "%USERPROFILE%"
+        sortie += texte[i:j] + par
         i = j + len(aguiche)
 
 
 def _anonymise(texte):
     """Remplace le chemin du profil (C:\\Users\\<pseudo> ou /home/<pseudo>) par
     %USERPROFILE%, sous sa forme brute et sous sa forme échappée telle que
-    repr() et les tracebacks l'écrivent (C:\\\\Users\\\\<pseudo>). Le journal ne
-    doit jamais porter le nom d'utilisateur, même s'il reste local."""
+    repr() et les tracebacks l'écrivent (C:\\\\Users\\\\<pseudo>). Le nom de
+    la machine est remplacé par %COMPUTERNAME%. Le journal ne doit jamais
+    porter le nom d'utilisateur ni celui du PC, même s'il reste local."""
     try:
         maison = os.path.expanduser("~")
         if not maison or maison in ("~", "/", "\\") or len(maison) < 4:
             return texte
-        sortie = _masque(texte, maison)
+        sortie = _masque(texte, maison, "%USERPROFILE%")
         echappe = maison.replace("\\", "\\\\")
         if echappe != maison:
-            sortie = _masque(sortie, echappe)
+            sortie = _masque(sortie, echappe, "%USERPROFILE%")
+        machine = os.environ.get("COMPUTERNAME") or platform.node()
+        if machine and len(machine) >= 4:
+            sortie = _masque(sortie, machine, "%COMPUTERNAME%")
         return sortie
     except Exception:
         return texte
